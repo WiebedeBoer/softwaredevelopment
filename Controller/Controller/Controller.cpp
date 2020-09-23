@@ -3,10 +3,34 @@
 
 #include "pch.h"
 #include <iostream>
+#include <sstream>
+
+int fromsim[4];
+int tosim[4];
 
 int main()
 {
     std::cout << "Hello World!\n"; 
+}
+
+void fetchlight() {
+
+}
+
+void checklight() {
+
+}
+
+void setlight() {
+
+}
+
+void fetchjson() {
+
+}
+
+void sendjson() {
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
