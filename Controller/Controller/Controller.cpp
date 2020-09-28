@@ -2,6 +2,7 @@
 //
 
 #include "pch.h"
+#include "trafficlight.h"
 #include <iostream>
 #include <sstream>
 
@@ -22,7 +23,46 @@ void checklight() {
 }
 
 void setlight() {
+	int light;
+	trafficlight trafficlight;
+	light = trafficlight.changecolor(light);
+}
 
+//which lights on green
+void changetraffic(int order) {
+	int order = order;
+	//rechtdoor noord - zuid bus
+	if (order ==1)
+	{
+	}
+	//rechtdoor en rechtsaf noord - zuid auto
+	else if (order ==2) {
+
+	}
+	//rechtdoor en rechtsaf oost - west auto
+	else if (order == 3) {
+
+	}
+	//linksaf noord - west en oost - zuid auto
+	else if (order == 4) {
+
+	}
+	//linksaf noord - oost en zuid - west auto
+	else if (order == 5) {
+
+	}
+	//fietsverkeer
+	else if (order == 6) {
+
+	}
+	//voetgangersverkeer
+	else if (order == 7) {
+
+	}
+	//default
+	else {
+
+	}
 }
 
 void fetchjson() {

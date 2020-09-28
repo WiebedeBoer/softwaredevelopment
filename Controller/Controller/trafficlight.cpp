@@ -4,15 +4,17 @@
 
 trafficlight::trafficlight()
 {
+	int state;
 }
 
 
 trafficlight::~trafficlight()
 {
+
 }
 
-int changecolor() {
-	int light = 0;
+int trafficlight::changecolor(int state) {
+	int light = state;
 
 	return light;
 }
