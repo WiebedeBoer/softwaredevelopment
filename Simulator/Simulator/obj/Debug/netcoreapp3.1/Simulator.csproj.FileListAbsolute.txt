@@ -12,3 +12,8 @@ C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simu
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
