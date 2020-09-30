@@ -49,7 +49,6 @@ namespace Simulator
             this.pictureBox1.Size = new System.Drawing.Size(30, 44);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Move += new System.EventHandler(this.timer1_Tick);
             // 
             // timer1
             // 
