@@ -10,5 +10,14 @@
 #define PCH_H
 
 // TODO: add headers that you want to pre-compile here
+class controller : controller
+{
+public:
+	int setlight();
+	int trafficorder();
+	int * changetraffic(int order);
+	void fetchjson();
+	void sendjson();
+};
 
 #endif //PCH_H

@@ -1,19 +1,30 @@
 #include "pch.h"
 #include "carlane.h"
 
-int traffic;
-
+/*
+//constructor
 carlane::carlane()
 {
+	
 }
 
-
+//destructor
 carlane::~carlane()
 {
-}
 
-int changetraffic() {
-	int traffic = 0;
-
-	return traffic;
 }
+*/
+
+class traffic {        
+public:             
+	int changetraffic() {  
+		int traffic = 0;
+		return traffic;
+	}
+};
+
+
+
+
+
+

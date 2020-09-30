@@ -2,7 +2,8 @@
 class carlane
 {
 public:
-	carlane();
-	~carlane();
+	//carlane();
+	//~carlane();
+	//changetraffic();
 };
 

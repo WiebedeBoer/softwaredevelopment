@@ -14,71 +14,78 @@ int main()
     std::cout << "Hello World!\n"; 
 }
 
-void fetchlight() {
+class controller {
 
-}
-
-void checklight() {
-
-}
-
-void setlight() {
-	int light;
-	trafficlight trafficlight;
-	light = trafficlight.changecolor(light);
-}
-
-int trafficorder() {
-	int trafficorder = 1;
-	return trafficorder;
-}
-
-//which lights on green
-int * changetraffic(int order) {
-	int order = order;
-	static int traffic[12];
-	//rechtdoor noord - zuid bus
-	if (order ==1)
-	{
-	}
-	//rechtdoor en rechtsaf noord - zuid auto
-	else if (order ==2) {
+	void fetchlight() {
 
 	}
-	//rechtdoor en rechtsaf oost - west auto
-	else if (order == 3) {
+
+	void checklight() {
 
 	}
-	//linksaf noord - west en oost - zuid auto
-	else if (order == 4) {
+
+	int setlight() {
+		int light;
+		trafficlight trafficlight;
+		light = trafficlight.changecolor(light);
+		return light;
+	}
+
+	int trafficorder() {
+		int trafficorder = 1;
+		return trafficorder;
+	}
+
+	//which lights on green
+	int * changetraffic(int order) {
+		//int order = order;
+		static int traffic[12];
+		//rechtdoor noord - zuid bus
+		if (order == 1)
+		{
+		}
+		//rechtdoor en rechtsaf noord - zuid auto
+		else if (order == 2) {
+
+		}
+		//rechtdoor en rechtsaf oost - west auto
+		else if (order == 3) {
+
+		}
+		//linksaf noord - west en oost - zuid auto
+		else if (order == 4) {
+
+		}
+		//linksaf noord - oost en zuid - west auto
+		else if (order == 5) {
+
+		}
+		//fietsverkeer
+		else if (order == 6) {
+
+		}
+		//voetgangersverkeer
+		else if (order == 7) {
+
+		}
+		//default
+		else {
+
+		}
+		return traffic;
+	}
+
+	void fetchjson() {
 
 	}
-	//linksaf noord - oost en zuid - west auto
-	else if (order == 5) {
+
+	void sendjson() {
 
 	}
-	//fietsverkeer
-	else if (order == 6) {
 
-	}
-	//voetgangersverkeer
-	else if (order == 7) {
+};
 
-	}
-	//default
-	else {
 
-	}
-	return traffic;
-}
-
-void fetchjson() {
-
-}
-
-void sendjson() {
-
-}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
