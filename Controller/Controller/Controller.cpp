@@ -6,6 +6,12 @@
 #include <iostream>
 #include <sstream>
 
+#include <stdio.h> 
+#include <sys/socket.h> 
+#include <arpa/inet.h> 
+#include <unistd.h> 
+#include <string.h> 
+
 int fromsim[4];
 int tosim[4];
 
@@ -75,9 +81,56 @@ class controller {
 		return traffic;
 	}
 
+	/*
+	//https://github.com/pedro-vicente/lib_netsockets
+	//https://www.space-research.org/blog/lib_netsockets.html
 	void fetchjson() {
-
+		//tcp client
+		tcp_client_t client("127.0.0.1", 2000);
+		//request
+		json_t *request = json_object();
+		json_object_set_new(request, "start_year", json_integer(2016));
+		//open client
+		client.open();
+		client.write(request);
+		//connect in port
+		tcp_server_t server(2000);
+		while (true)
+		{
+			socket_t socket = server.accept_client();
+			handle_client(socket);
+			socket.close();
+		}
+		//close sserver
+		server.close();
+		//receive response
+		json_t *response = client.read();
+		json_t *json_obj;
+		json_obj = json_object_get(response, "next_year");
+		json_int_t next_year = json_integer_value(json_obj);
+		std::cout << "client received: " << std::endl;
+		std::cout << "next_year: " << next_year << std::endl;
+		client.close();
 	}
+
+	void handle_client(socket_t& socket_client)
+	{
+		json_t *response = NULL;
+		json_t *request = socket_client.read();
+
+		//get dates
+		json_t *json_obj;
+		json_obj = json_object_get(request, "start_year");
+		json_int_t start_year = json_integer_value(json_obj);
+		std::cout << "server received: " << std::endl;
+		std::cout << "start_year: " << start_year << std::endl;
+
+		//do response
+		response = json_object();
+		json_object_set_new(response, "next_year", json_integer(start_year + 1));
+		socket_client.write(response);
+	}
+	*/
 
 	void sendjson() {
 
