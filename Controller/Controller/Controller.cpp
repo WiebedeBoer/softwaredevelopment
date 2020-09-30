@@ -5,12 +5,13 @@
 #include "trafficlight.h"
 #include <iostream>
 #include <sstream>
-
 #include <stdio.h> 
-#include <sys/socket.h> 
-#include <arpa/inet.h> 
-#include <unistd.h> 
 #include <string.h> 
+//#include <sys/socket.h> 
+//#include <arpa/inet.h> 
+//#include <unistd.h> 
+#include "socket.h"
+#include "json_message.h"
 
 int fromsim[4];
 int tosim[4];
@@ -82,8 +83,23 @@ class controller {
 	}
 
 	/*
-	//https://github.com/pedro-vicente/lib_netsockets
 	//https://www.space-research.org/blog/lib_netsockets.html
+	//
+	//https://github.com/pedro-vicente/lib_netsockets
+	//
+	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.hh
+	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.cc
+	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_message.hh
+	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_client.cc
+	//
+	//https://github.com/akheron/jansson
+	//https://github.com/nlohmann/json
+	//
+	//https://answers.ros.org/question/260095/how-to-send-data-in-json-format-using-service-client-in-c-code/
+	//https://rapidjson.org/md_doc_tutorial.html
+	*/
+
+	/*
 	void fetchjson() {
 		//tcp client
 		tcp_client_t client("127.0.0.1", 2000);
@@ -112,7 +128,9 @@ class controller {
 		std::cout << "next_year: " << next_year << std::endl;
 		client.close();
 	}
+	*/
 
+	/*
 	void handle_client(socket_t& socket_client)
 	{
 		json_t *response = NULL;
