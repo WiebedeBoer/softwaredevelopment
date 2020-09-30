@@ -10,6 +10,7 @@ namespace Simulator.Tests
         [TestMethod()]
         public void SwitchLightToGreenTest()
         {
+            
             Assert.Fail();
         }
 
