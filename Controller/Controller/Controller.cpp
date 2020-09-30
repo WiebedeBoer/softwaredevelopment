@@ -12,6 +12,10 @@
 //#include <unistd.h> 
 #include "socket.h"
 #include "json_message.h"
+//rapid json library
+#include <rapidjson\document.h>
+#include <rapidjson\writer.h>
+#include <rapidjson\stringbuffer.h>
 
 int fromsim[4];
 int tosim[4];
@@ -95,8 +99,11 @@ class controller {
 	//https://github.com/akheron/jansson
 	//https://github.com/nlohmann/json
 	//
+	//
 	//https://answers.ros.org/question/260095/how-to-send-data-in-json-format-using-service-client-in-c-code/
 	//https://rapidjson.org/md_doc_tutorial.html
+	//
+	//https://github.com/ebshimizu/socket.io-clientpp
 	*/
 
 	/*
