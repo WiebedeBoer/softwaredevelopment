@@ -28,9 +28,15 @@ void setlight() {
 	light = trafficlight.changecolor(light);
 }
 
+int trafficorder() {
+	int trafficorder = 1;
+	return trafficorder;
+}
+
 //which lights on green
-void changetraffic(int order) {
+int * changetraffic(int order) {
 	int order = order;
+	static int traffic[12];
 	//rechtdoor noord - zuid bus
 	if (order ==1)
 	{
@@ -63,6 +69,7 @@ void changetraffic(int order) {
 	else {
 
 	}
+	return traffic;
 }
 
 void fetchjson() {
