@@ -17,3 +17,22 @@ C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simu
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.exe
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.deps.json
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.json
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.dev.json
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.dll
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.pdb
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Form1.resources
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.GenerateResource.cache
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfoInputs.cache
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfo.cs
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
