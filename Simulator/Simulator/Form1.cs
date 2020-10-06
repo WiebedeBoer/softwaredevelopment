@@ -57,12 +57,24 @@ namespace Simulator
                 spawnTimer = 0;
             }
 
+            foreach(Car x in this.cars)
+            {
+                if(x.carPic.Tag == "carP1")
+                {
+                    x.carPic.Top -= 10;
+                }
+                if (x.carPic.Tag == "carP2")
+                {
+                    x.carPic.Top -= 10;
+                }
+            }
+
             foreach(Control x in this.Controls)
             {
-                if(x is PictureBox && x.Tag == "carP1" || x is PictureBox && x.Tag == "carP2")
-                {
-                    x.Top -= 10;
-                }
+                //if(x is PictureBox && x.Tag == "carP1" || x is PictureBox && x.Tag == "carP2")
+                //{
+                //    x.Top -= 10;
+                //}
                 if (((PictureBox)x).Top < this.Height -650)
                 {
                     this.Controls.Remove(x);
