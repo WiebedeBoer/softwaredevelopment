@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,7 +16,13 @@ namespace Simulator
 
         public int spawnTimer = 0;
         public int randomTimeSpawned = 10; // standard
-        
+
+        List<Car> cars = new List<Car>();
+
+        // Lane 1
+        public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 } };
+        public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 } };
+
         public Form1()
         {
             InitializeComponent();
@@ -52,7 +59,7 @@ namespace Simulator
 
             foreach(Control x in this.Controls)
             {
-                if(x is PictureBox && x.Tag == "car")
+                if(x is PictureBox && x.Tag == "carP1" || x is PictureBox && x.Tag == "carP2")
                 {
                     x.Top -= 10;
                 }
@@ -71,40 +78,13 @@ namespace Simulator
 
         private void spawnRandomCar()
         {
-            PictureBox car = new PictureBox();
+            Car car = new Car();
 
-            Random rnd = new Random();
-            int whichCar = rnd.Next(1, 5);
+            car.spawnRandomCar(340, 580);
 
-            switch(whichCar)
-            {
-                case 1:
-                    car.Image = Properties.Resources.blue_car;
-                    break;
-                case 2:
-                    car.Image = Properties.Resources.red_car;
-                    break;
-                case 3:
-                    car.Image = Properties.Resources.yellow_car;
-                    break;
-                case 4:
-                    car.Image = Properties.Resources.green_car;
-                    break;
-            }
+            cars.Add(car);
 
-            car.BackColor = Color.Transparent;
-
-            car.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            car.Size = new Size(23, 33);
-
-            car.Tag = "car";
-
-            car.Left = 340;
-
-            car.Top = 580;
-
-            this.Controls.Add(car);
+            this.Controls.Add(car.carPic);
         }
     }
 }
