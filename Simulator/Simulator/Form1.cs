@@ -59,11 +59,11 @@ namespace Simulator
 
             foreach(Car x in this.cars)
             {
-                if(x.carPic.Tag == "carP1")
+                if(x.path == "path1")
                 {
-                    x.carPic.Top -= 10;
+                    x.move(340, 411,10);
                 }
-                if (x.carPic.Tag == "carP2")
+                if (x.path == "path2")
                 {
                     x.carPic.Top -= 10;
                 }

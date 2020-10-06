@@ -11,6 +11,8 @@ namespace Simulator
     {
         public PictureBox carPic;
 
+        public String path = "path1";
+
 
         public void spawnRandomCar(int Left, int Top)
         {
@@ -48,10 +50,10 @@ namespace Simulator
             switch (whichPath)
             {
                 case 1:
-                    car.Tag = "carP1";
+                    this.path = "path1";
                     break;
                 case 2:
-                    car.Tag = "carP2";
+                    this.path = "path2";
                     break;
             }
 
@@ -60,6 +62,40 @@ namespace Simulator
             car.Top = 580;
 
             this.carPic = car;
+        }
+
+        public void move(int leftPoint, int topPoint, int speed)
+        {
+            float tx = leftPoint - carPic.Left;
+            float ty = topPoint - carPic.Top;
+            double length = Math.Sqrt(tx * tx + ty * ty);
+            if (length > speed)
+            {
+                // move towards the goal
+                carPic.Left = (int)(carPic.Left + speed * tx / length);
+                carPic.Top = (int)(carPic.Top + speed * ty / length);
+            }
+            else
+            {
+                // already there
+                carPic.Left = leftPoint;
+                carPic.Top = topPoint;
+            }
+
+
+            //if(carPic.Left < leftPoint && carPic.Top > topPoint)
+            //{
+            //   carPic.Left += 10;
+            //  carPic.Top -= 10;
+            // }
+            //if (carPic.Left < leftPoint && carPic.Top <= topPoint)
+            //{
+            //    carPic.Left += 10;
+            // }
+            // if (carPic.Left >= leftPoint && carPic.Top > topPoint)
+            // {
+            // carPic.Top -= 10;
+            // }
         }
     }
 }
