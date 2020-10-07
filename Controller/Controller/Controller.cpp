@@ -13,9 +13,12 @@
 #include "socket.h"
 #include "json_message.h"
 //rapid json library
-#include <rapidjson\document.h>
-#include <rapidjson\writer.h>
-#include <rapidjson\stringbuffer.h>
+#include "rapidjson\document.h"
+#include "rapidjson\writer.h"
+#include "rapidjson\stringbuffer.h"
+
+using namespace rapidjson;
+
 
 int fromsim[4];
 int tosim[4];
@@ -23,10 +26,14 @@ int tosim[4];
 int main()
 {
     std::cout << "Hello World!\n"; 
+	const char* json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
+	controller controller;
+	controller.fetchjson(json);
 }
 
 class controller {
 
+public:
 	void fetchlight() {
 
 	}
@@ -84,6 +91,15 @@ class controller {
 
 		}
 		return traffic;
+	}
+
+	void fetchjson(const char* json) {
+		Document document;
+		document.Parse(json);
+	}
+
+	void sendjson() {
+
 	}
 
 	/*
@@ -157,9 +173,7 @@ class controller {
 	}
 	*/
 
-	void sendjson() {
 
-	}
 
 };
 

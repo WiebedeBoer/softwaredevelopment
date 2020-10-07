@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Controller", "Controller\Controller.vcxproj", "{92AD6198-BBDF-4F70-9884-C5F660E44045}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControllerTest", "ControllerTest\ControllerTest.vcxproj", "{71FB55B0-D562-4DFF-A558-6AF93B8EBBC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1B99017-704E-48F5-9EF8-E7215D883716}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
