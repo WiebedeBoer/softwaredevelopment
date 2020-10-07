@@ -37,3 +37,4 @@ D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcor
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources

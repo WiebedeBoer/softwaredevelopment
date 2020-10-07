@@ -13,10 +13,17 @@ namespace Simulator
 
         public String path = "path1";
 
+        public PictureBox car;
+
+        public String direction = "straight";
+
+
+        // Which node(x,y coordinates) on the map is the car
+        public int node = 0;
 
         public void spawnRandomCar(int Left, int Top)
         {
-            PictureBox car = new PictureBox();
+            car = new PictureBox();
 
             // random color for car
             Random rnd = new Random();
@@ -64,13 +71,21 @@ namespace Simulator
             this.carPic = car;
         }
 
-        public void move(int leftPoint, int topPoint, int speed)
+        public void move(int[,] pointsAlongPath, int speed)
         {
-            float tx = leftPoint - carPic.Left;
-            float ty = topPoint - carPic.Top;
+            float tx = pointsAlongPath[node, 0] - carPic.Left;
+            float ty = pointsAlongPath[node, 1] - carPic.Top;
             double length = Math.Sqrt(tx * tx + ty * ty);
             if (length > speed)
             {
+                if(carPic.Left < pointsAlongPath[node, 0] && direction == "straight")
+                {
+                    Image img = car.Image;
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    car.Image = img;
+                    car.Size = new Size(33, 23);
+                    direction = "right";
+                }
                 // move towards the goal
                 carPic.Left = (int)(carPic.Left + speed * tx / length);
                 carPic.Top = (int)(carPic.Top + speed * ty / length);
@@ -78,8 +93,13 @@ namespace Simulator
             else
             {
                 // already there
-                carPic.Left = leftPoint;
-                carPic.Top = topPoint;
+                carPic.Left = pointsAlongPath[node, 0];
+                carPic.Top = pointsAlongPath[node, 1];
+                if(node < 2)
+                {
+                    int x = pointsAlongPath.GetLength(0);
+                    node++;
+                }
             }
 
 

@@ -20,19 +20,21 @@ namespace Simulator
         List<Car> cars = new List<Car>();
 
         // Lane 1
-        public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 } };
-        public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 } };
+        public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 }, { 600, 384 } };
+        public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 361 } };
 
         public Form1()
         {
             InitializeComponent();
 
-           // var trafficLightsSequence = new ArrayList()
-           //         {
-           //             "..\\red_light.png",
-           //             "..\\yellow_light.png",
+            // var trafficLightsSequence = new ArrayList()
+            //         {
+            //             "..\\red_light.png",
+            //             "..\\yellow_light.png",
             //            "..\\green_light.png"
-             //       };
+            //       };
+
+            //spawnRandomCar();
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
@@ -61,11 +63,11 @@ namespace Simulator
             {
                 if(x.path == "path1")
                 {
-                    x.move(340, 411,10);
+                    x.move(pointsAlongPath1, 10);
                 }
                 if (x.path == "path2")
                 {
-                    x.carPic.Top -= 10;
+                    x.move(pointsAlongPath2, 10);
                 }
             }
 
@@ -77,7 +79,7 @@ namespace Simulator
                 //}
                 if (((PictureBox)x).Top < this.Height -650)
                 {
-                    this.Controls.Remove(x);
+                    //this.Controls.Remove(x);
                 }
             }
         }
