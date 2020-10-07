@@ -38,6 +38,14 @@ int main()
 class controller {
 
 public:
+
+	controller()
+	{
+			int order;
+			std::string traffic;
+			std::string changetraffic(int order);
+	}
+
 	void fetchlight() {
 
 	}
@@ -59,48 +67,56 @@ public:
 	}
 
 	//which lights on green
-	int * changetraffic(int order) {
-		//int order = order;
-		static int traffic[12];
+	std::string changetraffic(int order) {
+
+		std::string traffic;
 		//rechtdoor noord - zuid bus
 		if (order == 1)
 		{
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//rechtdoor en rechtsaf noord - zuid auto
 		else if (order == 2) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//rechtdoor en rechtsaf oost - west auto
 		else if (order == 3) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//linksaf noord - west en oost - zuid auto
 		else if (order == 4) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//linksaf noord - oost en zuid - west auto
 		else if (order == 5) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//fietsverkeer
 		else if (order == 6) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//voetgangersverkeer
 		else if (order == 7) {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		//default
 		else {
-
+			trafficnorthsouthbus northsouthbus;
+			traffic = northsouthbus.traffic;
 		}
 		return traffic;
 	}
 
 	static rapidjson::Document fetchjson(const char* json) {
 		Document document;
-		//const char* json = " { \"x\" : \"0.01\", \"y\" :\"0.02\" , \"z\" : \"0.03\"} ";
-
+		
 		document.Parse<0>(json);
 
 		//convert document to string
@@ -119,6 +135,13 @@ public:
 
 		std::cout << buffer.GetString() << std::endl;
 	}
+
+	class trafficnorthsouthbus {
+	public: 
+		std::string traffic = "{\"1\":{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1},\"2\": {\"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0},\"3\": {\"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0},\"4\": {\"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0},\"5\": {\"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0},\"6\": {\"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}}";
+	};
+
+
 
 	/*
 	//https://www.space-research.org/blog/lib_netsockets.html
