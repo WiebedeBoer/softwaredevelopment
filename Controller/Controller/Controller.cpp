@@ -28,7 +28,11 @@ int main()
     std::cout << "Hello World!\n"; 
 	const char* json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
 	controller controller;
-	controller.fetchjson(json);
+	//controller.fetchjson(json);
+
+	const rapidjson::Document json_value = controller.fetchjson(json);
+	assert(json_value.IsArray());
+	controller.sendjson(json_value);
 }
 
 class controller {
@@ -93,13 +97,27 @@ public:
 		return traffic;
 	}
 
-	void fetchjson(const char* json) {
+	static rapidjson::Document fetchjson(const char* json) {
 		Document document;
-		document.Parse(json);
+		//const char* json = " { \"x\" : \"0.01\", \"y\" :\"0.02\" , \"z\" : \"0.03\"} ";
+
+		document.Parse<0>(json);
+
+		//convert document to string
+
+		StringBuffer strbuf;
+		strbuf.Clear();
+
+		Writer<StringBuffer> writer(strbuf);
+		document.Accept(writer);
 	}
 
-	void sendjson() {
+	void sendjson(const rapidjson::Value& value) {
+		rapidjson::StringBuffer buffer;
+		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+		value.Accept(writer);
 
+		std::cout << buffer.GetString() << std::endl;
 	}
 
 	/*
