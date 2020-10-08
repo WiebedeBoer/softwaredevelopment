@@ -5105,11 +5105,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+      "projectUniqueName": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
       "projectName": "Simulator",
-      "projectPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+      "projectPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
       "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
+      "outputPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",

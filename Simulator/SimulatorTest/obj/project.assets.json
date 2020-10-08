@@ -6209,11 +6209,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
+      "projectUniqueName": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
       "projectName": "SimulatorTest",
-      "projectPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
+      "projectPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
       "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
-      "outputPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\SimulatorTest\\obj\\",
+      "outputPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\SimulatorTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6229,8 +6229,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
-              "projectPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj"
+            "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj"
             }
           }
         }

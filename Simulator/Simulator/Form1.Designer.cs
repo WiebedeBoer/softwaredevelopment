@@ -43,15 +43,15 @@ namespace Simulator
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1301, 1063);
+            this.ClientSize = new System.Drawing.Size(1138, 796);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.timer1_Tick_1);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.ResumeLayout(false);
 

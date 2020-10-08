@@ -19,9 +19,12 @@ namespace Simulator
 
         List<Car> cars = new List<Car>();
 
+        RegularTrafficLight reg;
+
         // Lane 1
         public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 }, { 600, 384 } };
         public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 361 } };
+        private Car carInFront = null;
 
         public Form1()
         {
@@ -35,6 +38,8 @@ namespace Simulator
             //       };
 
             //spawnRandomCar();
+
+            createTrafficLight(342, 421);
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
@@ -61,14 +66,21 @@ namespace Simulator
 
             foreach(Car x in this.cars)
             {
+                bool brake = false;
+                if (carInFront != null && !carInFront.guid.Equals(x.guid))
+                {
+                    // Check if car is detected in front, so they dont collide
+                    brake = x.collisionDetection(carInFront.car);
+                }
                 if(x.path == "path1")
                 {
-                    x.move(pointsAlongPath1, 10);
+                    x.move(pointsAlongPath1, 10, brake);
                 }
                 if (x.path == "path2")
                 {
-                    x.move(pointsAlongPath2, 10);
+                    x.move(pointsAlongPath2, 10, brake);
                 }
+                carInFront = x;
             }
 
             foreach(Control x in this.Controls)
@@ -77,16 +89,17 @@ namespace Simulator
                 //{
                 //    x.Top -= 10;
                 //}
-                if (((PictureBox)x).Top < this.Height -650)
-                {
-                    //this.Controls.Remove(x);
-                }
+                //if (((PictureBox)x).Top < this.Height - (this.Height-50) || ((PictureBox)x).Left > (this.Width-50))
+                //{
+                   // this.Controls.Remove(x);
+               // }
             }
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-
+            // trafficlight
+            reg.SwitchLight();
         }
 
 
@@ -98,7 +111,16 @@ namespace Simulator
 
             cars.Add(car);
 
-            this.Controls.Add(car.carPic);
+            this.Controls.Add(car.car);
+        }
+
+        private void createTrafficLight(int left, int top)
+        {
+            reg = new RegularTrafficLight();
+
+            reg.createTrafficLight(left, top);
+
+            this.Controls.Add(reg.regTrafficLight);
         }
     }
 }

@@ -9,7 +9,9 @@ namespace Simulator
 {
     class Car
     {
-        public PictureBox carPic;
+        //public PictureBox carPic;
+
+        public Guid guid = Guid.NewGuid();
 
         public String path = "path1";
 
@@ -68,39 +70,41 @@ namespace Simulator
 
             car.Top = 580;
 
-            this.carPic = car;
+            //this.carPic = car;
         }
 
-        public void move(int[,] pointsAlongPath, int speed)
+        public void move(int[,] pointsAlongPath, int speed, bool brake)
         {
-            float tx = pointsAlongPath[node, 0] - carPic.Left;
-            float ty = pointsAlongPath[node, 1] - carPic.Top;
-            double length = Math.Sqrt(tx * tx + ty * ty);
-            if (length > speed)
+            if (brake is false)
             {
-                if(carPic.Left < pointsAlongPath[node, 0] && direction == "straight")
+                float tx = pointsAlongPath[node, 0] - car.Left;
+                float ty = pointsAlongPath[node, 1] - car.Top;
+                double length = Math.Sqrt(tx * tx + ty * ty);
+                if (length > speed)
                 {
-                    Image img = car.Image;
-                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    car.Image = img;
-                    car.Size = new Size(33, 23);
-                    direction = "right";
+                    if (car.Left < pointsAlongPath[node, 0] && direction == "straight")
+                    {
+                        Image img = car.Image;
+                        img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        car.Image = img;
+                        car.Size = new Size(33, 23);
+                        direction = "right";
+                    }
+                    // move towards the goal
+                    car.Left = (int)(car.Left + speed * tx / length);
+                    car.Top = (int)(car.Top + speed * ty / length);
                 }
-                // move towards the goal
-                carPic.Left = (int)(carPic.Left + speed * tx / length);
-                carPic.Top = (int)(carPic.Top + speed * ty / length);
-            }
-            else
-            {
-                // already there
-                carPic.Left = pointsAlongPath[node, 0];
-                carPic.Top = pointsAlongPath[node, 1];
-                if(node < 2)
+                else
                 {
-                    int x = pointsAlongPath.GetLength(0);
-                    node++;
+                    // already there
+                    car.Left = pointsAlongPath[node, 0];
+                    car.Top = pointsAlongPath[node, 1];
+                    if (node < 2 && brake is false)
+                    {
+                        node++;
+                    }
                 }
-            }
+            } 
 
 
             //if(carPic.Left < leftPoint && carPic.Top > topPoint)
@@ -116,6 +120,19 @@ namespace Simulator
             // {
             // carPic.Top -= 10;
             // }
+        }
+
+        public bool collisionDetection(PictureBox car2)
+        {
+            if (car.Left + car.Width < car2.Left)
+                return false;
+            if (car2.Left + car2.Width < car.Left)
+                return false;
+            if (car.Top + car.Height < car2.Top)
+                return false;
+            if (car2.Top + car2.Height < car.Top)
+                return false;
+            return true;
         }
     }
 }
