@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
@@ -122,17 +123,33 @@ namespace Simulator
             // }
         }
 
-        public bool collisionDetection(PictureBox car2)
+        public bool collisionDetection(List<Car> cars)
         {
-            if (car.Left + car.Width < car2.Left)
+            List<Car> cars2 = cars.Where(car => car.guid != this.guid).ToList();
+
+            if(cars2.Count == 0)
+            {
                 return false;
-            if (car2.Left + car2.Width < car.Left)
-                return false;
-            if (car.Top + car.Height < car2.Top)
-                return false;
-            if (car2.Top + car2.Height < car.Top)
-                return false;
-            return true;
+            }
+
+            
+
+            foreach (Car car2 in cars2)
+            {
+                
+                if (car.Left + car.Width < car2.car.Left)
+                    continue;
+                if (car2.car.Left + car2.car.Width < car.Left)
+                    continue;
+                if (car.Top + car.Height < car2.car.Top)
+                    continue;
+                if (car2.car.Top + car2.car.Height < car.Top)
+                    continue;
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

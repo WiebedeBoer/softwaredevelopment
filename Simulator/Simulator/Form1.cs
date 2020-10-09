@@ -23,8 +23,7 @@ namespace Simulator
 
         // Lane 1
         public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 }, { 600, 384 } };
-        public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 361 } };
-        private Car carInFront = null;
+        public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 360 } };
 
         public Form1()
         {
@@ -64,14 +63,15 @@ namespace Simulator
                 spawnTimer = 0;
             }
 
-            foreach(Car x in this.cars)
+
+            foreach (Car x in this.cars)
             {
-                bool brake = false;
-                if (carInFront != null && !carInFront.guid.Equals(x.guid))
-                {
+                
+                //if (carInFront != null && !carInFront.guid.Equals(x.guid))
+                //{
                     // Check if car is detected in front, so they dont collide
-                    brake = x.collisionDetection(carInFront.car);
-                }
+                    bool brake = x.collisionDetection(this.cars);
+                //}
                 if(x.path == "path1")
                 {
                     x.move(pointsAlongPath1, 10, brake);
@@ -80,7 +80,8 @@ namespace Simulator
                 {
                     x.move(pointsAlongPath2, 10, brake);
                 }
-                carInFront = x;
+                // je moet zorgen dat de carInFront per path is, anders registreert hij carInfront als auto op de rijbaan ernaast...
+                //carInFront = x;
             }
 
             foreach(Control x in this.Controls)
