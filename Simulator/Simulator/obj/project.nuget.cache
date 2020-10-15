@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5ButveGjnfUgzxhwzshfn42p/QV2kO9E4JyfaslU7mbtMWtgXRibHG46xywFWEuByZkcK7ws8qN2Q6Gtxtdp7A==",
+  "dgSpecHash": "0hTkCrwGfQk3TkaXyn0aZPbzHUZ5xdaqKBNiK6j2VwRncB1tEEmgz2+u6OT2eyXH9vDk+s6ueZ7fEPUN795OtA==",
   "success": true,
   "projectFilePath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\janek\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\moq\\4.14.5\\moq.4.14.5.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
+    "C:\\Users\\janek\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

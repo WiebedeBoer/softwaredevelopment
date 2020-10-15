@@ -90,8 +90,9 @@ C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simu
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.csprojAssemblyReference.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.AssemblyInfoInputs.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.AssemblyInfo.cs
-C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.csproj.CoreCompileInputs.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.csproj.CopyComplete
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.dll
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.pdb
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\obj\Debug\netcoreapp3.1\SimulatorTest.genruntimeconfig.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\SimulatorTest\bin\Debug\netcoreapp3.1\Moq.dll

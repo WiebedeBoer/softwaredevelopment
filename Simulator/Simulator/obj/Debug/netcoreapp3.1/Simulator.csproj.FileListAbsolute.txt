@@ -15,7 +15,6 @@ C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simu
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
-C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.exe
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.deps.json
@@ -38,3 +37,5 @@ D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcor
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
 D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
