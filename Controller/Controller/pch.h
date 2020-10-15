@@ -15,6 +15,8 @@ class controller : controller
 public:
 	int setlight();
 	int trafficorder();
+	int sendlight();
+	int sendpackage(std::string hello);
 	std::string changetraffic(int order);
 	static rapidjson::Document fetchjson(const char* json);
 	void sendjson(const rapidjson::Value& value);
