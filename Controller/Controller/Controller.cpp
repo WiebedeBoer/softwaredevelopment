@@ -18,6 +18,7 @@
 #include "rapidjson\document.h"
 #include "rapidjson\writer.h"
 #include "rapidjson\stringbuffer.h"
+#include <ctime>
 
 using namespace rapidjson;
 
@@ -62,11 +63,35 @@ public:
 		const char* header;
 		const char* package;
 
+		//timing
+		double time_counter = 0;
+		clock_t this_time = clock();
+		clock_t last_time = this_time;
+		const int NUM_SECONDS = 4;
+
+		//continuous order
 		while (order < 9) {
 			std::string traffic = changetraffic(order);
 			std::string header = "25:{\"type\": \"A1-A\",\"state\":0}";
 			std::string package = header + traffic;
-			int lightssend = sendpackage(package);
+
+			//run clock
+			while (true)
+			{
+				this_time = clock();
+
+				time_counter += (double)(this_time - last_time);
+
+				last_time = this_time;
+
+				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
+				{
+					time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
+					int lightssend = sendpackage(package); //package every 4 seconds
+				}
+
+			}
+			
 			if (order == 9) {
 				order = 1; //reset to 1 to start over
 			}
