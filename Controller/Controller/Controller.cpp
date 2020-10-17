@@ -33,9 +33,13 @@ int main()
 	controller controller;
 	//controller.fetchjson(json);
 
+	//fetching json
 	const rapidjson::Document json_value = controller.fetchjson(json);
 	assert(json_value.IsArray());
 	controller.sendjson(json_value);
+
+	//sending packages of string json
+	controller.sendlight();
 }
 
 class controller {
@@ -62,26 +66,19 @@ public:
 		const char* traffic;
 		const char* header;
 		const char* package;
+		int modorder;
 
 		//timing
 		double time_counter = 0;
 		clock_t this_time = clock();
 		clock_t last_time = this_time;
-		const int NUM_SECONDS = 4;
-
-		//continuous order
-		while (order < 9) {
-			std::string traffic = changetraffic(order);
-			std::string header = "25:{\"type\": \"A1-A\",\"state\":0}";
-			std::string package = header + traffic;
+		const int NUM_SECONDS = 4;	
 
 			//run clock
 			while (true)
 			{
 				this_time = clock();
-
 				time_counter += (double)(this_time - last_time);
-
 				last_time = this_time;
 
 				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
@@ -90,15 +87,17 @@ public:
 					int lightssend = sendpackage(package); //package every 4 seconds
 				}
 
-			}
-			
-			if (order == 9) {
-				order = 1; //reset to 1 to start over
-			}
-			else {
+				modorder = (order % 8) + 1;
+				std::string traffic = changetraffic(modorder);
+				std::string header = "25:{\"type\": \"A1-A\",\"state\":0}";
+				std::string package = header + traffic;
+				//send package
+
+
+				//continuous order
 				order++;
-			}		
-		}
+
+			}
 
 		int lightssend = 1;
 		return lightssend;
@@ -250,10 +249,14 @@ public:
 	//https://rapidjson.org/md_doc_tutorial.html
 	//
 	//https://github.com/ebshimizu/socket.io-clientpp
-	*/
-
+	//
+	//https://www.youtube.com/watch?v=WDn-htpBlnU
+	//https://www.youtube.com/watch?v=0Zr_0Jy8mWE
+	//
 	//https://www.geeksforgeeks.org/socket-programming-cc/
 	//https://www.bogotobogo.com/cplusplus/sockets_server_client.php
+	*/
+
 	int receivepackage(const char* hello) {
 
 		tcp_client_t client("127.0.0.1", 54000);
@@ -405,16 +408,3 @@ public:
 
 
 };
-
-
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
