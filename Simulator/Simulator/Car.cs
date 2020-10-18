@@ -74,16 +74,21 @@ namespace Simulator
             //this.carPic = car;
         }
 
-        public void move(int[,] pointsAlongPath, int speed, bool brake)
+        public void move(Path pointsAlongPath, int speed, bool brake)
         {
+            if (pointsAlongPath.nodes[node].Reg != null && pointsAlongPath.nodes[node].Reg.currentColor == RegLightSequence.Red)
+            {
+                brake = true;
+            }
+            
             if (brake is false)
             {
-                float tx = pointsAlongPath[node, 0] - car.Left;
-                float ty = pointsAlongPath[node, 1] - car.Top;
+                float tx = pointsAlongPath.nodes[node].Left - car.Left;
+                float ty = pointsAlongPath.nodes[node].Top - car.Top;
                 double length = Math.Sqrt(tx * tx + ty * ty);
                 if (length > speed)
                 {
-                    if (car.Left < pointsAlongPath[node, 0] && direction == "straight")
+                    if (car.Left < pointsAlongPath.nodes[node].Left && direction == "straight")
                     {
                         Image img = car.Image;
                         img.RotateFlip(RotateFlipType.Rotate90FlipNone);
@@ -98,9 +103,9 @@ namespace Simulator
                 else
                 {
                     // already there
-                    car.Left = pointsAlongPath[node, 0];
-                    car.Top = pointsAlongPath[node, 1];
-                    if (node < 2 && brake is false)
+                    car.Left = pointsAlongPath.nodes[node].Left;
+                    car.Top = pointsAlongPath.nodes[node].Top;
+                    if (node < (pointsAlongPath.nodes.Count-1) && brake is false)
                     {
                         node++;
                     }
@@ -132,24 +137,34 @@ namespace Simulator
                 return false;
             }
 
-            
 
             foreach (Car car2 in cars2)
             {
-                
-                if (car.Left + car.Width < car2.car.Left)
-                    continue;
-                if (car2.car.Left + car2.car.Width < car.Left)
-                    continue;
-                if (car.Top + car.Height < car2.car.Top)
-                    continue;
-                if (car2.car.Top + car2.car.Height < car.Top)
-                    continue;
-
-                return true;
+                if (car.Bounds.IntersectsWith(car2.car.Bounds))
+                {
+                    return true;
+                }
             }
 
             return false;
+
+
+            //foreach (Car car2 in cars2)
+            //{
+                
+              //  if (car.Left + car.Width < car2.car.Left)
+                //    continue;
+               // if (car2.car.Left + car2.car.Width < car.Left)
+                //    continue;
+               // if (car.Top + car.Height < car2.car.Top)
+               //     continue;
+              //  if (car2.car.Top + car2.car.Height < car.Top)
+              //      continue;
+
+               // return true;
+           // }
+
+            //return false;
         }
     }
 }

@@ -25,6 +25,11 @@ namespace Simulator
         public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 }, { 600, 384 } };
         public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 360 } };
 
+
+        private List<Path> paths = new List<Path>();
+
+        private SocketListen socket = new SocketListen();
+
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +43,30 @@ namespace Simulator
 
             //spawnRandomCar();
 
+            //socket.LoopConnect();
+
             createTrafficLight(342, 421);
+
+            Path path = new Path();
+
+            path.addNode(340, 430);
+            path.addNode(340, 411, reg);
+            path.addNode(383, 388);
+            path.addNode(600, 384);
+            paths.Add(path);
+
+            Path path2 = new Path();
+
+            path2.addNode(340, 430);
+            path2.addNode(340, 411, reg);
+            path2.addNode(383, 364);
+            path2.addNode(600, 360);
+            paths.Add(path2);
+
+            Console.WriteLine("Starto");
+
+
+            
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
@@ -52,6 +80,11 @@ namespace Simulator
             spawnTimer += 1;
 
             
+
+            //if(socket.returnString.Equals("Bericht van socket"))
+            //{
+            //    reg.SwitchLight();
+            //}
 
             if(spawnTimer == randomTimeSpawned)
             {
@@ -74,11 +107,11 @@ namespace Simulator
                 //}
                 if(x.path == "path1")
                 {
-                    x.move(pointsAlongPath1, 10, brake);
+                    x.move(paths[0], 10, brake);
                 }
                 if (x.path == "path2")
                 {
-                    x.move(pointsAlongPath2, 10, brake);
+                    x.move(paths[1], 10, brake);
                 }
                 // je moet zorgen dat de carInFront per path is, anders registreert hij carInfront als auto op de rijbaan ernaast...
                 //carInFront = x;

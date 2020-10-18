@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Moq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,15 +22,18 @@ namespace Simulator
         // Socket we're connecting to
         private static Socket socketFound;
 
+
+        public string returnString = null;
+
         public SocketListen()
         {
 
-            bool connected = LoopConnect();
+            //bool connected = LoopConnect();
 
-            if(connected)
-            {
-                ReadIncomingJSON();
-            }
+            //if(connected)
+            //{
+                //ReadIncomingJSON();
+            //}
         }
 
         private void ReadIncomingJSON()
@@ -65,15 +69,25 @@ namespace Simulator
 
                 string readData = Encoding.Default.GetString(totalBytes);
 
+                returnString = readData;
+
                 //RegularTrafficLight p = JsonConvert.DeserializeObject<RegularTrafficLight>(readData);
 
                 Console.WriteLine(readData);
 
+                // no message, close socket
+                if(readBytes > 0)
+                {
+                    socket.Close();
+                    return;
+                }
                 //socket.Close();
             }
+
+
         }
 
-        public bool LoopConnect()
+        public void LoopConnect()
         {
             //IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
             //IPAddress ipAddress = ipHostInfo.AddressList[0];
@@ -100,7 +114,7 @@ namespace Simulator
             Console.Clear();
             Console.WriteLine("Connected...");
 
-            return true;
+            ReadIncomingJSON();
 
         }
     }

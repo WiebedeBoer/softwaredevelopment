@@ -17,7 +17,7 @@ namespace Simulator
     public class RegularTrafficLight
     {
         const int delayedLightChange = 500; // in milliseconds
-        RegLightSequence currentColor = RegLightSequence.Red;
+        public RegLightSequence currentColor = RegLightSequence.Red;
 
         public PictureBox regTrafficLight;
 
