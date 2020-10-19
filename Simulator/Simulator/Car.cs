@@ -79,8 +79,8 @@ namespace Simulator
             if (pointsAlongPath.nodes[node].Reg != null && pointsAlongPath.nodes[node].Reg.currentColor == RegLightSequence.Red)
             {
                 brake = true;
-            }
-            
+            } 
+
             if (brake is false)
             {
                 float tx = pointsAlongPath.nodes[node].Left - car.Left;
@@ -137,10 +137,28 @@ namespace Simulator
                 return false;
             }
 
+            // Collisionboxes
+            Rectangle rect = new Rectangle();
+            if (direction == "straight")
+            {
+                 rect = new Rectangle(car.Left, (car.Top - 10), car.Width, 10);
+            }
 
+            if(direction == "right")
+            {
+                rect = new Rectangle((car.Left + car.Width), car.Top, 10, car.Top);
+            }
+
+            int carInFront = 0;
+            
             foreach (Car car2 in cars2)
             {
-                if (car.Bounds.IntersectsWith(car2.car.Bounds))
+                if((rect.IntersectsWith(car2.car.Bounds)))
+                {
+                    carInFront++;
+                }
+
+                if (car.Bounds.IntersectsWith(car2.car.Bounds) && carInFront != 0)
                 {
                     return true;
                 }

@@ -21,6 +21,7 @@ namespace Simulator
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
+
             //RunOnce();
         }
 
@@ -29,7 +30,8 @@ namespace Simulator
         {
             if (!_hasRun)
             {
-                SocketListen socket = new SocketListen();
+                BackGroundListener socket = new BackGroundListener();
+                socket.Connect();
             }
             _hasRun = true;
         }

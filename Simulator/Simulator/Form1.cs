@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -63,9 +64,11 @@ namespace Simulator
             path2.addNode(600, 360);
             paths.Add(path2);
 
-            Console.WriteLine("Starto");
+            BackGroundListener listener = new BackGroundListener();
 
+            Thread listen = new Thread(listener.Connect);
 
+            listen.Start();
             
         }
 
