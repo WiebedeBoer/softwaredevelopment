@@ -76,7 +76,7 @@ namespace Simulator
 
         public void move(Path pointsAlongPath, int speed, bool brake)
         {
-            if (pointsAlongPath.nodes[node].Reg != null && pointsAlongPath.nodes[node].Reg.currentColor == RegLightSequence.Red)
+            if (pointsAlongPath.nodes[node].Reg != null && pointsAlongPath.nodes[node].Reg.currentColor != RegLightSequence.Green)
             {
                 brake = true;
             } 

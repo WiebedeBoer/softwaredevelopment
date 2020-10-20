@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Simulator
@@ -39,6 +40,30 @@ namespace Simulator
             regTrafficLight.Left = left;
 
             regTrafficLight.Top = top;
+        }
+
+        public async void LightSequence(int i)
+        {
+            switch(i)
+            {
+                case 0:
+                    if (currentColor == RegLightSequence.Green)
+                    {
+                        regTrafficLight.Image = Properties.Resources.yellow_light;
+                        currentColor = RegLightSequence.Yellow;
+                        await Task.Delay(3000);
+                        regTrafficLight.Image = Properties.Resources.red_light;
+                        currentColor = RegLightSequence.Red;
+                    }
+                    break;
+                case 1:
+                    if (currentColor == RegLightSequence.Red)
+                    {
+                        regTrafficLight.Image = Properties.Resources.green_light;
+                        currentColor = RegLightSequence.Green;
+                    }
+                    break;
+            }
         }
 
         // Switch trafficlight to yellow, after a delay switch to green

@@ -29,7 +29,10 @@ namespace Simulator
 
         private List<Path> paths = new List<Path>();
 
-        private SocketListen socket = new SocketListen();
+
+        private BackGroundListener listener = new BackGroundListener();
+
+        private JSONTrafficLight json = null;
 
         public Form1()
         {
@@ -64,7 +67,7 @@ namespace Simulator
             path2.addNode(600, 360);
             paths.Add(path2);
 
-            BackGroundListener listener = new BackGroundListener();
+            
 
             Thread listen = new Thread(listener.Connect);
 
@@ -74,6 +77,12 @@ namespace Simulator
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            
+            json = listener.Json;
+
+            if(json != null)
+                reg.LightSequence(json.A11);
+
             //pictureBox1.Top -= 10;
 
             //Image img = pictureBox1.Image;
@@ -106,7 +115,7 @@ namespace Simulator
                 //if (carInFront != null && !carInFront.guid.Equals(x.guid))
                 //{
                     // Check if car is detected in front, so they dont collide
-                    bool brake = x.collisionDetection(this.cars);
+                bool brake = x.collisionDetection(this.cars);
                 //}
                 if(x.path == "path1")
                 {
@@ -136,7 +145,9 @@ namespace Simulator
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             // trafficlight
-            reg.SwitchLight();
+            //reg.SwitchLight();
+
+            reg.LightSequence(1);
         }
 
 
