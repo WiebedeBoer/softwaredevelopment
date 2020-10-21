@@ -152,10 +152,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Archive.h" />
+    <ClInclude Include="Attribute.h" />
     <ClInclude Include="carlane.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="jsonreader.h" />
     <ClInclude Include="json_message.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PersistUtils.h" />
+    <ClInclude Include="picojson.h" />
     <ClInclude Include="rapidjson\allocators.h" />
     <ClInclude Include="rapidjson\document.h" />
     <ClInclude Include="rapidjson\encodedstream.h" />
@@ -193,17 +199,23 @@
     <ClInclude Include="rapidjson\writer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="socket.h" />
+    <ClInclude Include="TextReader.h" />
     <ClInclude Include="trafficlight.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Archive.cpp" />
+    <ClCompile Include="Attribute.cpp" />
     <ClCompile Include="carlane.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="jsonreader.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextReader.cpp" />
     <ClCompile Include="trafficlight.cpp" />
   </ItemGroup>
   <ItemGroup>

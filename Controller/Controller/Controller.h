@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdio.h> 
-#include <string.h> 
+#include "jsonreader.h"
 //#include "pch.h"
 using std::string;
 

@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdio.h> 
 #include <string.h> 
+#include "jsonreader.h"
 //#include <sys/socket.h> 
 //#include <arpa/inet.h> 
 //#include <unistd.h> 
@@ -31,9 +32,14 @@ int tosim[4];
 int main()
 {
     std::cout << "Hello World!\n"; 
-	const char* json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
+	string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
 	controller controller;
+	Pakal::JsonReader JsonReader;
 	//controller.fetchjson(json);
+
+	//JsonReader.parse_element(object & object, Element * element);
+	//JsonReader.read(json,"A1-1",1);
+	JsonReader.read("jason_controller.json", "people", json);
 
 	//fetching json
 	//const rapidjson::Document json_value = controller.fetchjson(json);
@@ -41,7 +47,7 @@ int main()
 	//controller.sendjson(json_value);
 
 	//sending packages of string json
-	controller.sendlight();
+	//controller.sendlight();
 }
 
 /*

@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
+//#include "CppUnitTest.h"
 #include "../Controller/pch.h"
 #include "../Controller/trafficlight.h"
 #include <iostream>
 #include <sstream>
 #include <stdio.h> 
 #include <string.h> 
-
+/*
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ControllerTest
@@ -54,3 +54,4 @@ namespace ControllerTest
 
 	};
 }
+*/
