@@ -36,6 +36,8 @@
 
 #pragma once
 
+/*
+
 #include <string>
 #include "PersistUtils.h"
 #include <map>
@@ -815,3 +817,5 @@ namespace Pakal
 	}
 
 }
+
+*/

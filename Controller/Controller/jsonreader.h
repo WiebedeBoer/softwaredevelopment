@@ -34,6 +34,8 @@
 */
 #pragma once
 
+/*
+
 #include "TextReader.h"
 
 #include <unordered_map>
@@ -60,3 +62,5 @@ namespace Pakal
 		void parse_element(picojson::array& array, Element* element);
 	};
 }
+
+*/

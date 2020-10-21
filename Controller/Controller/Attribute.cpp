@@ -33,6 +33,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
 #include "Attribute.h"
 #include <sstream>
 
@@ -91,3 +92,5 @@ void Attribute::string(const std::string& str) const
 {
 	m_value = str;
 }
+
+*/

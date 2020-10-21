@@ -33,6 +33,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
 #include "jsonReader.h"
 #include "picojson.h"
 
@@ -83,3 +84,5 @@ void JsonReader::parse_element(array& array, Element* element)
 		parse_element(object, element->add_element(Element()));
 	}
 }
+
+*/

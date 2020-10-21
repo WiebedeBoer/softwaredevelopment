@@ -33,6 +33,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
 #include "Element.h"
 
 using namespace Pakal;
@@ -136,3 +137,5 @@ Element* Element::find_element(const std::string& name)
 	}
 	return i != m_elements.end() ? &(*i) : nullptr;
 }
+
+*/

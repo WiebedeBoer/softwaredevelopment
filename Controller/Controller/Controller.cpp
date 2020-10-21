@@ -7,39 +7,40 @@
 #include <sstream>
 #include <stdio.h> 
 #include <string.h> 
-#include "jsonreader.h"
+#include <stdlib.h> 
+#include <ctime>
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
+//#include "jsonreader.h"
+
+//old socket
 //#include <sys/socket.h> 
 //#include <arpa/inet.h> 
 //#include <unistd.h> 
 //#include <netinet/in.h> 
 //#include "socket.h"
 //#include "json_message.h"
-#include <stdlib.h> 
+
 //rapid json library
 //#include "rapidjson\document.h"
 //#include "rapidjson\writer.h"
 //#include "rapidjson\stringbuffer.h"
-#include <ctime>
-#include <WS2tcpip.h>
-#pragma comment(lib, "ws2_32.lib")
-
 //using namespace rapidjson;
 
-
-int fromsim[4];
-int tosim[4];
 
 int main()
 {
     std::cout << "Hello World!\n"; 
-	string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
+	//string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
+	
 	controller controller;
-	Pakal::JsonReader JsonReader;
+	//json = controller.Replace(json, "\\\"", "\"");
+	//Pakal::JsonReader JsonReader;
 	//controller.fetchjson(json);
 
 	//JsonReader.parse_element(object & object, Element * element);
 	//JsonReader.read(json,"A1-1",1);
-	JsonReader.read("jason_controller.json", "people", json);
+	//JsonReader.read("jason_controller.json", "A1-1", json);
 
 	//fetching json
 	//const rapidjson::Document json_value = controller.fetchjson(json);
@@ -47,7 +48,7 @@ int main()
 	//controller.sendjson(json_value);
 
 	//sending packages of string json
-	//controller.sendlight();
+	controller.sendlight();
 }
 
 /*

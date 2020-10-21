@@ -33,6 +33,8 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
+
 #include "TextReader.h"
 #include <cassert>
 
@@ -57,8 +59,11 @@ void TextReader::pop_root()
 	m_context.pop();
 }
 
+*/
 
-void TextReader::begin_object(const char* name, bool /*isContainer*/)
+//void TextReader::begin_object(const char* name, bool /*isContainer*/)
+
+/*
 {
 	if (get_current_element()->is_container())
 	{
@@ -257,3 +262,5 @@ void TextReader::value(const char* name, std::string& value)
 		value = attribute->string();
 	}
 }
+
+*/
