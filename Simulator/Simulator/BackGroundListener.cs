@@ -51,6 +51,7 @@ namespace Simulator
                 try
                 {
                     socket.Connect(localEndpoint);
+                    //socket.Bind(localEndpoint);
                 }
                 catch (SocketException e)
                 {

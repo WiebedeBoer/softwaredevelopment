@@ -5,6 +5,6 @@ c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\
 c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(383): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
 c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(404): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(378): warning C4101: 'valread': unreferenced local variable
-c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(504): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(602): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(506): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(604): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\x64\Debug\Controller.exe

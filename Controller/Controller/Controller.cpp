@@ -455,6 +455,7 @@ public:*/
 			return;
 		}
 
+		/*
 		int iResult;
 		iResult = listen(sock, SOMAXCONN);
 		if (iResult == SOCKET_ERROR) {
@@ -472,8 +473,9 @@ public:*/
 			WSACleanup();
 			return;
 		}
+		*/
 
-		/*
+		
 		// Fill in a hint structure
 		sockaddr_in hint;
 		hint.sin_family = AF_INET;
@@ -490,7 +492,7 @@ public:*/
 			WSACleanup();
 			return;
 		}
-		*/
+	
 
 		// Do-while loop to send and receive data
 		char buf[4096];
