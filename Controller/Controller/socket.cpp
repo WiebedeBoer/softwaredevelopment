@@ -1,3 +1,4 @@
+/*
 #include "socket.h"
 
 const int MAXPENDING = 5; // maximum outstanding connection requests
@@ -437,3 +438,4 @@ tcp_client_t::~tcp_client_t()
 	WSACleanup();
 #endif
 }
+*/

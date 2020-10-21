@@ -933,6 +933,8 @@ public:
     //!@name Type
     //@{
 
+    /*
+
     Type GetType()  const { return static_cast<Type>(data_.f.flags & kTypeMask); }
     bool IsNull()   const { return data_.f.flags == kNullFlag; }
     bool IsFalse()  const { return data_.f.flags == kFalseFlag; }
@@ -985,6 +987,8 @@ public:
         double b = static_cast<double>(static_cast<float>(a));
         return a >= b && a <= b;    // Prevent -Wfloat-equal
     }
+
+    */
 
     //@}
 

@@ -8,18 +8,15 @@
 
 #ifndef PCH_H
 #define PCH_H
+#include <string.h>
+#include <iostream>
+#include <sstream>
+#include <stdio.h> 
+#include <string.h> 
+#include "Controller.h"
+using std::string;
 
 // TODO: add headers that you want to pre-compile here
-class controller : controller
-{
-public:
-	int setlight();
-	int trafficorder();
-	int sendlight();
-	int sendpackage(std::string hello);
-	std::string changetraffic(int order);
-	static rapidjson::Document fetchjson(const char* json);
-	void sendjson(const rapidjson::Value& value);
-};
+
 
 #endif //PCH_H

@@ -150,6 +150,9 @@
     <ClInclude Include="rapidjson\msinttypes\stdint.h">
       <Filter>rapidjson\msinttypes</Filter>
     </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -162,12 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="carlane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="socket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="json_client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
