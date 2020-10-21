@@ -1,1 +1,7 @@
-﻿  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\x64\Debug\Controller.exe
+﻿  Controller.cpp
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(80): warning C4101: 'traffic': unreferenced local variable
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(81): warning C4101: 'header': unreferenced local variable
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(82): warning C4101: 'package': unreferenced local variable
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(483): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(563): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\x64\Debug\Controller.exe

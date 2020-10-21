@@ -419,6 +419,7 @@ public:*/
 		if (wsResult != 0)
 		{
 			//cerr << "Can't start Winsock, Err #" << wsResult << endl;
+			std::cout << "Socket not init!\n";
 			return;
 		}
 
@@ -427,6 +428,7 @@ public:*/
 		if (sock == INVALID_SOCKET)
 		{
 			//cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
+			std::cout << "Socket not valid!\n";
 			WSACleanup();
 			return;
 		}
@@ -437,13 +439,30 @@ public:*/
 		hint.sin_port = htons(port);
 		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
 
+
+		/*
 		// Connect to server
 		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
 		if (connResult == SOCKET_ERROR)
 		{
 			//cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
+			std::cout << "Socket not connect!\n";
 			closesocket(sock);
 			WSACleanup();
+			return;
+		}
+		*/
+
+		SOCKADDR_IN serverInf;
+		serverInf.sin_family = AF_INET;
+		serverInf.sin_addr.s_addr = INADDR_ANY;
+		serverInf.sin_port = htons(port);
+
+		if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
+		{
+			std::cout << "Unable to bind socket!\r\n";
+			WSACleanup();
+			system("PAUSE");
 			return;
 		}
 
@@ -454,15 +473,18 @@ public:*/
 		do
 		{
 			// Prompt the user for some text
-			//cout << "> ";
+			//std::cout << "do ";
 			//getline(cin, userInput);
 
 			if (userInput.size() > 0)		// Make sure the user has typed in something
 			{
+				//std::cout << "size correct ";
 				// Send the text
 				int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
 				if (sendResult != SOCKET_ERROR)
 				{
+					std::cout << "Socket no result error!\n";
+					
 					// Wait for response
 					ZeroMemory(buf, 4096);
 					int bytesReceived = recv(sock, buf, 4096, 0);
@@ -470,7 +492,11 @@ public:*/
 					{
 						// Echo response to console
 						//cout << "SERVER> " << string(buf, 0, bytesReceived) << endl;
+						std::cout << "Socket buffer!\n";
 					}
+				}
+				else {
+					std::cout << "Socket result error!\n";
 				}
 			}
 
