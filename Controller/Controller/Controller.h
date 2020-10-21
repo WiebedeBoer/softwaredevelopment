@@ -1,8 +1,11 @@
+#ifndef Controller
+#define Controller
+
 #include <string.h>
 #include <iostream>
 #include <sstream>
 #include <stdio.h> 
-#include "jsonreader.h"
+//#include "jsonreader.h"
 //#include "pch.h"
 using std::string;
 
@@ -18,6 +21,9 @@ public:
 	//static rapidjson::Document fetchjson(const char* json);
 	//void sendjson(const rapidjson::Value& value);
 	string Replace(string str, const string& oldStr, const string& newStr);
-	void socketserver(string userInput);
+	//void socketserver(string userInput);
+	void socketserver(const char* userInput);
 	string socketclient(string userInput);
 };
+
+#endif

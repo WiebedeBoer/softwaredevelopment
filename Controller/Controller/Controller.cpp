@@ -10,6 +10,7 @@
 #include <stdlib.h> 
 #include <ctime>
 #include <WS2tcpip.h>
+#include "Controller.h"
 #pragma comment(lib, "ws2_32.lib")
 //#include "jsonreader.h"
 
@@ -105,7 +106,9 @@ public:*/
 					string header = "25:{\"type\": \"A1-A\",\"state\":0}";
 					string package = header + traffic;
 
-					socketserver(package); //package every 4 seconds
+					const char* input = package.c_str();
+					//socketserver(package);
+					socketserver(input); //package every 4 seconds
 				}
 
 
@@ -366,7 +369,7 @@ public:*/
 	}
 	*/
 
-	/*
+	
 	//int sendpackage(const char* hello) {
 	int sendpackage(std::string package) {
 		std::string str = package;
@@ -404,13 +407,17 @@ public:*/
 		printf("%s\n", buffer);
 		return 0;
 	}
-	*/
+	
 
 
-	void controller::socketserver(string userInput)
+	void controller::socketserver(const char* Input)
 	{
 		std::string ipAddress = "127.0.0.1";			// IP Address of the server
 		int port = 54000;						// Listening port # on the server
+
+		std::string str = Input;
+		//const char* userInput = str.c_str();
+		//char userInput[535] = "test";
 
 		// Initialize WinSock
 		WSAData data;
@@ -424,7 +431,8 @@ public:*/
 		}
 
 		// Create socket
-		SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+		//SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+		SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if (sock == INVALID_SOCKET)
 		{
 			//cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
@@ -432,27 +440,8 @@ public:*/
 			WSACleanup();
 			return;
 		}
-
-		// Fill in a hint structure
-		sockaddr_in hint;
-		hint.sin_family = AF_INET;
-		hint.sin_port = htons(port);
-		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
-
-
-		/*
-		// Connect to server
-		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
-		if (connResult == SOCKET_ERROR)
-		{
-			//cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
-			std::cout << "Socket not connect!\n";
-			closesocket(sock);
-			WSACleanup();
-			return;
-		}
-		*/
-
+		
+		//bind
 		SOCKADDR_IN serverInf;
 		serverInf.sin_family = AF_INET;
 		serverInf.sin_addr.s_addr = INADDR_ANY;
@@ -466,6 +455,43 @@ public:*/
 			return;
 		}
 
+		int iResult;
+		iResult = listen(sock, SOMAXCONN);
+		if (iResult == SOCKET_ERROR) {
+			printf("listen failed with error: %d\n", WSAGetLastError());
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}
+
+		// Accept a client socket
+		SOCKET ClientSocket = accept(sock, NULL, NULL);
+		if (ClientSocket == INVALID_SOCKET) {
+			printf("accept failed with error: %d\n", WSAGetLastError());
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}
+
+		/*
+		// Fill in a hint structure
+		sockaddr_in hint;
+		hint.sin_family = AF_INET;
+		hint.sin_port = htons(port);
+		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
+		
+		// Connect to server
+		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
+		if (connResult == SOCKET_ERROR)
+		{
+			//cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
+			std::cout << "Socket not connect!\n";
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}
+		*/
+
 		// Do-while loop to send and receive data
 		char buf[4096];
 		//std::string userInput;
@@ -475,15 +501,26 @@ public:*/
 			// Prompt the user for some text
 			//std::cout << "do ";
 			//getline(cin, userInput);
-
-			if (userInput.size() > 0)		// Make sure the user has typed in something
+			int size = str.size();
+			if (size > 0)		// Make sure the user has typed in something
 			{
 				//std::cout << "size correct ";
 				// Send the text
-				int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
+				//const char* cstr = userInput.c_str();
+				
+				//int sendResult = send(sock, Input, size + 1, 0);
+				//int sendResult = send(sock, userInput, strlen(userInput) + 1, 0);
+				//int sendResult = send(sock, Input, strlen(Input) + 1, 0);
+				//int sendResult = send(sock, userInput, size, 0);
+				//int sendResult = send(sock, userInput, size, 0);
+				const char* inp = "test";
+				//inp = "test";
+				int sendResult = send(sock, inp, size, 0);
 				if (sendResult != SOCKET_ERROR)
+				//if (sendResult == -1)
 				{
-					std::cout << "Socket no result error!\n";
+					//std::cout << "Socket no result error!\n";
+					//std::cout << SOCKET_ERROR;
 					
 					// Wait for response
 					ZeroMemory(buf, 4096);
@@ -497,10 +534,12 @@ public:*/
 				}
 				else {
 					std::cout << "Socket result error!\n";
+					//std::cout << SOCKET_ERROR;
+					std::cout << WSAGetLastError;
 				}
 			}
 
-		} while (userInput.size() > 0);
+		} while (str.size() > 0);
 
 		// Gracefully close down everything
 		closesocket(sock);
