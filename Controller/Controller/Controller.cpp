@@ -103,11 +103,11 @@ int main()
 					//int lightssend = sendpackage(package); //package every 4 seconds
 
 					modorder = (order % 8) + 1;
-					//string traffic = changetraffic(modorder);
-					//string header = "25:{\"type\": \"A1-A\",\"state\":0}";
-					//string package = header + traffic;
-					string package = changetraffic(modorder);
-
+					string traffic = changetraffic(modorder);
+					string header = "25:{\"type\": \"A1-A\",\"state\":0}";
+					string package = header + traffic;
+					//string package = changetraffic(modorder);
+					
 					const char* input = package.c_str();
 					//socketserver(package);
 					socketserver(input); //package every 4 seconds

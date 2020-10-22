@@ -60,3 +60,4 @@ C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\
 C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
 C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
 C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+D:\SoftwareDevelopment2\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
