@@ -31,7 +31,8 @@ namespace Simulator
             {
                 int receivedDataLength = socket.Receive(buffer);
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
-                stringData = stringData.Substring(29);
+                //stringData = stringData.Substring(29);
+                stringData = stringData.Substring(28);
                 json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
                 Console.WriteLine(json.A11);
                 //Console.WriteLine(nameof(json.A11));
