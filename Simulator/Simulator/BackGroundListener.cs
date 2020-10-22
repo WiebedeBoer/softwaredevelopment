@@ -19,6 +19,9 @@ namespace Simulator
 
         public JSONTrafficLight Json { get => json; set => json = value; }
 
+
+        //connect and receive, instead of listen
+
         public void StartListening()
         {
 
@@ -51,7 +54,6 @@ namespace Simulator
                 try
                 {
                     socket.Connect(localEndpoint);
-                    //socket.Bind(localEndpoint);
                 }
                 catch (SocketException e)
                 {

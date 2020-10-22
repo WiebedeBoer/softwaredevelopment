@@ -14,6 +14,12 @@
 #pragma comment(lib, "ws2_32.lib")
 //#include "jsonreader.h"
 
+#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
+//#include <unistd.h>
+
 //old socket
 //#include <sys/socket.h> 
 //#include <arpa/inet.h> 
@@ -51,11 +57,6 @@ int main()
 	//sending packages of string json
 	controller.sendlight();
 }
-
-/*
-class controller {
-
-public:*/
 
 	/*
 	controller()
@@ -102,9 +103,10 @@ public:*/
 					//int lightssend = sendpackage(package); //package every 4 seconds
 
 					modorder = (order % 8) + 1;
-					string traffic = changetraffic(modorder);
-					string header = "25:{\"type\": \"A1-A\",\"state\":0}";
-					string package = header + traffic;
+					//string traffic = changetraffic(modorder);
+					//string header = "25:{\"type\": \"A1-A\",\"state\":0}";
+					//string package = header + traffic;
+					string package = changetraffic(modorder);
 
 					const char* input = package.c_str();
 					//socketserver(package);
@@ -143,63 +145,42 @@ public:*/
 		//rechtdoor noord - zuid bus
 		if (order == 1)
 		{
-			//trafficnorthsouthbus bus;
-			//traffic = bus.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//rechtdoor oost - west bus
 		else if (order == 2)
 		{
-			//trafficeastwestbus bus;
-			//traffic = bus.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//rechtdoor en rechtsaf noord - zuid auto
 		else if (order == 3) {
-			//trafficnorthrightcar car;
-			//traffic = car.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//rechtdoor en rechtsaf oost - west auto
 		else if (order == 4) {
-			//trafficeastrightcar car;
-			//traffic = car.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//linksaf noord - west en oost - zuid auto
 		else if (order == 5) {
-			//trafficnorthleftcar car;
-			//traffic = car.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//linksaf noord - oost en zuid - west auto
 		else if (order == 6) {
-			//trafficeastleftcar car;
-			//traffic = car.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//fietsverkeer
 		else if (order == 7) {
-			//trafficbike bike;
-			//traffic = bike.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//voetgangersverkeer
 		else if (order == 8) {
-			//trafficfoot foot;
-			//traffic = foot.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
 		//default
 		else {
-			//trafficnorthsouthbus bus;
-			//traffic = bus.traffic;
 			traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
 		}
-		//traffic = std::replace(traffic.begin(), traffic.end(), \, );
-		//traffic.erase(std::remove(traffic.begin(), traffic.end(), \), traffic.end());
 		traffic = Replace(traffic, "\\\"", "\"");
-		//traffic = traffic.erase(std::remove(traffic.begin(), traffic.end(), '\\'), traffic.end());
 		return traffic;
 	}
 
@@ -242,47 +223,7 @@ public:*/
 	}
 	*/
 
-	/*
-	class trafficnorthsouthbus {
-	public: 
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
 
-	class trafficeastwestbus {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficnorthrightcar {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficnorthleftcar {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficeastrightcar {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficeastleftcar {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficbike {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-
-	class trafficfoot {
-	public:
-		string traffic = "{\"A1-1\": 0,\"A1-2\": 0,\"A1-3\": 1,\"B1-1\": 1,\"B1-2\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 1, \"A2-1\": 0,\"A2-2\": 0,\"A2-3\": 0,\"A2-4\": 1,\"F1-1\": 0,\"F1-2\": 1,\"V1-1\": 0,\"V1-2\": 1,\"V1-3\": 0,\"V1-4\": 0, \"A3-1\": 1,\"A3-2\": 1,\"A3-3\": 0,\"A3-4\": 0, \"A4-1\": 1,\"A4-2\": 1,\"A4-3\": 0,\"A4-4\": 0,\"B4-1\": 1,\"F4-1\": 0,\"F4-2\": 1,\"V4-1\": 0,\"V4-2\": 0,\"V4-3\": 1,\"V4-4\": 0, \"A5-1\": 1,\"A5-2\": 1,\"A5-3\": 1,\"A5-4\": 1,\"F5-1\": 1,\"F5-2\": 1,\"V5-1\": 0,\"V5-2\": 0,\"V5-3\": 0,\"V5-4\": 0, \"A3-1\": 0,\"A3-2\": 0,\"A3-3\": 0,\"A3-4\": 0}";
-	};
-	*/
 
 	/*
 	//https://www.space-research.org/blog/lib_netsockets.html
@@ -310,114 +251,12 @@ public:*/
 	//https://www.bogotobogo.com/cplusplus/sockets_server_client.php
 	*/
 
-	/*
-	int receivepackage(const char* hello) {
-
-		tcp_client_t client("127.0.0.1", 54000);
-		//values
-		int server_fd, new_socket, valread;
-		struct sockaddr_in address;
-		int opt = 1;
-		int addrlen = sizeof(address);
-		char buffer[1024] = { 0 };
-		//char* hello = "Hello from server";
-		int PORT = 54000;
-		int SO_REUSEPORT = 54000;
-
-		// Creating socket file descriptor 
-		if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
-		{
-			perror("socket failed");
-			exit(EXIT_FAILURE);
-		}
-
-		// Forcefully attaching socket to the port 8080 
-		//if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)))
-		if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, hello, sizeof(opt)))
-		{
-			perror("setsockopt");
-			exit(EXIT_FAILURE);
-		}
-		address.sin_family = AF_INET;
-		address.sin_addr.s_addr = INADDR_ANY;
-		address.sin_port = htons(PORT);
-
-		// Forcefully attaching socket to the port 8080 
-		if (bind(server_fd, (struct sockaddr*)&address,
-			sizeof(address)) < 0)
-		{
-			perror("bind failed");
-			exit(EXIT_FAILURE);
-		}
-		if (listen(server_fd, 3) < 0)
-		{
-			perror("listen");
-			exit(EXIT_FAILURE);
-		}
-		if ((new_socket = accept(server_fd, (struct sockaddr*)&address,
-			(socklen_t*)&addrlen)) < 0)
-		{
-			perror("accept");
-			exit(EXIT_FAILURE);
-		}
-		//valread = read(new_socket, buffer, 1024);
-		printf("%s\n", buffer);
-		send(new_socket, hello, strlen(hello), 0);
-		printf("Hello message sent\n");
-		return 0;
-
-	}
-	*/
-
-	
-	//int sendpackage(const char* hello) {
-	int sendpackage(std::string package) {
-		std::string str = package;
-		const char* hello = str.c_str();
-
-		int sock = 0, valread;
-		int PORT = 54000;
-		struct sockaddr_in serv_addr;
-		//char* hello = "Hello from client";
-		char buffer[1024] = { 0 };
-		if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-		{
-			printf("\n Socket creation error \n");
-			return -1;
-		}
-
-		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_port = htons(PORT);
-
-		// Convert IPv4 and IPv6 addresses from text to binary form 
-		if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
-		{
-			printf("\nInvalid address/ Address not supported \n");
-			return -1;
-		}
-
-		if (connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0)
-		{
-			printf("\nConnection Failed \n");
-			return -1;
-		}
-		send(sock, hello, strlen(hello), 0);
-		printf("Hello message sent\n");
-		//valread = read(sock, buffer, 1024);
-		printf("%s\n", buffer);
-		return 0;
-	}
-	
-
-
 	void controller::socketserver(const char* Input)
 	{
 		std::string ipAddress = "127.0.0.1";			// IP Address of the server
 		int port = 54000;						// Listening port # on the server
 
 		std::string str = Input;
-		//const char* userInput = str.c_str();
-		//char userInput[535] = "test";
 
 		// Initialize WinSock
 		WSAData data;
@@ -425,7 +264,6 @@ public:*/
 		int wsResult = WSAStartup(ver, &data);
 		if (wsResult != 0)
 		{
-			//cerr << "Can't start Winsock, Err #" << wsResult << endl;
 			std::cout << "Socket not init!\n";
 			return;
 		}
@@ -435,17 +273,17 @@ public:*/
 		SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if (sock == INVALID_SOCKET)
 		{
-			//cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
 			std::cout << "Socket not valid!\n";
 			WSACleanup();
 			return;
 		}
-		
+
 		//bind
 		SOCKADDR_IN serverInf;
 		serverInf.sin_family = AF_INET;
 		serverInf.sin_addr.s_addr = INADDR_ANY;
 		serverInf.sin_port = htons(port);
+		inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
 
 		if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
 		{
@@ -455,7 +293,7 @@ public:*/
 			return;
 		}
 
-		
+		//listen
 		int iResult;
 		iResult = listen(sock, SOMAXCONN);
 		if (iResult == SOCKET_ERROR) {
@@ -465,35 +303,17 @@ public:*/
 			return;
 		}
 
+		// Wait for a connection
+		int clientSize = sizeof(serverInf);
+
 		// Accept a client socket
-		SOCKET ClientSocket = accept(sock, NULL, NULL);
+		SOCKET ClientSocket = accept(sock, (sockaddr*)&serverInf, &clientSize);
 		if (ClientSocket == INVALID_SOCKET) {
 			printf("accept failed with error: %d\n", WSAGetLastError());
 			closesocket(sock);
 			WSACleanup();
 			return;
-		}
-		
-
-		/*
-		// Fill in a hint structure
-		sockaddr_in hint;
-		hint.sin_family = AF_INET;
-		hint.sin_port = htons(port);
-		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
-		
-		// Connect to server
-		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
-		if (connResult == SOCKET_ERROR)
-		{
-			//cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
-			std::cout << "Socket not connect!\n";
-			closesocket(sock);
-			WSACleanup();
-			return;
-		}
-		*/
-	
+		}	
 
 		// Do-while loop to send and receive data
 		char buf[4096];
@@ -501,24 +321,14 @@ public:*/
 
 		do
 		{
-			// Prompt the user for some text
-			//std::cout << "do ";
-			//getline(cin, userInput);
-			int size = str.size();
+			// get text
+			int size = strlen(Input);
 			if (size > 0)		// Make sure the user has typed in something
 			{
 				//std::cout << "size correct ";
 				// Send the text
-				//const char* cstr = userInput.c_str();
-				
-				//int sendResult = send(sock, Input, size + 1, 0);
-				//int sendResult = send(sock, userInput, strlen(userInput) + 1, 0);
-				//int sendResult = send(sock, Input, strlen(Input) + 1, 0);
-				//int sendResult = send(sock, userInput, size, 0);
-				//int sendResult = send(sock, userInput, size, 0);
-				const char* inp = "test";
-				//inp = "test";
-				int sendResult = send(sock, inp, size, 0);
+				int sendResult = send(ClientSocket, Input, size, 0);
+
 				if (sendResult != SOCKET_ERROR)
 				//if (sendResult == -1)
 				{
@@ -527,17 +337,16 @@ public:*/
 					
 					// Wait for response
 					ZeroMemory(buf, 4096);
-					int bytesReceived = recv(sock, buf, 4096, 0);
+					//int bytesReceived = recv(sock, buf, 4096, 0);
+					int bytesReceived = recv(ClientSocket, buf, 4096, 0);
 					if (bytesReceived > 0)
 					{
 						// Echo response to console
-						//cout << "SERVER> " << string(buf, 0, bytesReceived) << endl;
 						std::cout << "Socket buffer!\n";
 					}
 				}
 				else {
 					std::cout << "Socket result error!\n";
-					//std::cout << SOCKET_ERROR;
 					std::cout << WSAGetLastError;
 				}
 			}
@@ -545,142 +354,7 @@ public:*/
 		} while (str.size() > 0);
 
 		// Gracefully close down everything
-		closesocket(sock);
+		//closesocket(sock);
+		closesocket(ClientSocket);
 		WSACleanup();
-	}
-
-	string controller::socketclient(string userInput)
-	{
-		string ipAddress = "127.0.0.1";			// IP Address of the server
-		int port = 54000;						// Listening port # on the server
-
-		// Initialize WinSock
-		WSAData data;
-		WORD ver = MAKEWORD(2, 2);
-		int wsResult = WSAStartup(ver, &data);
-		if (wsResult != 0)
-		{
-			//cerr << "Can't start Winsock, Err #" << wsResult << endl;
-			return userInput;
-		}
-
-		// Create socket
-		SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-		if (sock == INVALID_SOCKET)
-		{
-			//cerr << "Can't create socket, Err #" << WSAGetLastError() << endl;
-			WSACleanup();
-			return userInput;
-		}
-
-		// Fill in a hint structure
-		sockaddr_in hint;
-		hint.sin_family = AF_INET;
-		hint.sin_port = htons(port);
-		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
-
-		// Connect to server
-		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
-		if (connResult == SOCKET_ERROR)
-		{
-			//cerr << "Can't connect to server, Err #" << WSAGetLastError() << endl;
-			closesocket(sock);
-			WSACleanup();
-			return userInput;
-		}
-
-		// Do-while loop to send and receive data
-		char buf[4096];
-		//std::string userInput;
-
-		do
-		{
-			// Prompt the user for some text
-			//cout << "> ";
-			//getline(cin, userInput);
-
-			if (userInput.size() > 0)		// Make sure the user has typed in something
-			{
-				// Send the text
-				int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
-				if (sendResult != SOCKET_ERROR)
-				{
-					// Wait for response
-					ZeroMemory(buf, 4096);
-					int bytesReceived = recv(sock, buf, 4096, 0);
-					if (bytesReceived > 0)
-					{
-						// Echo response to console
-						//cout << "SERVER> " << string(buf, 0, bytesReceived) << endl;
-					}
-				}
-			}
-
-		} while (userInput.size() > 0);
-
-		// Gracefully close down everything
-		closesocket(sock);
-		WSACleanup();
-
-		return userInput;
-	}
-
-
-
-	/*
-	
-		void receivepackage() {
-		//tcp client
-		tcp_client_t client("127.0.0.1", 2000);
-		//request
-		json_t *request = json_object();
-		json_object_set_new(request, "start_year", json_integer(2016));
-		//open client
-		client.open();
-		client.write(request);
-		//connect in port
-		tcp_server_t server(2000);
-		while (true)
-		{
-			socket_t socket = server.accept_client();
-			handle_client(socket);
-			socket.close();
-		}
-		//close sserver
-		server.close();
-		//receive response
-		json_t *response = client.read();
-		json_t *json_obj;
-		json_obj = json_object_get(response, "next_year");
-		json_int_t next_year = json_integer_value(json_obj);
-		std::cout << "client received: " << std::endl;
-		std::cout << "next_year: " << next_year << std::endl;
-		client.close();
-	}
-	
-	*/
-
-	/*
-	void handle_client(socket_t& socket_client)
-	{
-		json_t *response = NULL;
-		json_t *request = socket_client.read();
-
-		//get dates
-		json_t *json_obj;
-		json_obj = json_object_get(request, "start_year");
-		json_int_t start_year = json_integer_value(json_obj);
-		std::cout << "server received: " << std::endl;
-		std::cout << "start_year: " << start_year << std::endl;
-
-		//do response
-		response = json_object();
-		json_object_set_new(response, "next_year", json_integer(start_year + 1));
-		socket_client.write(response);
-	}
-	*/
-
-
-	/*
-};
-*/
+	}	
