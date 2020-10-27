@@ -48,20 +48,21 @@ namespace Simulator
                     }
                 }
 
-                if (header == "451")
+                if (header == stringData.Substring(4).Length.ToString())
                 {
                     stringData = stringData.Substring(4);
 
                     json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
 
                     Console.WriteLine(json.A11);
-                } else
+                }
+                else
                 {
                     Console.WriteLine("JSON is not complete...");
                 }
 
 
-                
+
             }
 
             //socket.Disconnect(false);

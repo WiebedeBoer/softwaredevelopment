@@ -126,12 +126,173 @@ namespace Simulator
             path7.addNode(206, 610);
             paths.Add(path7);
 
-            //Path patha11 = new Path();
-            //patha11.addNode(734, 111); //start (732,1)
-            //patha11.addNode(729, 203); //light(none yet)
-            //patha11.addNode(580, 215);
-            //patha11.addNode(399, 215);
-            //paths.Add(patha11);
+            //   
+            Path patha11 = new Path();
+            patha11.addNode(734, 111); //start (732,1)
+            patha11.addNode(729, 203); //light
+            patha11.addNode(580, 215);
+            patha11.addNode(399, 214);
+            paths.Add(patha11);
+
+            //   
+            Path patha12 = new Path();
+            patha12.addNode(758, 111); //start (,)
+            patha12.addNode(757, 204); //light
+            patha12.addNode(579, 283);
+            patha12.addNode(397, 284);
+            paths.Add(patha12);
+
+            //   
+            Path patha13 = new Path();
+            patha13.addNode(780, 112); //start (,)
+            patha13.addNode(787, 361); //light
+            patha13.addNode(904, 373);
+            patha13.addNode(1066, 373);
+            paths.Add(patha13);
+
+            //   
+            Path pathb11 = new Path();
+            pathb11.addNode(801, 112); //start (,)
+            pathb11.addNode(802, 205); //light
+            pathb11.addNode(684, 261);
+            pathb11.addNode(401, 260);
+            paths.Add(pathb11);
+
+            //   
+            Path pathb12 = new Path();
+            pathb12.addNode(801, 112); //start (,)
+            pathb12.addNode(802, 205); //light
+            pathb12.addNode(815, 391);
+            pathb12.addNode(1065, 396);
+            paths.Add(pathb12);
+
+            //   
+            Path patha21 = new Path();
+            patha21.addNode(963, 170); //start (,)
+            patha21.addNode(874, 160); //light
+            patha21.addNode(870, 105);
+            patha21.addNode(870, 9);
+            paths.Add(patha21);
+
+            //   
+            Path patha22 = new Path();
+            patha22.addNode(966, 191); //start (,)
+            patha22.addNode(858, 175); //light
+            patha22.addNode(845, 105);
+            patha22.addNode(847, 9);
+            paths.Add(patha22);
+
+            //   
+            Path patha23 = new Path();
+            patha23.addNode(966, 215); //start (,)
+            patha23.addNode(766, 215); //light
+            patha23.addNode(581, 216);
+            patha23.addNode(399, 216);
+            paths.Add(patha23);
+
+            //   
+            Path patha24 = new Path();
+            patha24.addNode(968, 237); //start (,)
+            patha24.addNode(767, 239); //light
+            patha24.addNode(581, 238);
+            patha24.addNode(398, 238);
+            paths.Add(patha24);
+
+            //   
+            Path patha31 = new Path();
+            patha31.addNode(732, 330); //start (,)
+            patha31.addNode(837, 326); //light
+            patha31.addNode(848, 258);
+            patha31.addNode(848, 10);
+            paths.Add(patha31);
+
+            //   
+            Path patha32 = new Path();
+            patha32.addNode(736, 352); //start (,)
+            patha32.addNode(845, 345); //light
+            patha32.addNode(871, 280);
+            patha32.addNode(871, 10);
+            paths.Add(patha32);
+
+            //   
+            Path patha33 = new Path();
+            patha33.addNode(735, 373); //start (,)
+            patha33.addNode(841, 373); //light
+            patha33.addNode(905, 373);
+            patha33.addNode(1066, 373);
+            paths.Add(patha33);
+
+            //   
+            Path patha34 = new Path();
+            patha34.addNode(735, 396); //start (,)
+            patha34.addNode(842, 396); //light
+            patha34.addNode(904, 396);
+            patha34.addNode(1066, 396);
+            paths.Add(patha34);
+
+            //   
+            Path pathv11 = new Path();
+            pathv11.addNode(666, 172); //start (,)
+            pathv11.addNode(708, 134); //light
+            pathv11.addNode(822, 134);
+            pathv11.addNode(899, 134);
+            paths.Add(pathv11);
+
+            //   
+            Path pathv14 = new Path();
+            pathv14.addNode(899, 126); //start (,)
+            pathv14.addNode(823, 126); //light
+            pathv14.addNode(704, 126);
+            pathv14.addNode(666, 165);
+            paths.Add(pathv14);
+
+            //   
+            Path pathv21 = new Path();
+            pathv21.addNode(912, 141); //start (,)
+            pathv21.addNode(912, 256); //light
+            pathv21.addNode(912, 357);
+            pathv21.addNode(913, 429);
+            paths.Add(pathv21);
+
+            //   
+            Path pathv24 = new Path();
+            pathv24.addNode(920, 430); //start (,)
+            pathv24.addNode(920, 357); //light
+            pathv24.addNode(920, 256);
+            pathv24.addNode(920, 141);
+            paths.Add(pathv24);
+
+            //   
+            Path pathf11 = new Path();
+            pathf11.addNode(666, 158); //start (,)
+            pathf11.addNode(698, 121); //light
+            pathf11.addNode(825, 121);
+            pathf11.addNode(900, 121);
+            paths.Add(pathf11);
+
+            //   
+            Path pathf12 = new Path();
+            pathf12.addNode(900, 122); //start (,)
+            pathf12.addNode(825, 122); //light
+            pathf12.addNode(698, 122);
+            pathf12.addNode(666, 159);
+            paths.Add(pathf12);
+
+            //   
+            Path pathf21 = new Path();
+            pathf21.addNode(925, 142); //start (,)
+            pathf21.addNode(925, 258); //light
+            pathf21.addNode(925, 359);
+            pathf21.addNode(925, 430);
+            paths.Add(pathf21);
+
+            //   
+            Path pathf22 = new Path();
+            pathf22.addNode(924, 430); //start (,)
+            pathf22.addNode(924, 359); //light
+            pathf22.addNode(924, 258);
+            pathf22.addNode(924, 142);
+            paths.Add(pathf22);
 
 
 
