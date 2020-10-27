@@ -14,17 +14,28 @@ namespace Simulator
 
         public Guid guid = Guid.NewGuid();
 
-        public String path = "path1";
+        //public String path = "path1";
 
         public PictureBox car;
 
+        private PictureBox upStraightCar;
+        private PictureBox leftCar;
+        private PictureBox rightCar;
+        private PictureBox downStraightCar;
+
         public String direction = "straight";
+
+        private Path path = null;
+
+        public bool toBeDeleted = false;
+
+        private int oldRotation = 0;
 
 
         // Which node(x,y coordinates) on the map is the car
         public int node = 0;
 
-        public void spawnRandomCar(int Left, int Top)
+        public void spawnRandomCar(Path path, int Left, int Top)
         {
             car = new PictureBox();
 
@@ -52,50 +63,122 @@ namespace Simulator
 
             car.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            car.Size = new Size(23, 33);
+            car.Size = new Size(20, 33);
+
+            
+
+            this.path = path;
+
 
             // random path for car
-            int whichPath = rnd.Next(1, 3);
+            //int whichPath = rnd.Next(1, 3);
 
-            switch (whichPath)
-            {
-                case 1:
-                    this.path = "path1";
-                    break;
-                case 2:
-                    this.path = "path2";
-                    break;
-            }
+            //switch (whichPath)
+          //  {
+              //  case 1:
+                  //  this.path = "path1";
+                   // break;
+                //case 2:
+                  //  this.path = "path2";
+                  //  break;
+            //}
 
-            car.Left = 340;
+            car.Left = Left;
 
-            car.Top = 580;
+            car.Top = Top;
+
+            //setupImages(car);
 
             //this.carPic = car;
         }
 
-        public void move(Path pointsAlongPath, int speed, bool brake)
+        private void setupImages(PictureBox car)
         {
-            if (pointsAlongPath.nodes[node].Reg != null && pointsAlongPath.nodes[node].Reg.currentColor != RegLightSequence.Green)
+            upStraightCar = car;
+            downStraightCar = car;
+            leftCar = car;
+            rightCar = car;
+
+            // car úp
+            Image img = car.Image;
+            upStraightCar.Image = img;
+            upStraightCar.Size = new Size(20, 33);
+
+            // car down
+            Image img2 = car.Image;
+            downStraightCar.Image = img2;
+            img2.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            upStraightCar.Size = new Size(20, 33);
+
+            // car going to left
+            Image img3 = car.Image;
+            leftCar.Image = img3;
+            img3.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            leftCar.Size = new Size(33, 20);
+
+            // car going to right
+            Image img4 = car.Image;
+            rightCar.Image = img4;
+            img4.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            rightCar.Size = new Size(33, 20);
+        }
+
+        public void move(int speed, bool brake)
+        {
+            if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentColor != RegLightSequence.Green)
             {
                 brake = true;
             } 
 
             if (brake is false)
             {
-                float tx = pointsAlongPath.nodes[node].Left - car.Left;
-                float ty = pointsAlongPath.nodes[node].Top - car.Top;
+                float tx = path.nodes[node].Left - car.Left;
+                float ty = path.nodes[node].Top - car.Top;
                 double length = Math.Sqrt(tx * tx + ty * ty);
                 if (length > speed)
                 {
-                    if (car.Left < pointsAlongPath.nodes[node].Left && direction == "straight")
+                    /*
+                    if (car.Left < path.nodes[node].Left && direction == "straight")
                     {
                         Image img = car.Image;
                         img.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         car.Image = img;
-                        car.Size = new Size(33, 23);
+                        car.Size = new Size(33, 20);
                         direction = "right";
                     }
+                    if (car.Top < path.nodes[node].Top && direction == "straight" || direction == "right")
+                    {
+                        Image img = car.Image;
+                        if (direction == "straight")
+                            img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        if (direction == "right")
+                            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        car.Image = img;
+                        car.Size = new Size(20, 33);
+                        direction = "straightdown";
+                    } 
+                    if (car.Left > path.nodes[node].Left && direction == "straight" || direction == "straightdown")
+                    {
+                        Image img = car.Image;
+                        if(direction == "straight")
+                            img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        if(direction == "straightdown")
+                            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        car.Image = img;
+                        car.Size = new Size(33, 20);
+                        direction = "left";
+                    }
+                    if (car.Top > path.nodes[node].Top && direction == "right")
+                    {
+                        Image img = car.Image;
+                        img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        car.Image = img;
+                        car.Size = new Size(20, 33);
+                        direction = "straight";
+                    }*/
+
+                    turn(car.Left, car.Top);
+
                     // move towards the goal
                     car.Left = (int)(car.Left + speed * tx / length);
                     car.Top = (int)(car.Top + speed * ty / length);
@@ -103,11 +186,14 @@ namespace Simulator
                 else
                 {
                     // already there
-                    car.Left = pointsAlongPath.nodes[node].Left;
-                    car.Top = pointsAlongPath.nodes[node].Top;
-                    if (node < (pointsAlongPath.nodes.Count-1) && brake is false)
+                    car.Left = path.nodes[node].Left;
+                    car.Top = path.nodes[node].Top;
+                    if (node < (path.nodes.Count-1) && brake is false)
                     {
                         node++;
+                    } else
+                    {
+                        toBeDeleted = true;
                     }
                 }
             } 
@@ -128,6 +214,136 @@ namespace Simulator
             // }
         }
 
+        public void turn(int left, int top)
+        {
+
+            // right(southern spawned cars)
+            if (/*top > path.nodes[node].Top &&*/ left < path.nodes[node].Left)
+            {
+                Image img = car.Image;
+                if (oldRotation == 0) {
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    oldRotation = 90;
+                }
+                if(oldRotation == 90)
+                {
+                    oldRotation = 90;
+                }
+                if (oldRotation == 180)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    oldRotation = 90;
+                }
+                if (oldRotation == 270)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    oldRotation = 90;
+                }
+                car.Image = img;
+                car.Size = new Size(33, 20);
+                
+
+            } 
+            // right(northern spawned cars)
+            if (/*top < path.nodes[node].Top &&*/ left > path.nodes[node].Left)
+            {
+                Image img = car.Image;
+                if (oldRotation == 0)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    oldRotation = 270;
+                }
+                if (oldRotation == 90)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    oldRotation = 270;
+                }
+                if (oldRotation == 180)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    oldRotation = 270;
+                }
+                if (oldRotation == 270)
+                {
+                    oldRotation = 270;
+                }
+                car.Image = img;
+                car.Size = new Size(33, 20);
+            } 
+
+            /*
+            // left(southern spawned cars)
+            if (top > path.nodes[node].Top && left > path.nodes[node].Left)
+            {
+                leftCar.Left = left;
+                leftCar.Top = top;
+                car.Image = leftCar.Image;
+            }
+            // left(northern spawned cars)
+            if (top < path.nodes[node].Top && left < path.nodes[node].Left)
+            {
+                rightCar.Left = left;
+                rightCar.Top = top;
+                car.Image = rightCar.Image;
+            }*/
+            
+
+            // right(eastern spawned cars)
+            if (top < path.nodes[node].Top/* && left < path.nodes[node].Left*/)
+            {
+                Image img = car.Image;
+                if (oldRotation == 0)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    oldRotation = 180;
+                }
+                if (oldRotation == 90)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    oldRotation = 180;
+                }
+                if (oldRotation == 180)
+                {
+                    oldRotation = 180;
+                }
+                if (oldRotation == 270)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    oldRotation = 180;
+                }
+                car.Image = img;
+                car.Size = new Size(20, 33);
+            }
+            // right(western spawned cars)
+            if (top > path.nodes[node].Top/* && left > path.nodes[node].Left*/)
+            {
+                Image img = car.Image;
+                if (oldRotation == 0)
+                {
+                    oldRotation = 0;
+                }
+                if (oldRotation == 90)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    oldRotation = 0;
+                }
+                if (oldRotation == 180)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    oldRotation = 0;
+                }
+                if (oldRotation == 270)
+                {
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    oldRotation = 0;
+                }
+                car.Image = img;
+                car.Size = new Size(20, 33);
+            }
+
+
+        }
+
         public bool collisionDetection(List<Car> cars)
         {
             List<Car> cars2 = cars.Where(car => car.guid != this.guid).ToList();
@@ -144,9 +360,19 @@ namespace Simulator
                  rect = new Rectangle(car.Left, (car.Top - 10), car.Width, 10);
             }
 
-            if(direction == "right")
+            if (direction == "straightdown")
+            {
+                rect = new Rectangle(car.Left, (car.Top + car.Height + 10), car.Width, 10);
+            }
+
+            if (direction == "right")
             {
                 rect = new Rectangle((car.Left + car.Width), car.Top, 10, car.Top);
+            }
+
+            if (direction == "left")
+            {
+                rect = new Rectangle((car.Left - car.Width), car.Top, 10, car.Top);
             }
 
             int carInFront = 0;

@@ -5141,23 +5141,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wiebe\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\janek\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+      "projectUniqueName": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
       "projectName": "Simulator",
-      "projectPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
-      "packagesPath": "C:\\Users\\wiebe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
+      "projectPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+      "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\wiebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5208,7 +5204,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

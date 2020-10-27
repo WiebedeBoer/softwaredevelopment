@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Simulator
 {
@@ -30,12 +31,16 @@ namespace Simulator
             while (socket.Available > 0)
             {
                 int receivedDataLength = socket.Receive(buffer);
+
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
-                //stringData = stringData.Substring(29);
-                stringData = stringData.Substring(28);
+
+                stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
+
+                stringData = stringData.Substring(29);
+
                 json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
+
                 Console.WriteLine(json.A11);
-                //Console.WriteLine(nameof(json.A11));
             }
 
             //socket.Disconnect(false);

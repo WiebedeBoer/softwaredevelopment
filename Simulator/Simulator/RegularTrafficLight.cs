@@ -17,6 +17,8 @@ namespace Simulator
 
     public class RegularTrafficLight
     {
+        public String name = null;
+
         const int delayedLightChange = 500; // in milliseconds
         public RegLightSequence currentColor = RegLightSequence.Red;
 
@@ -27,7 +29,7 @@ namespace Simulator
             regTrafficLight = new PictureBox();
         }
 
-        public void createTrafficLight(int left, int top)
+        public void createTrafficLight(int left, int top, String name)
         {
             regTrafficLight.Image = Properties.Resources.red_light;
 
@@ -40,6 +42,8 @@ namespace Simulator
             regTrafficLight.Left = left;
 
             regTrafficLight.Top = top;
+
+            this.name = name;
         }
 
         public async void LightSequence(int i)
