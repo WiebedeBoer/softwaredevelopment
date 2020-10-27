@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {}
+    "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
+    "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+        "projectUniqueName": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
         "projectName": "Simulator",
-        "projectPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+        "projectPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
         "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
+        "outputPath": "D:\\SoftwareDevelopment2\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,7 +65,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

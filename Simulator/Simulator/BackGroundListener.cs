@@ -34,13 +34,34 @@ namespace Simulator
 
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
 
-                stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
+                //stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
 
-                stringData = stringData.Substring(29);
 
-                json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
+                String header = "0";
+                if (!String.IsNullOrWhiteSpace(stringData))
+                {
+                    int charLocation = stringData.IndexOf(":", StringComparison.Ordinal);
 
-                Console.WriteLine(json.A11);
+                    if (charLocation > 0)
+                    {
+                        header = stringData.Substring(0, charLocation);
+                    }
+                }
+
+                if (header == "451")
+                {
+                    stringData = stringData.Substring(4);
+
+                    json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
+
+                    Console.WriteLine(json.A11);
+                } else
+                {
+                    Console.WriteLine("JSON is not complete...");
+                }
+
+
+                
             }
 
             //socket.Disconnect(false);
