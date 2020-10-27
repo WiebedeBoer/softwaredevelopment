@@ -47,7 +47,7 @@ namespace Simulator
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1138, 796);
+            this.ClientSize = new System.Drawing.Size(1138, 749);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
