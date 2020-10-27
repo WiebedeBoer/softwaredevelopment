@@ -46,15 +46,6 @@ int main()
 	//sending packages of string json
 	controller.sendlight();
 }
-
-	/*
-	controller()
-	{
-			//int order;
-			//string traffic;
-			//std::string changetraffic(int order);
-	}
-	*/
 	
 	/*
 	void fetchlight() {
@@ -89,28 +80,16 @@ int main()
 				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
 				{
 					time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
-					//int lightssend = sendpackage(package); //package every 4 seconds
-
-					modorder = (order % 8) + 1;
+					modorder = (order % 8) + 1; // current order
 					string traffic = changetraffic(modorder);
-					int stringlength = traffic.length();
-					//string header = "25:{\"type\": \"A1-A\",\"state\":0}";
-					string header = stringlength + ":";
-					string package = header + traffic;
-					//string package = changetraffic(modorder);
-					
+					string length = std::to_string(traffic.length());
+					string header = length + ":";
+					string package = header + traffic;				
 					const char* input = package.c_str();
-					//socketserver(package);
 					socketserver(input); //package every 4 seconds
 				}
-
-
-				//send package
-
-
 				//continuous order
 				order++;
-
 			}
 
 		int lightssend = 1;
