@@ -18,14 +18,18 @@ namespace Simulator
         public int spawnTimer = 0;
         public int randomTimeSpawned = 10; // standard
 
-        List<Car> cars = new List<Car>();
+        List<Traffic> traffic = new List<Traffic>();
+        //List<Bus> busses = new List<Bus>();
 
         // Lane 1
         public int[,] pointsAlongPath1 = new int[,] { { 340, 411 }, { 383, 388 }, { 600, 384 } };
         public int[,] pointsAlongPath2 = new int[,] { { 340, 411 }, { 383, 364 }, { 600, 360 } };
 
-
+        // cars
         private List<Path> paths = new List<Path>();
+
+        // buspaths
+        private List<Path> busPaths = new List<Path>();
 
 
         private BackGroundListener listener = new BackGroundListener();
@@ -47,18 +51,24 @@ namespace Simulator
 
             //socket.LoopConnect();
 
-            
-            RegularTrafficLight reg = createTrafficLight(342, 421, "A11");
 
-            
+            RegularTrafficLight regA44 = createTrafficLight(342, 421, "A44", "up");
+            RegularTrafficLight regA34 = createTrafficLight(737, 387, "A34", "left");
+            RegularTrafficLight regA33 = createTrafficLight(737, 365, "A34", "left");
+
+            RegularTrafficLight regA43 = createTrafficLight(320,421, "A43","up");
+            //
+
+
             Path path = new Path();
 
             path.addNode(342, 580);
-            path.addNode(342, 430);
+            path.addNode(342, 500);
             // A44 - trafficlight
-            path.addNode(342, 411, reg);
+            path.addNode(342, 411, regA44);
             path.addNode(383, 388);
-            path.addNode(1083, 386);
+            path.addNode(700, 386);
+            path.addNode(1083, 386, regA34);
             paths.Add(path);
 
             
@@ -67,9 +77,10 @@ namespace Simulator
             path2.addNode(342, 580);
             path2.addNode(342, 430);
             // A44 - trafficlight -  Alternative path
-            path2.addNode(342, 411);
+            path2.addNode(342, 411, regA44);
             path2.addNode(383, 366);
-            path2.addNode(1083, 362);
+            path2.addNode(700, 386);
+            path2.addNode(1083, 362, regA33);
             paths.Add(path2);
 
             
@@ -126,6 +137,76 @@ namespace Simulator
             path7.addNode(206, 610);
             paths.Add(path7);
 
+            Path path8 = new Path();
+
+            path8.addNode(1, 409);
+            path8.addNode(120, 409);
+            // A53 - trafficlight
+            path8.addNode(208, 409);
+            path8.addNode(224, 443);// add trafficlight
+            path8.addNode(230, 610);
+            paths.Add(path8);
+
+            Path path9 = new Path();
+
+            path9.addNode(1, 385);
+            path9.addNode(120, 385);
+            // A52 - trafficlight
+            path9.addNode(707, 385);
+            path9.addNode(1083, 385); // add trafficlight
+            paths.Add(path9);
+
+            Path path10 = new Path();
+
+            path10.addNode(1, 385);
+            path10.addNode(120, 385);
+            // A52 - trafficlight - Aternative path
+            path10.addNode(310, 385);
+            path10.addNode(400, 363);
+            path10.addNode(707, 363);
+            path10.addNode(1083, 363); // add trafficlight
+            paths.Add(path10);
+
+            Path path11 = new Path();
+
+            path11.addNode(1, 363);
+            path11.addNode(120, 363);
+            // A51 - trafficlight
+            path11.addNode(272, 363);
+            path11.addNode(401, 341);
+            path11.addNode(707, 341);
+            path11.addNode(837, 341); // add trafficlight
+            path11.addNode(862, 299);
+            path11.addNode(862, 0);
+
+            Path path12 = new Path();
+
+            path12.addNode(1, 363);
+            path12.addNode(120, 363);
+            // A51 - trafficlight
+            path12.addNode(272, 363);
+            path12.addNode(401, 318);
+            path12.addNode(707, 318);
+            path12.addNode(828, 312); // add trafficlight
+            path12.addNode(839, 299);
+            path12.addNode(839, 0);
+
+            paths.Add(path12);
+
+
+            ////// BUSSES /////
+            Path buspathb41 = new Path();
+            buspathb41.addNode(364, 592);
+            buspathb41.addNode(364, 505);
+            buspathb41.addNode(364, 460); // add trafficlight
+            buspathb41.addNode(342, 433);
+            buspathb41.addNode(361, 387);
+            buspathb41.addNode(1083, 387);
+
+            busPaths.Add(buspathb41);
+
+
+            /*
             //   
             Path patha11 = new Path();
             patha11.addNode(734, 111); //start (732,1)
@@ -294,7 +375,7 @@ namespace Simulator
             pathf22.addNode(924, 142);
             paths.Add(pathf22);
 
-
+            */
 
             Thread listen = new Thread(listener.Connect);
 
@@ -314,8 +395,9 @@ namespace Simulator
                 {
                     foreach (Node n in p.nodes)
                     {
-                        if (n.Reg.name == "A11")
-                            n.Reg.LightSequence(json.A11);
+                        if(n.Reg != null)
+                            if (n.Reg.name == "A11")
+                                n.Reg.LightSequence(json.A11);
                     }
                 }
             }
@@ -341,6 +423,7 @@ namespace Simulator
             if(spawnTimer == randomTimeSpawned)
             {
                 spawnRandomCar();
+                spawnRandomBus();
 
                 Random rnd = new Random();
                 this.randomTimeSpawned = rnd.Next(5, 20);
@@ -348,8 +431,15 @@ namespace Simulator
                 spawnTimer = 0;
             }
 
+            /*
+            foreach (Bus x in this.busses)
+            {
+                bool brake = x.collisionDetection(this.busses);
+                
+                x.move(10, brake);
+            }*/
 
-            foreach (Car x in this.cars)
+            foreach (Traffic x in this.traffic)
             {
                 
                 //if (carInFront != null && !carInFront.guid.Equals(x.guid))
@@ -357,7 +447,7 @@ namespace Simulator
                 // Check if car is detected in front, so they dont collide
                 
 
-                bool brake = x.collisionDetection(this.cars);
+                bool brake = x.collisionDetection(this.traffic);
 
                 x.move(10, brake);
                 //}
@@ -373,14 +463,23 @@ namespace Simulator
                 //carInFront = x;
             }
 
-            foreach (Car i in cars.Reverse<Car>())
+            foreach (Traffic i in traffic.Reverse<Traffic>())
             {
                 if (i.toBeDeleted == true)
                 {
-                    cars.Remove(i);
-                    this.Controls.Remove(i.car);
+                    traffic.Remove(i);
+                    this.Controls.Remove(i.x);
                 }
             }
+            /*
+            foreach (Bus i in busses.Reverse<Bus>())
+            {
+                if (i.toBeDeleted == true)
+                {
+                    busses.Remove(i);
+                    this.Controls.Remove(i.bus);
+                }
+            }*/
 
             foreach (Control x in this.Controls)
             {
@@ -416,6 +515,19 @@ namespace Simulator
             //reg.LightSequence(1);
         }
 
+        private void spawnRandomBus()
+        {
+            Random rnd = new Random();
+            int random = rnd.Next(busPaths.Count);
+
+            Bus bus = new Bus();
+
+            bus.spawn(busPaths[random], busPaths[random].nodes[0].Left, busPaths[random].nodes[0].Top);
+
+            traffic.Add(bus);
+
+            this.Controls.Add(bus.x);
+        }
 
         private void spawnRandomCar()
         {
@@ -424,18 +536,18 @@ namespace Simulator
 
             Car car = new Car();
 
-            car.spawnRandomCar(paths[random], paths[random].nodes[0].Left, paths[random].nodes[0].Top);
+            car.spawn(paths[random], paths[random].nodes[0].Left, paths[random].nodes[0].Top);
 
-            cars.Add(car);
+            traffic.Add(car);
 
-            this.Controls.Add(car.car);
+            this.Controls.Add(car.x);
         }
 
-        private RegularTrafficLight createTrafficLight(int left, int top, string name)
+        private RegularTrafficLight createTrafficLight(int left, int top, string name, string direction)
         {
             RegularTrafficLight reg = new RegularTrafficLight();
 
-            reg.createTrafficLight(left, top, name);
+            reg.createTrafficLight(left, top, name, direction);
 
             this.Controls.Add(reg.regTrafficLight);
 

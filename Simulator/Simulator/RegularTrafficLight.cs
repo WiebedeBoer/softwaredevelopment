@@ -29,7 +29,7 @@ namespace Simulator
             regTrafficLight = new PictureBox();
         }
 
-        public void createTrafficLight(int left, int top, String name)
+        public void createTrafficLight(int left, int top, String name, string direction)
         {
             regTrafficLight.Image = Properties.Resources.red_light;
 
@@ -37,7 +37,27 @@ namespace Simulator
 
             regTrafficLight.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            regTrafficLight.Size = new Size(18, 53);
+            Image img = regTrafficLight.Image;
+
+            
+            switch (direction)
+            {
+                // up/left/right/top -> direction traffic is coming from
+                case "up":
+                    regTrafficLight.Size = new Size(18, 53);
+                    break;
+                case "left":
+                    regTrafficLight.Size = new Size(53, 18);
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    break;
+                case "right":
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    break;
+                case "down":
+                    //regTrafficLight.Size = new Size(18, 53);
+                    break;
+            }
+            
 
             regTrafficLight.Left = left;
 
