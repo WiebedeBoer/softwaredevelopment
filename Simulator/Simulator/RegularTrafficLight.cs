@@ -51,10 +51,12 @@ namespace Simulator
                     img.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     break;
                 case "right":
+                    regTrafficLight.Size = new Size(53, 18);
                     img.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     break;
                 case "down":
-                    //regTrafficLight.Size = new Size(18, 53);
+                    regTrafficLight.Size = new Size(18, 53);
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
                     break;
             }
             
