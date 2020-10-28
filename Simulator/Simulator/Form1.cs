@@ -57,7 +57,7 @@ namespace Simulator
             RegularTrafficLight regA33 = createTrafficLight(737, 365, "A34", "left");
 
             RegularTrafficLight regA43 = createTrafficLight(320,421, "A43","up");
-            //
+            
 
 
             Path path = new Path();
@@ -89,7 +89,7 @@ namespace Simulator
             path3.addNode(320, 580);
             path3.addNode(320, 430);
             // A43 - trafficlight
-            path3.addNode(332, 366);
+            path3.addNode(332, 366, regA43);
             path3.addNode(369, 342);
             path3.addNode(815, 342);
             path3.addNode(855, 320);
@@ -205,6 +205,124 @@ namespace Simulator
 
             busPaths.Add(buspathb41);
 
+
+            Path patha11 = new Path();
+            patha11.addNode(726, 1); //start
+            patha11.addNode(726, 103); //light a11
+            patha11.addNode(721, 195);
+            patha11.addNode(572, 206);
+            patha11.addNode(391, 206);
+            patha11.addNode(353, 206); //light a61
+            patha11.addNode(1, 206); //end
+            paths.Add(patha11);
+
+            // a11 - rechts voorsorteer over a62
+            Path patha11r = new Path();
+            patha11r.addNode(726, 1); //start
+            patha11r.addNode(726, 103); //light a11
+            patha11r.addNode(721, 195);
+            patha11r.addNode(572, 227);
+            patha11r.addNode(391, 227);
+            patha11r.addNode(353, 227); //light a62
+            patha11r.addNode(1, 227); //end
+            paths.Add(patha11r);
+
+            //  a12 - links voorsorteer over a63
+            Path patha12 = new Path();
+            patha12.addNode(750, 1); //start
+            patha12.addNode(750, 103); //light a12
+            patha12.addNode(750, 195);
+            patha12.addNode(571, 252);
+            patha12.addNode(389, 252);
+            patha12.addNode(353, 2252); //light a63
+            patha12.addNode(227, 266);
+            patha12.addNode(206, 345);
+            patha12.addNode(206, 606); //end
+            paths.Add(patha12);
+
+            //  a12 - rechts voorsorteer over a64
+            Path patha12r = new Path();
+            patha12r.addNode(750, 1); //start
+            patha12r.addNode(750, 103); //light a12
+            patha12r.addNode(750, 195);
+            patha12r.addNode(571, 276);
+            patha12r.addNode(389, 276);
+            patha12r.addNode(353, 276); //light a64
+            patha12r.addNode(240, 282);
+            patha12r.addNode(232, 345);
+            patha12r.addNode(232, 606); //end
+            paths.Add(patha12r);
+
+            //  a13 - rechts voorsorteer 
+            Path patha13 = new Path();
+            patha13.addNode(772, 1); //start
+            patha13.addNode(772, 103); //light a13
+            patha13.addNode(779, 353);
+            patha13.addNode(896, 365);
+            patha13.addNode(1058, 365); //end
+            paths.Add(patha13);
+
+            // b11 - bus over a63
+            Path pathb11 = new Path();
+            pathb11.addNode(793, 1); //start 
+            pathb11.addNode(793, 103); //light b11 
+            pathb11.addNode(793, 195);
+            pathb11.addNode(676, 252);
+            pathb11.addNode(393, 252);
+            pathb11.addNode(353, 252); //light a63
+            pathb11.addNode(227, 266);
+            pathb11.addNode(206, 345);
+            pathb11.addNode(206, 606); //end
+            paths.Add(pathb11);
+
+            // b12 - bus  
+            Path pathb12 = new Path();
+            pathb12.addNode(793, 1); //start
+            pathb12.addNode(793, 103); //light b12
+            pathb12.addNode(793, 195);
+            pathb12.addNode(807, 388);
+            pathb12.addNode(1075, 388); //end
+            paths.Add(pathb12);
+
+            // a21 
+            Path patha21 = new Path();
+            patha21.addNode(1075, 162); //start
+            patha21.addNode(955, 162); //light a21
+            patha21.addNode(866, 160);
+            patha21.addNode(866, 105);
+            patha21.addNode(866, 1); //end
+            paths.Add(patha21);
+
+            // a22   
+            Path patha22 = new Path();
+            patha22.addNode(1075, 183); //start
+            patha22.addNode(955, 183); //light a22
+            patha22.addNode(839, 105);
+            patha22.addNode(839, 1); //end
+            paths.Add(patha22);
+
+            // a23 rechts voorsorteer over a61
+            Path patha23 = new Path();
+            patha23.addNode(1075, 207); //start
+            patha23.addNode(955, 207); //light a23
+            patha23.addNode(766, 207);
+            patha23.addNode(581, 207);
+            patha23.addNode(353, 207); //light a61
+            patha23.addNode(1, 207); //end
+            paths.Add(patha23);
+
+            // a24 links voorsorteer over a64  
+            Path patha24 = new Path();
+            patha24.addNode(1075, 230); //start
+            patha24.addNode(955, 230); //light a24
+            patha24.addNode(765, 230);
+            patha24.addNode(675, 253);
+            patha24.addNode(579, 276);
+            patha24.addNode(353, 276); //light a64
+            patha24.addNode(240, 282);
+            patha24.addNode(232, 345);
+            patha24.addNode(232, 606); //end
+            paths.Add(patha24);
 
             /*
             //   
