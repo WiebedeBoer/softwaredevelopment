@@ -27,35 +27,22 @@
 int main()
 {
     std::cout << "Hello World!\n"; 
-	//string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
-	
 	controller controller;
+	controller.sendlight();
+	//string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
 	//json = controller.Replace(json, "\\\"", "\"");
 	//Pakal::JsonReader JsonReader;
 	//controller.fetchjson(json);
-
 	//JsonReader.parse_element(object & object, Element * element);
 	//JsonReader.read(json,"A1-1",1);
 	//JsonReader.read("jason_controller.json", "A1-1", json);
-
 	//fetching json
 	//const rapidjson::Document json_value = controller.fetchjson(json);
 	//assert(json_value.IsArray());
 	//controller.sendjson(json_value);
-
 	//sending packages of string json
-	controller.sendlight();
-}
 	
-	/*
-	void fetchlight() {
-
-	}
-
-	void checklight() {
-
-	}
-	*/
+}
 
 	int controller::sendlight() {
 		int order = 1;
@@ -80,7 +67,7 @@ int main()
 				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
 				{
 					time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
-					modorder = (order % 8) + 1; // current order
+					modorder = (order % 6) + 1; // current order
 					string traffic = changetraffic(modorder);
 					string length = std::to_string(traffic.length());
 					string header = length + ":";
@@ -96,59 +83,38 @@ int main()
 		return lightssend;
 	}
 
-	int controller::setlight() {
-		int light = 0;
-		//trafficlight trafficlight;
-		//light = trafficlight.changecolor(light);
-		return light;
-	}
-
-	int controller::trafficorder() {
-		int trafficorder = 1;
-		return trafficorder;
-	}
-
 	//which lights on green
 	string controller::changetraffic(int order) {
 
 		string traffic;
-		//rechtdoor noord - zuid bus
+		//rechtdoor noord - zuid, oost - west bus 
 		if (order == 1)
 		{
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':1,'B1-2':1,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':0,'A3-2':0,'A3-3':0,'A3-4':0,'A4-1':0,'A4-2':0,'A4-3':0,'A4-4':0,'B4-1':1,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':1,'A5-4':1,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':1,'A6-2':1,'A6-3':0,'A6-4':0}";
 		}
-		//rechtdoor oost - west bus
-		else if (order == 2)
-		{
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+		//rechtdoor en rechtsaf noord - zuid auto 
+		else if (order == 2) {
+			traffic = "{'A1-1':1,'A1-2':1,'A1-3':1,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':0,'A3-2':0,'A3-3':0,'A3-4':0,'A4-1':1,'A4-2':1,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':1,'A5-4':1,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':0,'A6-2':0,'A6-3':0,'A6-4':0}";
 		}
-		//rechtdoor en rechtsaf noord - zuid auto
+		//rechtdoor en rechtsaf oost - west auto 
 		else if (order == 3) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
-		}
-		//rechtdoor en rechtsaf oost - west auto
-		else if (order == 4) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+			traffic = "{'A1-1':0,'A1-2':0,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':1,'A2-4':1,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':0,'A4-4':0,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':1,'A5-2':1,'A5-3':1,'A5-4':1,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':1,'A6-2':1,'A6-3':0,'A6-4':0}";
 		}
 		//linksaf noord - west en oost - zuid auto
+		else if (order == 4) {
+			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':0,'A2-2':0,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':1,'A3-2':1,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+		}
+		//linksaf noord - oost en zuid - west auto 
 		else if (order == 5) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+			traffic = "{'A1-1':1,'A1-2':1,'A1-3':1,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':0,'A2-2':0,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':0,'A3-2':0,'A3-3':0,'A3-4':0,'A4-1':1,'A4-2':1,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':1,'A5-4':1,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':0,'A6-2':0,'A6-3':0,'A6-4':0}";
 		}
-		//linksaf noord - oost en zuid - west auto
+		//fietsverkeer en voetgangersverkeer 
 		else if (order == 6) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+			traffic = "{'A1-1':0,'A1-2':0,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':1,'F1-2':1,'V1-1':1,'V1-2':1,'V1-3':1,'V1-4':1,'A2-1':0,'A2-2':0,'A2-3':0,'A2-4':0,'F2-1':1,'F2-2':1,'V2-1':1,'V2-2':1,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':0,'A3-4':0,'A4-1':0,'A4-2':0,'A4-3':0,'A4-4':0,'B4-1':0,'F4-1':1,'F4-2':1,'V4-1':1,'V4-2':1,'V4-3':1,'V4-4':1,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':1,'F5-2':1,'V5-1':1,'V5-2':1,'V5-3':1,'V5-4':1,'A6-1':0,'A6-2':0,'A6-3':0,'A6-4':0}";
 		}
-		//fietsverkeer
-		else if (order == 7) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
-		}
-		//voetgangersverkeer
-		else if (order == 8) {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
-		}
-		//default
+		//default all orange
 		else {
-			traffic = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':0,'B1-2':0,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':1,'V2-4':1,'A3-1':0,'A3-2':0,'A3-3':1,'A3-4':1,'A4-1':0,'A4-2':0,'A4-3':1,'A4-4':1,'B4-1':0,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':0,'A5-4':0,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':1,'V5-4':1,'A6-1':1,'A6-2':1,'A6-3':1,'A6-4':1}";
+			traffic = "{'A1-1':2,'A1-2':2,'A1-3':2,'B1-1':2,'B1-2':2,'F1-1':2,'F1-2':2,'V1-1':2,'V1-2':2,'V1-3':2,'V1-4':2,'A2-1':2,'A2-2':2,'A2-3':2,'A2-4':2,'F2-1':2,'F2-2':2,'V2-1':2,'V2-2':2,'V2-3':2,'V2-4':2,'A3-1':2,'A3-2':2,'A3-3':2,'A3-4':2,'A4-1':2,'A4-2':2,'A4-3':2,'A4-4':2,'B4-1':2,'F4-1':2,'F4-2':2,'V4-1':2,'V4-2':2,'V4-3':2,'V4-4':2,'A5-1':2,'A5-2':2,'A5-3':2,'A5-4':2,'F5-1':2,'F5-2':2,'V5-1':2,'V5-2':2,'V5-3':2,'V5-4':2,'A6-1':2,'A6-2':2,'A6-3':2,'A6-4':2}";
 		}
 		return traffic;
 	}
@@ -166,10 +132,134 @@ int main()
 		return str;
 	}
 
+	void controller::socketserver(const char* Input)
+	{
+		std::string ipAddress = "127.0.0.1";			// IP Address of the server
+		int port = 54000;						// Listening port # on the server
+
+		std::string str = Input;
+
+		// Initialize WinSock
+		WSAData data;
+		WORD ver = MAKEWORD(2, 2);
+		int wsResult = WSAStartup(ver, &data);
+		if (wsResult != 0)
+		{
+			std::cout << "Socket not init!\n";
+			return;
+		}
+
+		// Create socket
+		SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+		if (sock == INVALID_SOCKET)
+		{
+			std::cout << "Socket not valid!\n";
+			WSACleanup();
+			return;
+		}
+
+		//bind
+		SOCKADDR_IN serverInf;
+		serverInf.sin_family = AF_INET;
+		serverInf.sin_addr.s_addr = INADDR_ANY;
+		serverInf.sin_port = htons(port);
+		inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
+
+		if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
+		{
+			std::cout << "Unable to bind socket!\r\n";
+			WSACleanup();
+			system("PAUSE");
+			return;
+		}
+
+		//listen
+		int iResult;
+		iResult = listen(sock, SOMAXCONN);
+		if (iResult == SOCKET_ERROR) {
+			printf("listen failed with error: %d\n", WSAGetLastError());
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}
+
+		// Wait for a connection
+		int clientSize = sizeof(serverInf);
+
+		// Accept a client socket
+		SOCKET ClientSocket = accept(sock, (sockaddr*)&serverInf, &clientSize);
+		if (ClientSocket == INVALID_SOCKET) {
+			printf("accept failed with error: %d\n", WSAGetLastError());
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}	
+
+		// Do-while loop to send and receive data
+		char buf[4096];
+
+		do
+		{
+			// get text
+			int size = strlen(Input);
+			if (size > 0)		// Make sure there is input
+			{
+				//std::cout << "size correct ";
+				// Send the text
+				int sendResult = send(ClientSocket, Input, size, 0);
+
+				if (sendResult != SOCKET_ERROR)
+				//if (sendResult == -1)
+				{
+					//std::cout << "Socket no result error!\n";					
+					// Wait for response
+					ZeroMemory(buf, 4096);
+					//int bytesReceived = recv(sock, buf, 4096, 0);
+					int bytesReceived = recv(ClientSocket, buf, 4096, 0);
+					if (bytesReceived > 0)
+					{
+						// Echo response to console
+						std::cout << "Socket buffer!\n";
+					}
+				}
+				else {
+					std::cout << "Socket result error!\n";
+					std::cout << WSAGetLastError;
+				}
+			}
+
+		} while (str.size() > 0);
+
+		// Gracefully close down everything
+		//closesocket(sock);
+		closesocket(ClientSocket);
+		WSACleanup();
+	}
+
+	int controller::setlight() {
+		int light = 0;
+		return light;
+	}
+
+	int controller::trafficorder() {
+		int trafficorder = 1;
+		return trafficorder;
+	}
+
+	/*
+	void fetchlight() {
+
+	}
+
+	void checklight() {
+
+	}
+	*/
+
 	/*
 	static rapidjson::Document fetchjson(const char* json) {
 		Document document;
-		
+
 		document.Parse<0>(json);
 
 		//convert document to string
@@ -219,111 +309,3 @@ int main()
 	//https://www.geeksforgeeks.org/socket-programming-cc/
 	//https://www.bogotobogo.com/cplusplus/sockets_server_client.php
 	*/
-
-	void controller::socketserver(const char* Input)
-	{
-		std::string ipAddress = "127.0.0.1";			// IP Address of the server
-		int port = 54000;						// Listening port # on the server
-
-		std::string str = Input;
-
-		// Initialize WinSock
-		WSAData data;
-		WORD ver = MAKEWORD(2, 2);
-		int wsResult = WSAStartup(ver, &data);
-		if (wsResult != 0)
-		{
-			std::cout << "Socket not init!\n";
-			return;
-		}
-
-		// Create socket
-		//SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-		SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-		if (sock == INVALID_SOCKET)
-		{
-			std::cout << "Socket not valid!\n";
-			WSACleanup();
-			return;
-		}
-
-		//bind
-		SOCKADDR_IN serverInf;
-		serverInf.sin_family = AF_INET;
-		serverInf.sin_addr.s_addr = INADDR_ANY;
-		serverInf.sin_port = htons(port);
-		inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
-
-		if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
-		{
-			std::cout << "Unable to bind socket!\r\n";
-			WSACleanup();
-			system("PAUSE");
-			return;
-		}
-
-		//listen
-		int iResult;
-		iResult = listen(sock, SOMAXCONN);
-		if (iResult == SOCKET_ERROR) {
-			printf("listen failed with error: %d\n", WSAGetLastError());
-			closesocket(sock);
-			WSACleanup();
-			return;
-		}
-
-		// Wait for a connection
-		int clientSize = sizeof(serverInf);
-
-		// Accept a client socket
-		SOCKET ClientSocket = accept(sock, (sockaddr*)&serverInf, &clientSize);
-		if (ClientSocket == INVALID_SOCKET) {
-			printf("accept failed with error: %d\n", WSAGetLastError());
-			closesocket(sock);
-			WSACleanup();
-			return;
-		}	
-
-		// Do-while loop to send and receive data
-		char buf[4096];
-		//std::string userInput;
-
-		do
-		{
-			// get text
-			int size = strlen(Input);
-			if (size > 0)		// Make sure the user has typed in something
-			{
-				//std::cout << "size correct ";
-				// Send the text
-				int sendResult = send(ClientSocket, Input, size, 0);
-
-				if (sendResult != SOCKET_ERROR)
-				//if (sendResult == -1)
-				{
-					//std::cout << "Socket no result error!\n";
-					//std::cout << SOCKET_ERROR;
-					
-					// Wait for response
-					ZeroMemory(buf, 4096);
-					//int bytesReceived = recv(sock, buf, 4096, 0);
-					int bytesReceived = recv(ClientSocket, buf, 4096, 0);
-					if (bytesReceived > 0)
-					{
-						// Echo response to console
-						std::cout << "Socket buffer!\n";
-					}
-				}
-				else {
-					std::cout << "Socket result error!\n";
-					std::cout << WSAGetLastError;
-				}
-			}
-
-		} while (str.size() > 0);
-
-		// Gracefully close down everything
-		//closesocket(sock);
-		closesocket(ClientSocket);
-		WSACleanup();
-	}	
