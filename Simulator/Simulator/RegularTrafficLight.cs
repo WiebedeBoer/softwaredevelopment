@@ -24,6 +24,10 @@ namespace Simulator
 
         public PictureBox regTrafficLight;
 
+        private Image img;
+
+        private string facingDirection;
+
         public RegularTrafficLight()
         {
             regTrafficLight = new PictureBox();
@@ -37,7 +41,7 @@ namespace Simulator
 
             regTrafficLight.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            Image img = regTrafficLight.Image;
+            img = regTrafficLight.Image;
 
             
             switch (direction)
@@ -45,18 +49,22 @@ namespace Simulator
                 // up/left/right/top -> direction traffic is coming from
                 case "up":
                     regTrafficLight.Size = new Size(18, 53);
+                    facingDirection = "up";
                     break;
                 case "left":
                     regTrafficLight.Size = new Size(53, 18);
                     img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    facingDirection = "left";
                     break;
                 case "right":
                     regTrafficLight.Size = new Size(53, 18);
                     img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    facingDirection = "right";
                     break;
                 case "down":
                     regTrafficLight.Size = new Size(18, 53);
                     img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    facingDirection = "down";
                     break;
             }
             
@@ -68,6 +76,35 @@ namespace Simulator
             this.name = name;
         }
 
+
+        private void correctlyFacingTrafficLight(Image img, string direction)
+        {
+            switch (direction)
+            {
+                // up/left/right/top -> direction traffic is coming from
+                case "up":
+                    regTrafficLight.Size = new Size(18, 53);
+                    facingDirection = "up";
+                    break;
+                case "left":
+                    regTrafficLight.Size = new Size(53, 18);
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    facingDirection = "left";
+                    break;
+                case "right":
+                    regTrafficLight.Size = new Size(53, 18);
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    facingDirection = "right";
+                    break;
+                case "down":
+                    regTrafficLight.Size = new Size(18, 53);
+                    img.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    facingDirection = "down";
+                    break;
+            }
+        }
+
+
         public async void LightSequence(int i)
         {
             switch(i)
@@ -76,9 +113,11 @@ namespace Simulator
                     if (currentColor == RegLightSequence.Green)
                     {
                         regTrafficLight.Image = Properties.Resources.yellow_light;
+                        correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
                         currentColor = RegLightSequence.Yellow;
                         await Task.Delay(3000);
                         regTrafficLight.Image = Properties.Resources.red_light;
+                        correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
                         currentColor = RegLightSequence.Red;
                     }
                     break;
@@ -86,6 +125,7 @@ namespace Simulator
                     if (currentColor == RegLightSequence.Red)
                     {
                         regTrafficLight.Image = Properties.Resources.green_light;
+                        correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
                         currentColor = RegLightSequence.Green;
                     }
                     break;

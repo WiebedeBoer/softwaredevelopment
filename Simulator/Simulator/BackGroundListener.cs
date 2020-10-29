@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
 
 namespace Simulator
 {
@@ -18,9 +19,11 @@ namespace Simulator
 
         private JSONTrafficLight json = null;
 
+        public JObject json2 = null;
+
         public JSONTrafficLight Json { get => json; set => json = value; }
 
-
+        
         //connect and receive, instead of listen
 
         public void StartListening()
@@ -34,7 +37,7 @@ namespace Simulator
 
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
 
-                //stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
+                
 
 
                 String header = "0";
@@ -50,11 +53,20 @@ namespace Simulator
 
                 if (header == stringData.Substring(4).Length.ToString())
                 {
+                    var charsToRemove = new string[] { "-" };
+                    foreach (var c in charsToRemove)
+                    {
+                        stringData = stringData.Replace(c, string.Empty);
+                    }
                     stringData = stringData.Substring(4);
+
+                    json2 = JObject.Parse(stringData);
 
                     json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
 
-                    Console.WriteLine(json.A11);
+
+
+                    Console.WriteLine(json2["A11"]);
                 }
                 else
                 {
