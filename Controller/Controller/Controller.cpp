@@ -14,15 +14,9 @@
 #pragma comment(lib, "ws2_32.lib")
 #include <sys/types.h>
 
-//json pakal lib
-//#include "jsonreader.h"
-
-//rapid json library
-//#include "rapidjson\document.h"
-//#include "rapidjson\writer.h"
-//#include "rapidjson\stringbuffer.h"
-//using namespace rapidjson;
-
+//#include "json.hpp" 
+//using json = nlohmann::json;
+//using u_short = unsigned short;
 
 int main()
 {
