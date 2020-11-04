@@ -22,13 +22,9 @@ int main()
 {
     std::cout << "Hello World!\n"; 
 	controller controller;
-	//get simulator sensor data
-	string sensor = controller.socketclient();
-	//parse json
-	string json = controller.parsejson(sensor);
+
 	//send traffic lights
 	controller.sendlight();
-
 	
 }
 
@@ -54,8 +50,22 @@ int main()
 
 				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
 				{
+					//timer counter
 					time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
-					modorder = (order % 6) + 1; // current order
+
+					//get simulator sensor data
+					string sensor = socketclient();
+
+					if (sensor !="error") {
+						//dserialize json
+						modorder = parsejson(sensor, order);
+					}
+					else {
+						//current order
+						modorder = (order % 6) + 1;
+					}
+
+					//traffic lights
 					string traffic = changetraffic(modorder);
 					string length = std::to_string(traffic.length());
 					string header = length + ":";
@@ -240,6 +250,9 @@ int main()
 		string ipAddress = "127.0.0.1";			// IP Address of the server
 		int port = 54000;						// Listening port # on the server
 
+		//output string
+		string output;
+
 		// Initialize WinSock
 		WSAData data;
 		WORD ver = MAKEWORD(2, 2);
@@ -247,7 +260,8 @@ int main()
 		if (wsResult != 0)
 		{
 			std::cout << "Socket not init!\n";
-			return;
+			output = "error";
+			return output;
 		}
 
 		// Create socket
@@ -256,7 +270,8 @@ int main()
 		{
 			std::cout << "Can't create socket, Err #" << WSAGetLastError();
 			WSACleanup();
-			return;
+			output = "error";
+			return output;
 		}
 
 		// Fill in a hint structure
@@ -272,57 +287,76 @@ int main()
 			std::cout << "Can't connect to server, Err #" << WSAGetLastError();
 			closesocket(sock);
 			WSACleanup();
-			return;
+			output = "error";
+			return output;
 		}
 
 		//write
 
-
 		//read
 
 		// Do-while loop to send and receive data
-		char buf[4096];
-		string userInput;
+		char buf[4096];		
+		string header = "0";
+		int i;
 
-		do
+		while (connResult > 0)
 		{
-			// Prompt the user for some text
-			//cout << "> ";
-			//getline(cin, userInput);
 
-			if (userInput.size() > 0)		// Make sure the user has typed in something
+			// Wait for response
+			ZeroMemory(buf, 4096);
+			int bytesReceived = recv(sock, buf, 4096, 0);
+			if (bytesReceived > 0)
 			{
-				// Send the text
-				int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
-				if (sendResult != SOCKET_ERROR)
-				{
-					// Wait for response
-					ZeroMemory(buf, 4096);
-					int bytesReceived = recv(sock, buf, 4096, 0);
-					if (bytesReceived > 0)
-					{
-						// Echo response to console
-						std::cout << "SERVER> " << string(buf, 0, bytesReceived);
-					}
-				}
-			}
+				// Echo response to console
+				std::cout << "SERVER> " << string(buf, 0, bytesReceived);
+				output = output + buf;
+			}							
 
-		} while (userInput.size() > 0);
+		} 
 
 		// Gracefully close down everything
 		closesocket(sock);
 		WSACleanup();
 
-		return userInput;
+		return output;
 	}
 
 	//https://github.com/nlohmann/json#examples
 	//json parsing and deserialization
-	string controller::parsejson(string sensor) {
+	int controller::parsejson(string sensor, int order) {
 		json j = sensor;
+		int modulusorder;
 
-		auto j = json::parse(sensor);
-		return j;
+		auto j2 = json::parse(sensor);
+
+		int currentorder = (order % 6) + 1;
+
+		if (currentorder == 1 && j2 ==0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 2 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 3 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 4 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 5 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 6 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		
 	}
 	
 

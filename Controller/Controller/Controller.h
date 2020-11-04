@@ -20,7 +20,7 @@ public:
 
 	void socketserver(const char* userInput);
 	string socketclient();
-	string parsejson(string sensor);
+	int parsejson(string sensor, int order);
 };
 
 #endif
