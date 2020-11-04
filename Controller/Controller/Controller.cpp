@@ -22,19 +22,13 @@ int main()
 {
     std::cout << "Hello World!\n"; 
 	controller controller;
+	//get simulator sensor data
+	string sensor = controller.socketclient();
+	//parse json
+	string json = controller.parsejson(sensor);
+	//send traffic lights
 	controller.sendlight();
-	//string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
-	//json = controller.Replace(json, "\\\"", "\"");
-	//Pakal::JsonReader JsonReader;
-	//controller.fetchjson(json);
-	//JsonReader.parse_element(object & object, Element * element);
-	//JsonReader.read(json,"A1-1",1);
-	//JsonReader.read("jason_controller.json", "A1-1", json);
-	//fetching json
-	//const rapidjson::Document json_value = controller.fetchjson(json);
-	//assert(json_value.IsArray());
-	//controller.sendjson(json_value);
-	//sending packages of string json
+
 	
 }
 
@@ -240,66 +234,116 @@ int main()
 		return trafficorder;
 	}
 
-	/*
-	void fetchlight() {
 
+	string controller::socketclient()
+	{
+		string ipAddress = "127.0.0.1";			// IP Address of the server
+		int port = 54000;						// Listening port # on the server
+
+		// Initialize WinSock
+		WSAData data;
+		WORD ver = MAKEWORD(2, 2);
+		int wsResult = WSAStartup(ver, &data);
+		if (wsResult != 0)
+		{
+			std::cout << "Socket not init!\n";
+			return;
+		}
+
+		// Create socket
+		SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+		if (sock == INVALID_SOCKET)
+		{
+			std::cout << "Can't create socket, Err #" << WSAGetLastError();
+			WSACleanup();
+			return;
+		}
+
+		// Fill in a hint structure
+		sockaddr_in hint;
+		hint.sin_family = AF_INET;
+		hint.sin_port = htons(port);
+		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
+
+		// Connect to server
+		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
+		if (connResult == SOCKET_ERROR)
+		{
+			std::cout << "Can't connect to server, Err #" << WSAGetLastError();
+			closesocket(sock);
+			WSACleanup();
+			return;
+		}
+
+		//write
+
+
+		//read
+
+		// Do-while loop to send and receive data
+		char buf[4096];
+		string userInput;
+
+		do
+		{
+			// Prompt the user for some text
+			//cout << "> ";
+			//getline(cin, userInput);
+
+			if (userInput.size() > 0)		// Make sure the user has typed in something
+			{
+				// Send the text
+				int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
+				if (sendResult != SOCKET_ERROR)
+				{
+					// Wait for response
+					ZeroMemory(buf, 4096);
+					int bytesReceived = recv(sock, buf, 4096, 0);
+					if (bytesReceived > 0)
+					{
+						// Echo response to console
+						std::cout << "SERVER> " << string(buf, 0, bytesReceived);
+					}
+				}
+			}
+
+		} while (userInput.size() > 0);
+
+		// Gracefully close down everything
+		closesocket(sock);
+		WSACleanup();
+
+		return userInput;
 	}
 
-	void checklight() {
+	//https://github.com/nlohmann/json#examples
+	//json parsing and deserialization
+	string controller::parsejson(string sensor) {
+		json j = sensor;
 
+		auto j = json::parse(sensor);
+		return j;
 	}
-	*/
+	
 
 	/*
-	static rapidjson::Document fetchjson(const char* json) {
-		Document document;
-
-		document.Parse<0>(json);
-
-		//convert document to string
-
-		StringBuffer strbuf;
-		strbuf.Clear();
-
-		Writer<StringBuffer> writer(strbuf);
-		document.Accept(writer);
-	}
-	*/
-
-	/*
-	void sendjson(const rapidjson::Value& value) {
-		rapidjson::StringBuffer buffer;
-		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-		value.Accept(writer);
-
-		std::cout << buffer.GetString() << std::endl;
-	}
-	*/
-
-
-
-	/*
+	//https://github.com/nlohmann/json
+	//
+	//https://bitbucket.org/sloankelly/youtube-source-repository/src/master/cpp/networking/BarebonesClient/Barebones_Client/main.cpp
+	//https://bitbucket.org/sloankelly/youtube-source-repository/src/master/cpp/networking/BarebonesClient/Barebones_Client/main.cpp
+	//
+	//
 	//https://www.space-research.org/blog/lib_netsockets.html
-	//
 	//https://github.com/pedro-vicente/lib_netsockets
-	//
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.hh
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.cc
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_message.hh
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_client.cc
-	//
 	//https://github.com/akheron/jansson
-	//https://github.com/nlohmann/json
-	//
-	//
-	//https://answers.ros.org/question/260095/how-to-send-data-in-json-format-using-service-client-in-c-code/
-	//https://rapidjson.org/md_doc_tutorial.html
-	//
 	//https://github.com/ebshimizu/socket.io-clientpp
-	//
 	//https://www.youtube.com/watch?v=WDn-htpBlnU
 	//https://www.youtube.com/watch?v=0Zr_0Jy8mWE
-	//
 	//https://www.geeksforgeeks.org/socket-programming-cc/
 	//https://www.bogotobogo.com/cplusplus/sockets_server_client.php
+	//
 	*/
