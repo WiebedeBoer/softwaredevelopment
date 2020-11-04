@@ -22,19 +22,9 @@ int main()
 {
     std::cout << "Hello World!\n"; 
 	controller controller;
+
+	//send traffic lights
 	controller.sendlight();
-	//string json = "{ \"1\": {\"A1-1\": 1,\"A1-2\" : 1} }";
-	//json = controller.Replace(json, "\\\"", "\"");
-	//Pakal::JsonReader JsonReader;
-	//controller.fetchjson(json);
-	//JsonReader.parse_element(object & object, Element * element);
-	//JsonReader.read(json,"A1-1",1);
-	//JsonReader.read("jason_controller.json", "A1-1", json);
-	//fetching json
-	//const rapidjson::Document json_value = controller.fetchjson(json);
-	//assert(json_value.IsArray());
-	//controller.sendjson(json_value);
-	//sending packages of string json
 	
 }
 
@@ -60,8 +50,22 @@ int main()
 
 				if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
 				{
+					//timer counter
 					time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
-					modorder = (order % 6) + 1; // current order
+
+					//get simulator sensor data
+					string sensor = socketclient();
+
+					if (sensor !="error") {
+						//dserialize json
+						modorder = parsejson(sensor, order);
+					}
+					else {
+						//current order
+						modorder = (order % 6) + 1;
+					}
+
+					//traffic lights
 					string traffic = changetraffic(modorder);
 					string length = std::to_string(traffic.length());
 					string header = length + ":";
@@ -240,66 +244,140 @@ int main()
 		return trafficorder;
 	}
 
-	/*
-	void fetchlight() {
 
+	string controller::socketclient()
+	{
+		string ipAddress = "127.0.0.1";			// IP Address of the server
+		int port = 54000;						// Listening port # on the server
+
+		//output string
+		string output;
+
+		// Initialize WinSock
+		WSAData data;
+		WORD ver = MAKEWORD(2, 2);
+		int wsResult = WSAStartup(ver, &data);
+		if (wsResult != 0)
+		{
+			std::cout << "Socket not init!\n";
+			output = "error";
+			return output;
+		}
+
+		// Create socket
+		SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+		if (sock == INVALID_SOCKET)
+		{
+			std::cout << "Can't create socket, Err #" << WSAGetLastError();
+			WSACleanup();
+			output = "error";
+			return output;
+		}
+
+		// Fill in a hint structure
+		sockaddr_in hint;
+		hint.sin_family = AF_INET;
+		hint.sin_port = htons(port);
+		inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
+
+		// Connect to server
+		int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
+		if (connResult == SOCKET_ERROR)
+		{
+			std::cout << "Can't connect to server, Err #" << WSAGetLastError();
+			closesocket(sock);
+			WSACleanup();
+			output = "error";
+			return output;
+		}
+
+		//write
+
+		//read
+
+		// Do-while loop to send and receive data
+		char buf[4096];		
+		string header = "0";
+		int i;
+
+		while (connResult > 0)
+		{
+
+			// Wait for response
+			ZeroMemory(buf, 4096);
+			int bytesReceived = recv(sock, buf, 4096, 0);
+			if (bytesReceived > 0)
+			{
+				// Echo response to console
+				std::cout << "SERVER> " << string(buf, 0, bytesReceived);
+				output = output + buf;
+			}							
+
+		} 
+
+		// Gracefully close down everything
+		closesocket(sock);
+		WSACleanup();
+
+		return output;
 	}
 
-	void checklight() {
+	//https://github.com/nlohmann/json#examples
+	//json parsing and deserialization
+	int controller::parsejson(string sensor, int order) {
+		json j = sensor;
+		int modulusorder;
 
+		auto j2 = json::parse(sensor);
+
+		int currentorder = (order % 6) + 1;
+
+		if (currentorder == 1 && j2 ==0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 2 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 3 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 4 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 5 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		else if (currentorder == 6 && j2 == 0) {
+			modulusorder = order + 1;
+			return modulusorder;
+		}
+		
 	}
-	*/
+	
 
 	/*
-	static rapidjson::Document fetchjson(const char* json) {
-		Document document;
-
-		document.Parse<0>(json);
-
-		//convert document to string
-
-		StringBuffer strbuf;
-		strbuf.Clear();
-
-		Writer<StringBuffer> writer(strbuf);
-		document.Accept(writer);
-	}
-	*/
-
-	/*
-	void sendjson(const rapidjson::Value& value) {
-		rapidjson::StringBuffer buffer;
-		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-		value.Accept(writer);
-
-		std::cout << buffer.GetString() << std::endl;
-	}
-	*/
-
-
-
-	/*
+	//https://github.com/nlohmann/json
+	//
+	//https://bitbucket.org/sloankelly/youtube-source-repository/src/master/cpp/networking/BarebonesClient/Barebones_Client/main.cpp
+	//https://bitbucket.org/sloankelly/youtube-source-repository/src/master/cpp/networking/BarebonesClient/Barebones_Client/main.cpp
+	//
+	//
 	//https://www.space-research.org/blog/lib_netsockets.html
-	//
 	//https://github.com/pedro-vicente/lib_netsockets
-	//
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.hh
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/src/socket.cc
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_message.hh
 	//https://github.com/pedro-vicente/lib_netsockets/blob/master/examples/json_client.cc
-	//
 	//https://github.com/akheron/jansson
-	//https://github.com/nlohmann/json
-	//
-	//
-	//https://answers.ros.org/question/260095/how-to-send-data-in-json-format-using-service-client-in-c-code/
-	//https://rapidjson.org/md_doc_tutorial.html
-	//
 	//https://github.com/ebshimizu/socket.io-clientpp
-	//
 	//https://www.youtube.com/watch?v=WDn-htpBlnU
 	//https://www.youtube.com/watch?v=0Zr_0Jy8mWE
-	//
 	//https://www.geeksforgeeks.org/socket-programming-cc/
 	//https://www.bogotobogo.com/cplusplus/sockets_server_client.php
+	//
 	*/
