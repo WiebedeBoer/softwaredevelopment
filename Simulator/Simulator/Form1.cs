@@ -62,17 +62,51 @@ namespace Simulator
             RegularTrafficLight regA33 = createTrafficLight(737, 365, "A33", "left");
             lights.Add(regA33);
 
-            RegularTrafficLight regA43 = createTrafficLight(320, 421, "A43","up");
+            RegularTrafficLight regA43 = createTrafficLight(320, 421, "A43", "up");
+            lights.Add(regA43);
             RegularTrafficLight regA32 = createTrafficLight(737, 343, "A32", "left");
+            lights.Add(regA32);
             RegularTrafficLight regA31 = createTrafficLight(737, 320, "A31", "left");
+            lights.Add(regA31);
 
             RegularTrafficLight regA42 = createTrafficLight(298, 421, "A42", "up");
+            lights.Add(regA42);
             RegularTrafficLight regA41 = createTrafficLight(276, 421, "A41", "up");
+            lights.Add(regA41);
 
             RegularTrafficLight regA54 = createTrafficLight(178, 431, "A54", "left");
+            lights.Add(regA54);
             RegularTrafficLight regA53 = createTrafficLight(178, 409, "A53", "left");
+            lights.Add(regA53);
             RegularTrafficLight regA52 = createTrafficLight(178, 387, "A52", "left");
+            lights.Add(regA52);
             RegularTrafficLight regA51 = createTrafficLight(178, 365, "A51", "left");
+            lights.Add(regA51);
+
+            RegularTrafficLight regA11 = createTrafficLight(726, 140, "A11", "down");
+            lights.Add(regA11);
+            RegularTrafficLight regA12 = createTrafficLight(750, 140, "A12", "down");
+            lights.Add(regA12);
+            RegularTrafficLight regA13 = createTrafficLight(772, 140, "A13", "down");
+            lights.Add(regA13);
+
+            RegularTrafficLight regA21 = createTrafficLight(850, 162, "A21", "right");
+            lights.Add(regA21);
+            RegularTrafficLight regA22 = createTrafficLight(850, 183, "A22", "right");
+            lights.Add(regA22);
+            RegularTrafficLight regA23 = createTrafficLight(850, 207, "A23", "right");
+            lights.Add(regA23);
+            RegularTrafficLight regA24 = createTrafficLight(850, 230, "A24", "right");
+            lights.Add(regA24);
+
+            RegularTrafficLight regA61 = createTrafficLight(320, 206, "A61", "right");
+            lights.Add(regA61);
+            RegularTrafficLight regA62 = createTrafficLight(320, 227, "A62", "right");
+            lights.Add(regA62);
+            RegularTrafficLight regA63 = createTrafficLight(320, 252, "A63", "right");
+            lights.Add(regA63);
+            RegularTrafficLight regA64 = createTrafficLight(320, 276, "A64", "right");
+            lights.Add(regA64);
 
 
 
@@ -211,6 +245,103 @@ namespace Simulator
 
             paths.Add(path12);
 
+            // a11 - links voorsorteer over a61
+            Path patha11 = new Path();
+            patha11.addNode(726, 1); //start
+            patha11.addNode(726, 80); //light a11
+            patha11.addNode(721, 195, regA11);
+            patha11.addNode(572, 206);
+            patha11.addNode(391, 206);
+            patha11.addNode(353, 206, regA61); //light a61
+            patha11.addNode(1, 206); //end
+            paths.Add(patha11);
+
+            // a11 - rechts voorsorteer over a62
+            Path patha11r = new Path();
+            patha11r.addNode(726, 1); //start
+            patha11r.addNode(726, 80); //light a11
+            patha11r.addNode(721, 195, regA11);
+            patha11r.addNode(572, 227);
+            patha11r.addNode(391, 227);
+            patha11r.addNode(353, 227, regA62); //light a62
+            patha11r.addNode(1, 227); //end
+            paths.Add(patha11r);
+
+            //  a12 - links voorsorteer over a63
+            Path patha12 = new Path();
+            patha12.addNode(750, 1); //start
+            patha12.addNode(750, 80); //light a12
+            patha12.addNode(750, 195, regA12);
+            patha12.addNode(571, 252);
+            patha12.addNode(389, 252);
+            patha12.addNode(353, 252, regA64); //light a63
+            patha12.addNode(227, 266);
+            patha12.addNode(206, 345);
+            patha12.addNode(206, 606); //end
+            paths.Add(patha12);
+
+            //  a12 - rechts voorsorteer over a64
+            Path patha12r = new Path();
+            patha12r.addNode(750, 1); //start
+            patha12r.addNode(750, 80); //light a12
+            patha12r.addNode(750, 195, regA12);
+            patha12r.addNode(571, 276);
+            patha12r.addNode(389, 276);
+            patha12r.addNode(353, 276, regA64); //light a64
+            patha12r.addNode(240, 282);
+            patha12r.addNode(232, 345);
+            patha12r.addNode(232, 606); //end
+            paths.Add(patha12r);
+
+            //  a13 - rechts voorsorteer 
+            Path patha13 = new Path();
+            patha13.addNode(772, 1); //start
+            patha13.addNode(772, 80); //light a13
+            patha13.addNode(772, 353, regA13);
+            patha13.addNode(778, 388);
+            patha13.addNode(1075, 388); //end
+            paths.Add(patha13);
+
+            // a21 
+            Path patha21 = new Path();
+            patha21.addNode(1075, 162); //start
+            patha21.addNode(930, 162); //light a21
+            patha21.addNode(866, 160, regA21);
+            patha21.addNode(866, 105);
+            patha21.addNode(866, 1); //end
+            paths.Add(patha21);
+
+            // a22   
+            Path patha22 = new Path();
+            patha22.addNode(1075, 183); //start
+            patha22.addNode(930, 183); //light a22
+            patha22.addNode(839, 105, regA21);
+            patha22.addNode(839, 1); //end
+            paths.Add(patha22);
+
+            // a23 rechts voorsorteer over a61
+            Path patha23 = new Path();
+            patha23.addNode(1075, 207); //start
+            patha23.addNode(930, 207); //light a23
+            patha23.addNode(766, 207, regA23);
+            patha23.addNode(581, 207);
+            patha23.addNode(353, 207, regA61); //light a61
+            patha23.addNode(1, 207); //end
+            paths.Add(patha23);
+
+            // a24 links voorsorteer over a64  
+            Path patha24 = new Path();
+            patha24.addNode(1075, 230); //start
+            patha24.addNode(930, 230); //light a24
+            patha24.addNode(765, 230, regA24);
+            patha24.addNode(675, 253);
+            patha24.addNode(579, 276);
+            patha24.addNode(353, 276, regA64); //light a64
+            patha24.addNode(240, 282);
+            patha24.addNode(232, 345);
+            patha24.addNode(232, 606); //end
+            paths.Add(patha24);
+
             /* WRONG PATH, SHOULD BE GOING NORTH...
             ////// BUSSES /////
             Path buspathb41 = new Path();
@@ -224,7 +355,7 @@ namespace Simulator
             busPaths.Add(buspathb41);
 
             */
-            
+
 
             Thread listen = new Thread(listener.Connect);
 
