@@ -6,6 +6,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace Simulator
 {
@@ -21,9 +22,12 @@ namespace Simulator
 
         public JObject json2 = null;
 
+        // JSON To Send back
+        //public JSONTrafficLight jsonToSend = null;
+        public JObject jsonToSend = null;
         public JSONTrafficLight Json { get => json; set => json = value; }
 
-        
+
         //connect and receive, instead of listen
 
         public void StartListening()
@@ -67,6 +71,22 @@ namespace Simulator
 
 
                     Console.WriteLine(json2["A11"]);
+
+                    Console.WriteLine("Send back JSON...");
+
+                    if (jsonToSend != null)
+                    {
+                        
+                        
+                        
+                        string sendData = JsonConvert.SerializeObject(jsonToSend);
+                        
+                        string length = sendData.Length.ToString();
+                        string headerJSON = length + ":";
+                        string package = headerJSON + sendData;
+                        byte[] dataBytes = Encoding.Default.GetBytes(package);
+                        socket.Send(dataBytes);
+                    }
                 }
                 else
                 {

@@ -52,10 +52,13 @@ namespace Simulator
             if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentColor != RegLightSequence.Green)
             {
                 brake = true;
+                path.nodes[node].Reg.carInFront = true;
             }
 
             if (brake is false)
             {
+                if(path.nodes[node].Reg != null)
+                    path.nodes[node].Reg.carInFront = false;
                 float tx = path.nodes[node].Left - x.Left;
                 float ty = path.nodes[node].Top - x.Top;
                 double length = Math.Sqrt(tx * tx + ty * ty);

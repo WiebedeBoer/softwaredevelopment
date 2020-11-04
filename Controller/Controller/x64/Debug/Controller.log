@@ -1,9 +1,1 @@
-﻿  Controller.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(43,15): warning C4101: 'traffic': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(44,15): warning C4101: 'header': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(45,15): warning C4101: 'package': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(198,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  trafficlight.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\trafficlight.cpp(7,6): warning C4101: 'state': unreferenced local variable
-  Generating Code...
-  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\x64\Debug\Controller.exe
+﻿  Controller.vcxproj -> D:\SoftwareDevelopment2\softwaredevelopment\Controller\x64\Debug\Controller.exe

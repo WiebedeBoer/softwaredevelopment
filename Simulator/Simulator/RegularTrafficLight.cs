@@ -28,6 +28,8 @@ namespace Simulator
 
         private string facingDirection;
 
+        public bool carInFront = false;
+
         public RegularTrafficLight()
         {
             regTrafficLight = new PictureBox();

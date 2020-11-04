@@ -32,6 +32,8 @@ namespace Simulator
         // buspaths
         private List<Path> busPaths = new List<Path>();
 
+        // trafficligths
+        private List<RegularTrafficLight> lights = new List<RegularTrafficLight>();
 
         private BackGroundListener listener = new BackGroundListener();
 
@@ -54,8 +56,11 @@ namespace Simulator
 
 
             RegularTrafficLight regA44 = createTrafficLight(342, 421, "A44", "up");
+            lights.Add(regA44);
             RegularTrafficLight regA34 = createTrafficLight(737, 387, "A34", "left");
+            lights.Add(regA34);
             RegularTrafficLight regA33 = createTrafficLight(737, 365, "A33", "left");
+            lights.Add(regA33);
 
             RegularTrafficLight regA43 = createTrafficLight(320, 421, "A43","up");
             RegularTrafficLight regA32 = createTrafficLight(737, 343, "A32", "left");
@@ -68,6 +73,8 @@ namespace Simulator
             RegularTrafficLight regA53 = createTrafficLight(178, 409, "A53", "left");
             RegularTrafficLight regA52 = createTrafficLight(178, 387, "A52", "left");
             RegularTrafficLight regA51 = createTrafficLight(178, 365, "A51", "left");
+
+
 
             Path path = new Path();
 
@@ -227,7 +234,23 @@ namespace Simulator
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            
+            JSONTrafficLight trafficJSON = new JSONTrafficLight();
+            foreach(RegularTrafficLight reg in lights)
+            {
+                if(reg.name == "A11")
+                {
+                    trafficJSON.A11 = reg.carInFront ? 1 : 0;
+                }
+                //listener.jsonToSend = trafficJSON;
+            }
+
+            JObject JSONtraffic = new JObject();
+
+            foreach (RegularTrafficLight reg in lights)
+            {
+                JSONtraffic[reg.name] = reg.carInFront ? 1 : 0;
+            }
+            listener.jsonToSend = JSONtraffic;
             //json = listener.Json;
 
             JObject json2 = listener.json2;
