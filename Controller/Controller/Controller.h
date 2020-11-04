@@ -18,9 +18,10 @@ public:
 
 	string Replace(string str, const string& oldStr, const string& newStr);
 
-	void socketserver(const char* userInput);
-	string socketclient();
+	void socketserver(int modorder);
+	//string socketclient();
 	int parsejson(string sensor, int order);
+	string receiver();
 };
 
 #endif

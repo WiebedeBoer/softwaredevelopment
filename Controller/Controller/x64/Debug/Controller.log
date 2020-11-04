@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-﻿  Controller.vcxproj -> D:\SoftwareDevelopment2\softwaredevelopment\Controller\x64\Debug\Controller.exe
-=======
 ﻿  Controller.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(33,15): warning C4101: 'traffic': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(34,15): warning C4101: 'header': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(35,15): warning C4101: 'package': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(199,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(296,7): warning C4101: 'i': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(325,8): error C2371: 'j': redefinition; different basic types
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\Controller.cpp(323): message : see declaration of 'j'
-  trafficlight.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Controller\trafficlight.cpp(7,6): warning C4101: 'state': unreferenced local variable
-  Generating Code...
->>>>>>> 99db1c2061a23e88ea99694964ec2b4c199631e4
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(33,14): warning C4101: 'traffic': unreferenced local variable
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(34,14): warning C4101: 'header': unreferenced local variable
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(35,14): warning C4101: 'package': unreferenced local variable
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(257,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(428): warning C4715: 'controller::parsejson': not all control paths return a value
+  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe
