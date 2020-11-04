@@ -34,6 +34,7 @@ int controller::sendlight() {
 	const char* header;
 	const char* package;
 	int modorder;
+	int binded = 0;
 
 	std::cout << "Startup sending!\n";
 
@@ -42,6 +43,9 @@ int controller::sendlight() {
 	clock_t this_time = clock();
 	clock_t last_time = this_time;
 	const int NUM_SECONDS = 4;
+
+	//setup socket
+	SOCKET sock = socketSetup();
 
 	//run clock
 	while (true)
@@ -75,9 +79,8 @@ int controller::sendlight() {
 
 			modorder = (order % 6) + 1;
 			std::cout << modorder;
-			socketserver(modorder);
 
-			
+			socketServer(modorder, sock);
 
 			std::cout << "phase Send \n";
 
@@ -146,13 +149,12 @@ string controller::Replace(string str, const string& oldStr, const string& newSt
 	return str;
 }
 
-void controller::socketserver(int modorder)
-{
+SOCKET controller::socketSetup() {
+
 	std::string ipAddress = "127.0.0.1";			// IP Address of the server
 	int port = 54000;						// Listening port # on the server
 
 	std::cout << "Socket startup!\n";
-
 	// Initialize WinSock
 	WSAData data;
 	WORD ver = MAKEWORD(2, 2);
@@ -160,7 +162,7 @@ void controller::socketserver(int modorder)
 	if (wsResult != 0)
 	{
 		std::cout << "Socket not init!\n";
-		return;
+		return 0;
 	}
 
 	// Create socket
@@ -169,7 +171,7 @@ void controller::socketserver(int modorder)
 	{
 		std::cout << "Socket not valid!\n";
 		WSACleanup();
-		return;
+		return 0;
 	}
 
 	//bind
@@ -184,7 +186,7 @@ void controller::socketserver(int modorder)
 		std::cout << "Unable to bind socket!\r\n";
 		WSACleanup();
 		system("PAUSE");
-		return;
+		return 0;
 	}
 
 	//listen
@@ -194,7 +196,7 @@ void controller::socketserver(int modorder)
 		printf("listen failed with error: %d\n", WSAGetLastError());
 		closesocket(sock);
 		WSACleanup();
-		return;
+		return 0;
 	}
 
 	// Wait for a connection
@@ -206,16 +208,29 @@ void controller::socketserver(int modorder)
 		printf("accept failed with error: %d\n", WSAGetLastError());
 		closesocket(sock);
 		WSACleanup();
-		return;
+		return 0;
 	}
 
+	return ClientSocket;
+}
+
+void controller::socketServer(int modorder, SOCKET ClientSocket)
+{
+	std::string ipAddress = "127.0.0.1";			// IP Address of the server
+	int port = 54000;						// Listening port # on the server
+
+	std::cout << "Socket start receiving!\n";
+
+	int binder;
+
+	/*
 	//receive
 	char buffer[4096];
 	string output;
 
 	// Wait for response
 	ZeroMemory(buffer, 4096);
-	int bytesReceived = recv(sock, buffer, 4096, 0);
+	int bytesReceived = recv(ClientSocket, buffer, 4096, 0);
 	if (bytesReceived > 0)
 	{
 		// Echo response to console
@@ -241,12 +256,22 @@ void controller::socketserver(int modorder)
 		currentorder = (modorder % 6) + 1;
 	}
 
+	*/
+
 	//create send data
-	string traffic = changetraffic(currentorder);
+	std::cout << "Socket start sending!\n";
+
+	//string traffic = changetraffic(currentorder);
+
+
+
+	string traffic = changetraffic(modorder);
 	string length = std::to_string(traffic.length());
 	string header = length + ":";
 	string package = header + traffic;
 	const char* Input = package.c_str();
+
+	std::string str = traffic;
 
 	// Do-while loop to send data
 	char buf[4096];
@@ -281,12 +306,14 @@ void controller::socketserver(int modorder)
 			}
 		}
 
+		str = "";
+
 	} while (str.size() > 0);
 
 	// Gracefully close down everything
 	//closesocket(sock);
-	closesocket(ClientSocket);
-	WSACleanup();
+	//closesocket(ClientSocket);
+	//WSACleanup();
 	std::cout << "Socket closed!\n";
 }
 

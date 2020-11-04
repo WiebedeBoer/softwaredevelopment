@@ -5,6 +5,9 @@
 #include <iostream>
 #include <sstream>
 #include <stdio.h> 
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
+#include <sys/types.h>
 using std::string;
 
 class controller
@@ -17,8 +20,8 @@ public:
 	string changetraffic(int order);
 
 	string Replace(string str, const string& oldStr, const string& newStr);
-
-	void socketserver(int modorder);
+	SOCKET socketSetup();
+	void socketServer(int modorder, SOCKET ClientSocket);
 	//string socketclient();
 	int parsejson(string sensor, int order);
 	string receiver();
