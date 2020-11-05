@@ -47,6 +47,10 @@ int controller::sendlight() {
 	//setup socket
 	SOCKET sock = socketSetup();
 
+	//first send
+	std::cout << "First send!\n";
+	socketServer(order, sock);
+
 	//run clock
 	while (true)
 	{
@@ -59,38 +63,18 @@ int controller::sendlight() {
 			//timer counter
 			time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
 
-			//get simulator sensor data
-			//string sensor = socketclient();
-			//string sensor = "{'A1-1':1,'A1-2':1,'A1-3':0,'B1-1':1,'B1-2':1,'F1-1':0,'F1-2':0,'V1-1':0,'V1-2':0,'V1-3':0,'V1-4':0,'A2-1':1,'A2-2':1,'A2-3':0,'A2-4':0,'F2-1':0,'F2-2':0,'V2-1':0,'V2-2':0,'V2-3':0,'V2-4':0,'A3-1':0,'A3-2':0,'A3-3':0,'A3-4':0,'A4-1':0,'A4-2':0,'A4-3':0,'A4-4':0,'B4-1':1,'F4-1':0,'F4-2':0,'V4-1':0,'V4-2':0,'V4-3':0,'V4-4':0,'A5-1':0,'A5-2':0,'A5-3':1,'A5-4':1,'F5-1':0,'F5-2':0,'V5-1':0,'V5-2':0,'V5-3':0,'V5-4':0,'A6-1':1,'A6-2':1,'A6-3':0,'A6-4':0}";
-			//string sensor = "{\"A1-1\":1}";
-			//if sensor data
-			/*
-			if (sensor !="error") {
-				//dserialize json
-				modorder = parsejson(sensor, order);
-			}
-			//else no sensor data
-			else {
-				//current order
-				modorder = (order % 6) + 1;
-			}
-			*/
 			std::cout << "Sending phase \n";
 
+			//phase calculation
 			modorder = (order % 6) + 1;
 			std::cout << modorder;
 
+			//receiving from simulator
+			//string received = receiver(modorder, sock);			
+			
+			//traffic lights send
 			socketServer(modorder, sock);
-
-			std::cout << "phase Send \n";
-
-			//traffic lights
-			//string traffic = changetraffic(modorder);
-			//string length = std::to_string(traffic.length());
-			//string header = length + ":";
-			//string package = header + traffic;				
-			//const char* input = package.c_str();
-			//socketserver(input); //package every 4 seconds
+			std::cout << "phase Send \n"; //package every 4 seconds
 		}
 		//continuous order
 		order++;
@@ -219,51 +203,10 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 	std::string ipAddress = "127.0.0.1";			// IP Address of the server
 	int port = 54000;						// Listening port # on the server
 
-	std::cout << "Socket start receiving!\n";
-
-	int binder;
-
-	/*
-	//receive
-	char buffer[4096];
-	string output;
-
-	// Wait for response
-	ZeroMemory(buffer, 4096);
-	int bytesReceived = recv(ClientSocket, buffer, 4096, 0);
-	if (bytesReceived > 0)
-	{
-		// Echo response to console
-		std::cout << "SERVER> " << string(buffer, 0, bytesReceived);
-		output = output + buffer;
-	}
-	else
-	{
-		output = "error";
-	}
-
-	std::string str = output;
-	int currentorder;
-
-	if (output != "error") {
-		//dserialize json
-		//currentorder = parsejson(output, modorder);
-		currentorder = (modorder % 6) + 1;
-	}
-	//else no sensor data
-	else {
-		//current order
-		currentorder = (modorder % 6) + 1;
-	}
-
-	*/
-
 	//create send data
 	std::cout << "Socket start sending!\n";
 
 	//string traffic = changetraffic(currentorder);
-
-
 
 	string traffic = changetraffic(modorder);
 	string length = std::to_string(traffic.length());
@@ -314,7 +257,7 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 	//closesocket(sock);
 	//closesocket(ClientSocket);
 	//WSACleanup();
-	std::cout << "Socket closed!\n";
+	std::cout << "Phase closed!\n";
 }
 
 int controller::setlight() {
@@ -328,10 +271,44 @@ int controller::trafficorder() {
 }
 
 
-string controller::receiver()
+string controller::receiver(int modorder, SOCKET ClientSocket)
 {
-	string receive = "test";
-	return receive;
+	std::cout << "Socket start receiving!\n";
+	//receive
+	char buffer[4096];
+	string output;
+
+	// Wait for response
+	ZeroMemory(buffer, 4096);
+	int bytesReceived = recv(ClientSocket, buffer, 4096, 0);
+	if (bytesReceived > 0)
+	{
+		// Echo response to console
+		std::cout << "SERVER> " << string(buffer, 0, bytesReceived);
+		output = output + buffer;
+	}
+	else
+	{
+		output = "error";
+	}
+
+	/*
+	//std::string str = output;
+	int currentorder;
+
+	if (output != "error") {
+		//dserialize json
+		//currentorder = parsejson(output, modorder);
+		currentorder = modorder + 1;
+	}
+	//else no sensor data
+	else {
+		//current order
+		currentorder = modorder;
+	}
+	*/
+	std::cout << "Simulator data received!\n";
+	return output;
 }
 
 /*

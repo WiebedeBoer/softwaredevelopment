@@ -24,7 +24,7 @@ public:
 	void socketServer(int modorder, SOCKET ClientSocket);
 	//string socketclient();
 	int parsejson(string sensor, int order);
-	string receiver();
+	string receiver(int modorder, SOCKET ClientSocket);
 };
 
 #endif

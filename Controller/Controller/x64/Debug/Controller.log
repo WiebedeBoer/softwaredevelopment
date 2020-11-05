@@ -1,14 +1,7 @@
-﻿  pch.cpp
-  Controller.cpp
+﻿  Controller.cpp
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(33,14): warning C4101: 'traffic': unreferenced local variable
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(34,14): warning C4101: 'header': unreferenced local variable
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(35,14): warning C4101: 'package': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(282,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(224,6): warning C4101: 'binder': unreferenced local variable
-  carlane.cpp
-  trafficlight.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\trafficlight.cpp(7,6): warning C4101: 'state': unreferenced local variable
-  Generating Code...
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(455): warning C4715: 'controller::parsejson': not all control paths return a value
-  LINK : C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe not found or not built by the last incremental link; performing full link
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(225,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(432): warning C4715: 'controller::parsejson': not all control paths return a value
   Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe
