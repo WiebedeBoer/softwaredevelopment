@@ -13,18 +13,16 @@ using std::string;
 class controller
 {
 public:
-	int setlight();
-	int trafficorder();
+
 	int sendlight();
-
-	string changetraffic(int order);
-
-	string Replace(string str, const string& oldStr, const string& newStr);
+	string changetraffic(int order);	
 	SOCKET socketSetup();
-	void socketServer(int modorder, SOCKET ClientSocket);
-	//string socketclient();
-	int parsejson(string sensor, int order);
+	void socketServer(int modorder, SOCKET ClientSocket);	
 	string receiver(int modorder, SOCKET ClientSocket);
+	int parsejson(string sensor, int order);
+
+	//string Replace(string str, const string& oldStr, const string& newStr);
+	//string socketclient();
 };
 
 #endif

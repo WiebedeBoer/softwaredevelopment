@@ -22,10 +22,8 @@ int main()
 {
 	std::cout << "Hello World!\n";
 	controller controller;
-
 	//send traffic lights
 	controller.sendlight();
-
 }
 
 int controller::sendlight() {
@@ -34,7 +32,6 @@ int controller::sendlight() {
 	const char* header;
 	const char* package;
 	int modorder;
-	int binded = 0;
 
 	std::cout << "Startup sending!\n";
 
@@ -70,7 +67,9 @@ int controller::sendlight() {
 			std::cout << modorder;
 
 			//receiving from simulator
-			//string received = receiver(modorder, sock);			
+			//string received = receiver(modorder, sock);
+			//parsing from received
+			//modorder = parsejson(received, modorder);
 			
 			//traffic lights send
 			socketServer(modorder, sock);
@@ -118,19 +117,6 @@ string controller::changetraffic(int order) {
 		traffic = "{'A1-1':2,'A1-2':2,'A1-3':2,'B1-1':2,'B1-2':2,'F1-1':2,'F1-2':2,'V1-1':2,'V1-2':2,'V1-3':2,'V1-4':2,'A2-1':2,'A2-2':2,'A2-3':2,'A2-4':2,'F2-1':2,'F2-2':2,'V2-1':2,'V2-2':2,'V2-3':2,'V2-4':2,'A3-1':2,'A3-2':2,'A3-3':2,'A3-4':2,'A4-1':2,'A4-2':2,'A4-3':2,'A4-4':2,'B4-1':2,'F4-1':2,'F4-2':2,'V4-1':2,'V4-2':2,'V4-3':2,'V4-4':2,'A5-1':2,'A5-2':2,'A5-3':2,'A5-4':2,'F5-1':2,'F5-2':2,'V5-1':2,'V5-2':2,'V5-3':2,'V5-4':2,'A6-1':2,'A6-2':2,'A6-3':2,'A6-4':2}";
 	}
 	return traffic;
-}
-
-string controller::Replace(string str, const string& oldStr, const string& newStr)
-{
-
-	size_t index = str.find(oldStr);
-	while (index != str.npos)
-	{
-		str = str.substr(0, index) +
-			newStr + str.substr(index + oldStr.size());
-		index = str.find(oldStr, index + newStr.size());
-	}
-	return str;
 }
 
 SOCKET controller::socketSetup() {
@@ -260,17 +246,6 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 	std::cout << "Phase closed!\n";
 }
 
-int controller::setlight() {
-	int light = 0;
-	return light;
-}
-
-int controller::trafficorder() {
-	int trafficorder = 1;
-	return trafficorder;
-}
-
-
 string controller::receiver(int modorder, SOCKET ClientSocket)
 {
 	std::cout << "Socket start receiving!\n";
@@ -310,6 +285,74 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 	std::cout << "Simulator data received!\n";
 	return output;
 }
+
+//https://github.com/nlohmann/json#examples
+//json parsing and deserialization
+int controller::parsejson(string sensor, int order) {
+	json j = sensor;
+	int modulusorder;
+
+	auto j2 = json::parse(sensor);
+
+	int currentorder = (order % 6) + 1;
+
+	//(currentorder == 1 && (j2.a1 - 1 == 0))
+
+	//traffic lights sensor logic
+
+	/*
+	//rechtdoor noord - zuid, oost - west bus
+	if (currentorder == 1 && (j2.A11 == 0 || j2.A12 ==0 || j2.B11 == 0 ||j2.B12 ==0 || j2.A21 ==0 || j2.A22 ==0 || j2.B41 ==0 || j2.A54 ==0 || j2.A61 ==0 || j2.A62 ==0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	//rechtdoor en rechtsaf noord - zuid auto 
+	else if (currentorder == 2 && (j2.A11 == 0 || j2.A12 == 0 || j2.A13 ==0 || A21 ==0 || j2.A22 ==0 || j2.A41 ==0 || j2.A42 ==0 || j2.A43 ==0 || j2.A44 ==0 || j2.A53 ==0 || j2.A54 ==0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	//rechtdoor en rechtsaf oost - west auto
+	else if (currentorder == 3 && (j2.A21 == 0 || j2.A22 == 0 || j2.A23 == 0 || j2.A24 == 0 || j2.A33 == 0 || j2.A34 == 0 || j2.A51 == 0 || j2.A52 == 0 || j2.A53 == 0 || j2.A54 == 0 || j2.A61 == 0 || j2.A62 == 0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	//linksaf noord - west en oost - zuid auto
+	else if (currentorder == 4 && (A11 == 0 || j2.A12 == 0 || j2.A31 == 0 || j2.A32 == 0 || j2.A33 == 0 || j2.A34 == 0 || j2.A43 == 0 || j2.A44 == 0 || j2.A61 == 0 || j2.A62 == 0 || j2.A63 == 0 || j2.A64 == 0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	//linksaf noord - oost en zuid - west auto
+	else if (currentorder == 5 && (j2.A11 == 0 || j2.A12 == 0 || j2.A13 == 0 || j2.A41 == 0 || j2.A42 == 0 || j2.A43 == 0 || j2.A44 == 0 || j2.A53 == 0 || j2.A54 == 0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	//fietsverkeer en voetgangersverkeer 
+	else if (currentorder == 6 && (j2.F11 == 0 || j2.F12 == 0 || j2.V11 == 0 || j2.V12 == 0 || j2.V13 == 0 || j2.V14 == 0 || j2.F21 == 0 || j2.F22 == 0 || j2.V21 == 0 || j2.V22 == 0 || j2.V23 == 0 || j2.V24 == 0 || j2.F41 == 0 || j2.F42 == 0 || j2.V41 == 0 || j2.V42 == 0 || j2.V43 == 0 || j2.V44 == 0 || j2.F51 == 0 || j2.F52 == 0 || j2.V51 == 0 || j2.V52 == 0 || j2.V53 == 0 || j2.V54 == 0)) {
+		modulusorder = order + 1;
+		return modulusorder;
+	}
+	*/
+
+	modulusorder = order + 1;
+	return modulusorder;
+
+}
+
+/*
+
+string controller::Replace(string str, const string& oldStr, const string& newStr)
+{
+
+	size_t index = str.find(oldStr);
+	while (index != str.npos)
+	{
+		str = str.substr(0, index) +
+			newStr + str.substr(index + oldStr.size());
+		index = str.find(oldStr, index + newStr.size());
+	}
+	return str;
+}
+*/
 
 /*
 string controller::socketclient()
@@ -393,44 +436,6 @@ string controller::socketclient()
 	return output;
 }
 */
-
-//https://github.com/nlohmann/json#examples
-//json parsing and deserialization
-int controller::parsejson(string sensor, int order) {
-	json j = sensor;
-	int modulusorder;
-
-	auto j2 = json::parse(sensor);
-
-	int currentorder = (order % 6) + 1;
-
-	if (currentorder == 1 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	else if (currentorder == 2 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	else if (currentorder == 3 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	else if (currentorder == 4 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	else if (currentorder == 5 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	else if (currentorder == 6 && j2 == 0) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-
-}
-
 
 /*
 //https://github.com/nlohmann/json
