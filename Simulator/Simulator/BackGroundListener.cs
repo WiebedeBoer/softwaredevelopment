@@ -33,7 +33,7 @@ namespace Simulator
             await System.Threading.Tasks.Task.Delay(1000);
 
             string sendData = JsonConvert.SerializeObject(jsonToSend);
-
+            sendData.Replace(@"\", "");
             string length = sendData.Length.ToString();
             string headerJSON = length + ":";
             string package = headerJSON + sendData;
