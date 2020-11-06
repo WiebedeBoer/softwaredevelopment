@@ -69,7 +69,7 @@ int controller::sendlight() {
 			//receiving from simulator
 			string received = receiver(modorder, sock);
 			//parsing from received
-			//modorder = parsejson(received, modorder);
+			modorder = parsejson(received, modorder);
 			
 			//traffic lights send
 			socketServer(modorder, sock);
@@ -148,13 +148,8 @@ SOCKET controller::socketSetup() {
 	SOCKADDR_IN serverInf;
 	serverInf.sin_family = AF_INET;
 	serverInf.sin_addr.s_addr = INADDR_ANY;
-	//serverInf.sin_addr.s_addr = inet_addr("127.0.0.1");
-	//serverInf.sin_addr.s_addr = InetPton("127.0.0.1");
-	//serverInf.sin_addr.s_addr = ipAddress.c_str();
-	//serverInf.sin_addr.s_addr = "127.0.0.1";
 	serverInf.sin_port = htons(port);
 	inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
-	//inet_pton(AF_INET, ipAddress.c_str(), ipAddress.c_str());
 
 	if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
 	{
@@ -196,8 +191,6 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 
 	//create send data
 	std::cout << "Socket start sending!\n";
-
-	//string traffic = changetraffic(currentorder);
 
 	string traffic = changetraffic(modorder);
 	string length = std::to_string(traffic.length());
@@ -259,43 +252,9 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 	//receive
 	char buffer[1024];
 	string output;
-
 	//sleep
 	//Sleep(500);
-
-	/*
-	// Wait for response
-	ZeroMemory(buffer, 1024);
-	int bytesReceived = recv(ClientSocket, buffer, 1024, 0);
-	if (bytesReceived > 0)
-	{
-		// Echo response to console
-		std::cout << "SERVER> " << string(buffer, 0, bytesReceived);
-		output = output + buffer;
-	}
-	else
-	{
-		output = "error";
-	}
-	*/
-
 	output = receivedbuffer;
-
-	/*
-	//std::string str = output;
-	int currentorder;
-
-	if (output != "error") {
-		//dserialize json
-		//currentorder = parsejson(output, modorder);
-		currentorder = modorder + 1;
-	}
-	//else no sensor data
-	else {
-		//current order
-		currentorder = modorder;
-	}
-	*/
 	std::cout << "Simulator data received!\n";
 	return output;
 }
@@ -303,51 +262,108 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 //https://github.com/nlohmann/json#examples
 //json parsing and deserialization
 int controller::parsejson(string sensor, int order) {
-	json j = sensor;
+	
+	//phase calculation
 	int modulusorder;
+	//checking string length
+	int sensorlength = sensor.length();
+	//if string is complete
+	if (sensorlength >451) {
+		//remove header
+		string substr = sensor.substr(4);
+		//parsing json
+		json j = substr;
+		auto j2 = json::parse(substr);
+		//fetching lanes
+		//car
+		int A11 = j2["A11"];
+		int A12 = j2["A12"];
+		int A13 = j2["A13"];
+		int A21 = j2["A21"];
+		int A22 = j2["A22"];
+		int A23 = j2["A23"];
+		int A24 = j2["A24"];
+		int A31 = j2["A31"];
+		int A32 = j2["A32"];
+		int A33 = j2["A33"];
+		int A34 = j2["A34"];
+		int A41 = j2["A41"];
+		int A42 = j2["A42"];
+		int A43 = j2["A43"];
+		int A44 = j2["A44"];
+		int A51 = j2["A51"];
+		int A52 = j2["A52"];
+		int A53 = j2["A53"];
+		int A54 = j2["A54"];
+		int A61 = j2["A61"];
+		int A62 = j2["A62"];
+		int A63 = j2["A63"];
+		int A64 = j2["A64"];
+		//bus
+		int B11 = j2["B11"];
+		int B12 = j2["B12"];
+		int B41 = j2["B41"];
+		//bike
+		int F11 = j2["F11"];
+		int F12 = j2["F12"];
+		int F21 = j2["F21"];
+		int F22 = j2["F22"];
+		int F41 = j2["F41"];
+		int F42 = j2["F42"];
+		int F51 = j2["F51"];
+		int F52 = j2["F52"];
+		//foot
+		int V11 = j2["V11"];
+		int V12 = j2["V12"];
+		int V13 = j2["V13"];
+		int V14 = j2["V14"];
+		int V21 = j2["V21"];
+		int V22 = j2["V22"];
+		int V23 = j2["V23"];
+		int V24 = j2["V24"];
+		int V41 = j2["V41"];
+		int V42 = j2["V42"];
+		int V43 = j2["V43"];
+		int V44 = j2["V44"];
+		int V51 = j2["V51"];
+		int V52 = j2["V52"];
+		int V53 = j2["V53"];
+		int V54 = j2["V54"];
 
-	auto j2 = json::parse(sensor);
+		//traffic lights sensor logic	
+		//rechtdoor noord - zuid, oost - west bus
+		if (order == 1 && (A11 == 0 || A12 == 0 || B11 == 0 || B12 == 0 || A21 == 0 || A22 == 0 || B41 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
+			modulusorder = order + 1;
+		}
+		//rechtdoor en rechtsaf noord - zuid auto 
+		else if (order == 2 && (A11 == 0 || A12 == 0 || A13 == 0 || A21 == 0 || A22 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
+			modulusorder = order + 1;
+		}
+		//rechtdoor en rechtsaf oost - west auto
+		else if (order == 3 && (A21 == 0 || A22 == 0 || A23 == 0 || A24 == 0 || A33 == 0 || A34 == 0 || A51 == 0 || A52 == 0 || A53 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
+			modulusorder = order + 1;
+		}
+		//linksaf noord - west en oost - zuid auto
+		else if (order == 4 && (A11 == 0 || A12 == 0 || A31 == 0 || A32 == 0 || A33 == 0 || A34 == 0 || A43 == 0 || A44 == 0 || A61 == 0 || A62 == 0 || A63 == 0 || A64 == 0)) {
+			modulusorder = order + 1;
+		}
+		//linksaf noord - oost en zuid - west auto
+		else if (order == 5 && (A11 == 0 || A12 == 0 || A13 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
+			modulusorder = order + 1;
+		}
+		//fietsverkeer en voetgangersverkeer 
+		else if (order == 6 && (F11 == 0 || F12 == 0 || V11 == 0 || V12 == 0 || V13 == 0 || V14 == 0 || F21 == 0 || F22 == 0 || V21 == 0 || V22 == 0 || V23 == 0 || V24 == 0 || F41 == 0 || F42 == 0 || V41 == 0 || V42 == 0 || V43 == 0 || V44 == 0 || F51 == 0 || F52 == 0 || V51 == 0 || V52 == 0 || V53 == 0 || V54 == 0)) {
+			modulusorder = order + 1;
+		}
+		else {
+			modulusorder = order;
+		}
+	}
+	//else do nothing
+	else {
+		modulusorder = order;
+	}	
 
-	int currentorder = (order % 6) + 1;
-
-	//(currentorder == 1 && (j2.a1 - 1 == 0))
-
-	//traffic lights sensor logic
-
-	/*
-	//rechtdoor noord - zuid, oost - west bus
-	if (currentorder == 1 && (j2.A11 == 0 || j2.A12 ==0 || j2.B11 == 0 ||j2.B12 ==0 || j2.A21 ==0 || j2.A22 ==0 || j2.B41 ==0 || j2.A54 ==0 || j2.A61 ==0 || j2.A62 ==0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	//rechtdoor en rechtsaf noord - zuid auto 
-	else if (currentorder == 2 && (j2.A11 == 0 || j2.A12 == 0 || j2.A13 ==0 || A21 ==0 || j2.A22 ==0 || j2.A41 ==0 || j2.A42 ==0 || j2.A43 ==0 || j2.A44 ==0 || j2.A53 ==0 || j2.A54 ==0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	//rechtdoor en rechtsaf oost - west auto
-	else if (currentorder == 3 && (j2.A21 == 0 || j2.A22 == 0 || j2.A23 == 0 || j2.A24 == 0 || j2.A33 == 0 || j2.A34 == 0 || j2.A51 == 0 || j2.A52 == 0 || j2.A53 == 0 || j2.A54 == 0 || j2.A61 == 0 || j2.A62 == 0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	//linksaf noord - west en oost - zuid auto
-	else if (currentorder == 4 && (A11 == 0 || j2.A12 == 0 || j2.A31 == 0 || j2.A32 == 0 || j2.A33 == 0 || j2.A34 == 0 || j2.A43 == 0 || j2.A44 == 0 || j2.A61 == 0 || j2.A62 == 0 || j2.A63 == 0 || j2.A64 == 0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	//linksaf noord - oost en zuid - west auto
-	else if (currentorder == 5 && (j2.A11 == 0 || j2.A12 == 0 || j2.A13 == 0 || j2.A41 == 0 || j2.A42 == 0 || j2.A43 == 0 || j2.A44 == 0 || j2.A53 == 0 || j2.A54 == 0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	//fietsverkeer en voetgangersverkeer 
-	else if (currentorder == 6 && (j2.F11 == 0 || j2.F12 == 0 || j2.V11 == 0 || j2.V12 == 0 || j2.V13 == 0 || j2.V14 == 0 || j2.F21 == 0 || j2.F22 == 0 || j2.V21 == 0 || j2.V22 == 0 || j2.V23 == 0 || j2.V24 == 0 || j2.F41 == 0 || j2.F42 == 0 || j2.V41 == 0 || j2.V42 == 0 || j2.V43 == 0 || j2.V44 == 0 || j2.F51 == 0 || j2.F52 == 0 || j2.V51 == 0 || j2.V52 == 0 || j2.V53 == 0 || j2.V54 == 0)) {
-		modulusorder = order + 1;
-		return modulusorder;
-	}
-	*/
-
-	modulusorder = order + 1;
 	return modulusorder;
 
 }
@@ -368,88 +384,7 @@ string controller::Replace(string str, const string& oldStr, const string& newSt
 }
 */
 
-/*
-string controller::socketclient()
-{
-	string ipAddress = "127.0.0.1";			// IP Address of the server
-	int port = 54000;						// Listening port # on the server
 
-	//output string
-	string output;
-
-	// Initialize WinSock
-	WSAData data;
-	WORD ver = MAKEWORD(2, 2);
-	int wsResult = WSAStartup(ver, &data);
-	if (wsResult != 0)
-	{
-		std::cout << "Socket not init!\n";
-		output = "error";
-		return output;
-	}
-
-	// Create socket
-	SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-	if (sock == INVALID_SOCKET)
-	{
-		std::cout << "Can't create socket, Err #" << WSAGetLastError();
-		WSACleanup();
-		output = "error";
-		return output;
-	}
-
-	// Fill in a hint structure
-	sockaddr_in hint;
-	hint.sin_family = AF_INET;
-	hint.sin_port = htons(port);
-	inet_pton(AF_INET, ipAddress.c_str(), &hint.sin_addr);
-
-	// Connect to server
-	int connResult = connect(sock, (sockaddr*)&hint, sizeof(hint));
-	if (connResult == SOCKET_ERROR)
-	{
-		std::cout << "Can't connect to server, Err #" << WSAGetLastError();
-		closesocket(sock);
-		WSACleanup();
-		output = "error";
-		return output;
-	}
-
-
-	//write
-
-	//read
-
-	// Do-while loop to send and receive data
-	char buf[4096];
-	//byte buffer[];
-	//byte buffer = new byte[1024];
-	//byte buf[4096];
-	string header = "0";
-	int i;
-
-	while (connResult > 0)
-	{
-
-		// Wait for response
-		ZeroMemory(buf, 4096);
-		int bytesReceived = recv(sock, buf, 4096, 0);
-		if (bytesReceived > 0)
-		{
-			// Echo response to console
-			std::cout << "SERVER> " << string(buf, 0, bytesReceived);
-			output = output + buf;
-		}
-
-	}
-
-	// Gracefully close down everything
-	closesocket(sock);
-	WSACleanup();
-
-	return output;
-}
-*/
 
 /*
 //https://github.com/nlohmann/json
