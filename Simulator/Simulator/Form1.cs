@@ -108,6 +108,9 @@ namespace Simulator
             RegularTrafficLight regA64 = createTrafficLight(320, 276, "A64", "right");
             lights.Add(regA64);
 
+            BusTrafficLight busB11 = createBusTrafficLight(796, 140, "B11", "down");
+            BusTrafficLight busB12 = createBusTrafficLight(796, 180, "B12", "down");
+            BusTrafficLight busB41 = createBusTrafficLight(364, 421, "B41", "down");
 
 
             Path path = new Path();
@@ -561,6 +564,17 @@ namespace Simulator
         private RegularTrafficLight createTrafficLight(int left, int top, string name, string direction)
         {
             RegularTrafficLight reg = new RegularTrafficLight();
+
+            reg.createTrafficLight(left, top, name, direction);
+
+            this.Controls.Add(reg.regTrafficLight);
+
+            return reg;
+        }
+
+        private BusTrafficLight createBusTrafficLight(int left, int top, string name, string direction)
+        {
+            BusTrafficLight reg = new BusTrafficLight();
 
             reg.createTrafficLight(left, top, name, direction);
 

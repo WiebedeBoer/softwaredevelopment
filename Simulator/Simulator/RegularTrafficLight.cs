@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moq.Protected;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Design;
@@ -19,16 +20,19 @@ namespace Simulator
     {
         public String name = null;
 
-        const int delayedLightChange = 500; // in milliseconds
+        protected const int delayedLightChange = 3000; // in milliseconds
         public RegLightSequence currentColor = RegLightSequence.Red;
 
         public PictureBox regTrafficLight;
 
-        private Image img;
+        protected Image img;
 
-        private string facingDirection;
+        protected string facingDirection;
 
         public bool carInFront = false;
+
+        protected const int imageWidth = 18;
+        protected const int imageHeight = 53;
 
         public RegularTrafficLight()
         {
@@ -45,31 +49,31 @@ namespace Simulator
 
             img = regTrafficLight.Image;
 
-            
+
             switch (direction)
             {
                 // up/left/right/top -> direction traffic is coming from
                 case "up":
-                    regTrafficLight.Size = new Size(18, 53);
+                    regTrafficLight.Size = new Size(imageWidth, imageHeight);
                     facingDirection = "up";
                     break;
                 case "left":
-                    regTrafficLight.Size = new Size(53, 18);
+                    regTrafficLight.Size = new Size(imageHeight, imageWidth);
                     img.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     facingDirection = "left";
                     break;
                 case "right":
-                    regTrafficLight.Size = new Size(53, 18);
+                    regTrafficLight.Size = new Size(imageHeight, imageWidth);
                     img.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     facingDirection = "right";
                     break;
                 case "down":
-                    regTrafficLight.Size = new Size(18, 53);
+                    regTrafficLight.Size = new Size(imageWidth, imageHeight);
                     img.RotateFlip(RotateFlipType.Rotate180FlipNone);
                     facingDirection = "down";
                     break;
             }
-            
+
 
             regTrafficLight.Left = left;
 
@@ -79,27 +83,27 @@ namespace Simulator
         }
 
 
-        private void correctlyFacingTrafficLight(Image img, string direction)
+        protected void correctlyFacingTrafficLight(Image img, string direction)
         {
             switch (direction)
             {
                 // up/left/right/top -> direction traffic is coming from
                 case "up":
-                    regTrafficLight.Size = new Size(18, 53);
+                    regTrafficLight.Size = new Size(imageWidth, imageHeight);
                     facingDirection = "up";
                     break;
                 case "left":
-                    regTrafficLight.Size = new Size(53, 18);
+                    regTrafficLight.Size = new Size(imageHeight, imageWidth);
                     img.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     facingDirection = "left";
                     break;
                 case "right":
-                    regTrafficLight.Size = new Size(53, 18);
+                    regTrafficLight.Size = new Size(imageHeight, imageWidth);
                     img.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     facingDirection = "right";
                     break;
                 case "down":
-                    regTrafficLight.Size = new Size(18, 53);
+                    regTrafficLight.Size = new Size(imageWidth, imageHeight);
                     img.RotateFlip(RotateFlipType.Rotate180FlipNone);
                     facingDirection = "down";
                     break;
@@ -109,7 +113,7 @@ namespace Simulator
 
         public async void LightSequence(int i)
         {
-            switch(i)
+            switch (i)
             {
                 case 0:
                     if (currentColor == RegLightSequence.Green)
@@ -117,7 +121,7 @@ namespace Simulator
                         regTrafficLight.Image = Properties.Resources.yellow_light;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
                         currentColor = RegLightSequence.Yellow;
-                        await Task.Delay(3000);
+                        await Task.Delay(delayedLightChange);
                         regTrafficLight.Image = Properties.Resources.red_light;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
                         currentColor = RegLightSequence.Red;
@@ -137,16 +141,17 @@ namespace Simulator
         // Switch trafficlight to yellow, after a delay switch to green
         public void SwitchLight()
         {
-            if(currentColor == RegLightSequence.Red)
+            if (currentColor == RegLightSequence.Red)
             {
                 regTrafficLight.Image = Properties.Resources.green_light;
                 currentColor = RegLightSequence.Green;
-            } else
+            }
+            else
             {
                 regTrafficLight.Image = Properties.Resources.red_light;
                 currentColor = RegLightSequence.Red;
             }
-            
+
         }
 
 

@@ -63,6 +63,16 @@ namespace Simulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alldir_bus_lights {
+            get {
+                object obj = ResourceManager.GetObject("alldir_bus_lights", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blue_car {
             get {
                 object obj = ResourceManager.GetObject("blue_car", resourceCulture);
@@ -113,6 +123,26 @@ namespace Simulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap green_pedestrian {
+            get {
+                object obj = ResourceManager.GetObject("green_pedestrian", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_bus_light {
+            get {
+                object obj = ResourceManager.GetObject("left_bus_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pedestrian {
             get {
                 object obj = ResourceManager.GetObject("pedestrian", resourceCulture);
@@ -136,6 +166,56 @@ namespace Simulator.Properties {
         internal static System.Drawing.Bitmap red_light {
             get {
                 object obj = ResourceManager.GetObject("red_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_pedestrian {
+            get {
+                object obj = ResourceManager.GetObject("red_pedestrian", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_bus_lights {
+            get {
+                object obj = ResourceManager.GetObject("right_bus_lights", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stop_bus_lights {
+            get {
+                object obj = ResourceManager.GetObject("stop_bus_lights", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stoppossibly_bus_lights {
+            get {
+                object obj = ResourceManager.GetObject("stoppossibly_bus_lights", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap straight_bus_light {
+            get {
+                object obj = ResourceManager.GetObject("straight_bus_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

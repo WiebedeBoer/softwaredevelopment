@@ -103,3 +103,24 @@ C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Simu
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.exe
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.deps.json
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.json
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.dev.json
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.dll
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.pdb
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Form1.resources
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.GenerateResource.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfoInputs.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfo.cs
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache

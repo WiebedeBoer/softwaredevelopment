@@ -89,12 +89,7 @@ namespace Simulator
 
                     if (jsonToSend != null)
                     {
-
                         WaitSequence();
-
-
-
-
                     }
                 }
                 else
