@@ -12,6 +12,9 @@ using std::string;
 
 class controller
 {
+private:
+	const char* receivedbuffer;
+
 public:
 
 	int sendlight();

@@ -28,6 +28,19 @@ namespace Simulator
         public JSONTrafficLight Json { get => json; set => json = value; }
 
 
+        public async void WaitSequence() 
+        {
+            await System.Threading.Tasks.Task.Delay(1000);
+
+            string sendData = JsonConvert.SerializeObject(jsonToSend);
+
+            string length = sendData.Length.ToString();
+            string headerJSON = length + ":";
+            string package = headerJSON + sendData;
+            byte[] dataBytes = Encoding.Default.GetBytes(package);
+            socket.Send(dataBytes);
+        }
+
         //connect and receive, instead of listen
 
         public void StartListening()
@@ -76,16 +89,12 @@ namespace Simulator
 
                     if (jsonToSend != null)
                     {
-                        
-                        
-                        
-                        string sendData = JsonConvert.SerializeObject(jsonToSend);
-                        
-                        string length = sendData.Length.ToString();
-                        string headerJSON = length + ":";
-                        string package = headerJSON + sendData;
-                        byte[] dataBytes = Encoding.Default.GetBytes(package);
-                        socket.Send(dataBytes);
+
+                        WaitSequence();
+
+
+
+
                     }
                 }
                 else

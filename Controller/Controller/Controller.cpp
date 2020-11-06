@@ -67,7 +67,7 @@ int controller::sendlight() {
 			std::cout << modorder;
 
 			//receiving from simulator
-			//string received = receiver(modorder, sock);
+			string received = receiver(modorder, sock);
 			//parsing from received
 			//modorder = parsejson(received, modorder);
 			
@@ -148,8 +148,13 @@ SOCKET controller::socketSetup() {
 	SOCKADDR_IN serverInf;
 	serverInf.sin_family = AF_INET;
 	serverInf.sin_addr.s_addr = INADDR_ANY;
+	//serverInf.sin_addr.s_addr = inet_addr("127.0.0.1");
+	//serverInf.sin_addr.s_addr = InetPton("127.0.0.1");
+	//serverInf.sin_addr.s_addr = ipAddress.c_str();
+	//serverInf.sin_addr.s_addr = "127.0.0.1";
 	serverInf.sin_port = htons(port);
 	inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
+	//inet_pton(AF_INET, ipAddress.c_str(), ipAddress.c_str());
 
 	if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
 	{
@@ -227,6 +232,8 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 				{
 					// Echo response to console
 					std::cout << "Socket buffer!\n";
+					std::cout << buf;
+					receivedbuffer = buf;
 				}
 			}
 			else {
@@ -250,12 +257,16 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 {
 	std::cout << "Socket start receiving!\n";
 	//receive
-	char buffer[4096];
+	char buffer[1024];
 	string output;
 
+	//sleep
+	//Sleep(500);
+
+	/*
 	// Wait for response
-	ZeroMemory(buffer, 4096);
-	int bytesReceived = recv(ClientSocket, buffer, 4096, 0);
+	ZeroMemory(buffer, 1024);
+	int bytesReceived = recv(ClientSocket, buffer, 1024, 0);
 	if (bytesReceived > 0)
 	{
 		// Echo response to console
@@ -266,6 +277,9 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 	{
 		output = "error";
 	}
+	*/
+
+	output = receivedbuffer;
 
 	/*
 	//std::string str = output;
