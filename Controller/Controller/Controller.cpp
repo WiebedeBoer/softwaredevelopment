@@ -263,8 +263,6 @@ string controller::receiver(int modorder, SOCKET ClientSocket)
 //json parsing and deserialization
 int controller::parsejson(string sensor, int order) {
 	
-	//phase calculation
-	int modulusorder;
 	//checking string length
 	int sensorlength = sensor.length();
 	//if string is complete
@@ -276,95 +274,106 @@ int controller::parsejson(string sensor, int order) {
 		auto j2 = json::parse(substr);
 		//fetching lanes
 		//car
-		int A11 = j2["A11"];
-		int A12 = j2["A12"];
-		int A13 = j2["A13"];
-		int A21 = j2["A21"];
-		int A22 = j2["A22"];
-		int A23 = j2["A23"];
-		int A24 = j2["A24"];
-		int A31 = j2["A31"];
-		int A32 = j2["A32"];
-		int A33 = j2["A33"];
-		int A34 = j2["A34"];
-		int A41 = j2["A41"];
-		int A42 = j2["A42"];
-		int A43 = j2["A43"];
-		int A44 = j2["A44"];
-		int A51 = j2["A51"];
-		int A52 = j2["A52"];
-		int A53 = j2["A53"];
-		int A54 = j2["A54"];
-		int A61 = j2["A61"];
-		int A62 = j2["A62"];
-		int A63 = j2["A63"];
-		int A64 = j2["A64"];
+		int A11 = j2["A1-1"];
+		int A12 = j2["A1-2"];
+		int A13 = j2["A1-3"];
+		int A21 = j2["A2-1"];
+		int A22 = j2["A2-2"];
+		int A23 = j2["A2-3"];
+		int A24 = j2["A2-4"];
+		int A31 = j2["A3-1"];
+		int A32 = j2["A3-2"];
+		int A33 = j2["A3-3"];
+		int A34 = j2["A3-4"];
+		int A41 = j2["A4-1"];
+		int A42 = j2["A4-2"];
+		int A43 = j2["A4-3"];
+		int A44 = j2["A4-4"];
+		int A51 = j2["A5-1"];
+		int A52 = j2["A5-2"];
+		int A53 = j2["A5-3"];
+		int A54 = j2["A5-4"];
+		int A61 = j2["A6-1"];
+		int A62 = j2["A6-2"];
+		int A63 = j2["A6-3"];
+		int A64 = j2["A6-4"];
 		//bus
-		int B11 = j2["B11"];
-		int B12 = j2["B12"];
-		int B41 = j2["B41"];
+		int B11 = j2["B1-1"];
+		int B12 = j2["B1-2"];
+		int B41 = j2["B4-1"];
 		//bike
-		int F11 = j2["F11"];
-		int F12 = j2["F12"];
-		int F21 = j2["F21"];
-		int F22 = j2["F22"];
-		int F41 = j2["F41"];
-		int F42 = j2["F42"];
-		int F51 = j2["F51"];
-		int F52 = j2["F52"];
+		int F11 = j2["F1-1"];
+		int F12 = j2["F1-2"];
+		int F21 = j2["F2-1"];
+		int F22 = j2["F2-2"];
+		int F41 = j2["F4-1"];
+		int F42 = j2["F4-2"];
+		int F51 = j2["F5-1"];
+		int F52 = j2["F5-2"];
 		//foot
-		int V11 = j2["V11"];
-		int V12 = j2["V12"];
-		int V13 = j2["V13"];
-		int V14 = j2["V14"];
-		int V21 = j2["V21"];
-		int V22 = j2["V22"];
-		int V23 = j2["V23"];
-		int V24 = j2["V24"];
-		int V41 = j2["V41"];
-		int V42 = j2["V42"];
-		int V43 = j2["V43"];
-		int V44 = j2["V44"];
-		int V51 = j2["V51"];
-		int V52 = j2["V52"];
-		int V53 = j2["V53"];
-		int V54 = j2["V54"];
+		int V11 = j2["V1-1"];
+		int V12 = j2["V1-2"];
+		int V13 = j2["V1-3"];
+		int V14 = j2["V1-4"];
+		int V21 = j2["V2-1"];
+		int V22 = j2["V2-2"];
+		int V23 = j2["V2-3"];
+		int V24 = j2["V2-4"];
+		int V41 = j2["V4-1"];
+		int V42 = j2["V4-2"];
+		int V43 = j2["V4-3"];
+		int V44 = j2["V4-4"];
+		int V51 = j2["V5-1"];
+		int V52 = j2["V5-2"];
+		int V53 = j2["V5-3"];
+		int V54 = j2["V5-4"];
 
-		//traffic lights sensor logic	
-		//rechtdoor noord - zuid, oost - west bus
-		if (order == 1 && (A11 == 0 || A12 == 0 || B11 == 0 || B12 == 0 || A21 == 0 || A22 == 0 || B41 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
-			modulusorder = order + 1;
+		//phase calculation
+		int increment = 1;
+		while (increment <7) {
+			//traffic lights sensor logic	
+			//rechtdoor noord - zuid, oost - west bus
+			if (order == 1 && (A11 == 0 || A12 == 0 || B11 == 0 || B12 == 0 || A21 == 0 || A22 == 0 || B41 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
+				order = order + 1;
+				increment = 7;
+				increment++;
+			}
+			//rechtdoor en rechtsaf noord - zuid auto 
+			else if (order == 2 && (A11 == 0 || A12 == 0 || A13 == 0 || A21 == 0 || A22 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
+				order = order + 1;
+				increment++;
+			}
+			//rechtdoor en rechtsaf oost - west auto
+			else if (order == 3 && (A21 == 0 || A22 == 0 || A23 == 0 || A24 == 0 || A33 == 0 || A34 == 0 || A51 == 0 || A52 == 0 || A53 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
+				order = order + 1;
+				increment++;
+			}
+			//linksaf noord - west en oost - zuid auto
+			else if (order == 4 && (A11 == 0 || A12 == 0 || A31 == 0 || A32 == 0 || A33 == 0 || A34 == 0 || A43 == 0 || A44 == 0 || A61 == 0 || A62 == 0 || A63 == 0 || A64 == 0)) {
+				order = order + 1;
+				increment++;
+			}
+			//linksaf noord - oost en zuid - west auto
+			else if (order == 5 && (A11 == 0 || A12 == 0 || A13 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
+				order = order + 1;
+				increment++;
+			}
+			//fietsverkeer en voetgangersverkeer 
+			else if (order == 6 && (F11 == 0 || F12 == 0 || V11 == 0 || V12 == 0 || V13 == 0 || V14 == 0 || F21 == 0 || F22 == 0 || V21 == 0 || V22 == 0 || V23 == 0 || V24 == 0 || F41 == 0 || F42 == 0 || V41 == 0 || V42 == 0 || V43 == 0 || V44 == 0 || F51 == 0 || F52 == 0 || V51 == 0 || V52 == 0 || V53 == 0 || V54 == 0)) {
+				order = 1;
+				increment++;
+			}
+			else {
+				increment = 7;
+			}
 		}
-		//rechtdoor en rechtsaf noord - zuid auto 
-		else if (order == 2 && (A11 == 0 || A12 == 0 || A13 == 0 || A21 == 0 || A22 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
-			modulusorder = order + 1;
-		}
-		//rechtdoor en rechtsaf oost - west auto
-		else if (order == 3 && (A21 == 0 || A22 == 0 || A23 == 0 || A24 == 0 || A33 == 0 || A34 == 0 || A51 == 0 || A52 == 0 || A53 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
-			modulusorder = order + 1;
-		}
-		//linksaf noord - west en oost - zuid auto
-		else if (order == 4 && (A11 == 0 || A12 == 0 || A31 == 0 || A32 == 0 || A33 == 0 || A34 == 0 || A43 == 0 || A44 == 0 || A61 == 0 || A62 == 0 || A63 == 0 || A64 == 0)) {
-			modulusorder = order + 1;
-		}
-		//linksaf noord - oost en zuid - west auto
-		else if (order == 5 && (A11 == 0 || A12 == 0 || A13 == 0 || A41 == 0 || A42 == 0 || A43 == 0 || A44 == 0 || A53 == 0 || A54 == 0)) {
-			modulusorder = order + 1;
-		}
-		//fietsverkeer en voetgangersverkeer 
-		else if (order == 6 && (F11 == 0 || F12 == 0 || V11 == 0 || V12 == 0 || V13 == 0 || V14 == 0 || F21 == 0 || F22 == 0 || V21 == 0 || V22 == 0 || V23 == 0 || V24 == 0 || F41 == 0 || F42 == 0 || V41 == 0 || V42 == 0 || V43 == 0 || V44 == 0 || F51 == 0 || F52 == 0 || V51 == 0 || V52 == 0 || V53 == 0 || V54 == 0)) {
-			modulusorder = order + 1;
-		}
-		else {
-			modulusorder = order;
-		}
+
+
 	}
 	//else do nothing
-	else {
-		modulusorder = order;
-	}	
 
-	return modulusorder;
+
+	return order;
 
 }
 
