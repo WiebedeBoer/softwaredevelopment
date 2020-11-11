@@ -46,6 +46,8 @@ namespace Simulator
 
         // trafficligths
         private List<RegularTrafficLight> lights = new List<RegularTrafficLight>();
+        private List<BusTrafficLight> busLights = new List<BusTrafficLight>();
+
 
         private BackGroundListener listener = new BackGroundListener();
 
@@ -121,11 +123,11 @@ namespace Simulator
             lights.Add(regA64);
 
             BusTrafficLight busB11 = createBusTrafficLight(796, 140, "B1-1", "down");
-            lights.Add(busB11);
+            busLights.Add(busB11);
             BusTrafficLight busB12 = createBusTrafficLight(796, 180, "B1-2", "down");
-            lights.Add(busB12);
+            busLights.Add(busB12);
             BusTrafficLight busB41 = createBusTrafficLight(364, 421, "B4-1", "down");
-            lights.Add(busB41);
+            busLights.Add(busB41);
 
             // Cyclist trafficlights
             RegularTrafficLight regF11 = createCyclistTrafficLight(700, 125, "F1-1", "left");
@@ -678,7 +680,20 @@ namespace Simulator
                     int seq = (int)received[regs.name];
                     regs.LightSequence(seq);
                 }
+
+                foreach (BusTrafficLight bussen in busLights)
+                {
+                    int seq = (int)received[bussen.name];
+                    if (bussen.name == "B1-4")
+                        bussen.RightLightSequence(seq);
+                    if (bussen.name == "B1-1")
+                        bussen.StraightLightSequence(seq);
+                    if (bussen.name == "B1-2")
+                        bussen.LeftLightSequence(seq);
+                }
             }
+
+            
 
             
             JObject json2 = listener.json2;
