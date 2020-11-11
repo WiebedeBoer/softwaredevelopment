@@ -364,7 +364,7 @@ namespace Simulator
             patha12r.addNode(750, 1); //start
             patha12r.addNode(750, 80, regA12); //light a12
             patha12r.addNode(750, 195);
-            patha12.addNode(750, 276);
+            patha12r.addNode(750, 276);
             patha12r.addNode(571, 276);
             patha12r.addNode(389, 276);
             patha12r.addNode(353, 276, regA64); //light a64
