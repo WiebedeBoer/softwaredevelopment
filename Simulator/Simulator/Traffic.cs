@@ -47,20 +47,22 @@ namespace Simulator
             x.Top = Top;
         }
 
-        public void move(int speed, bool brake)
+        public virtual void move(int speed, bool carBrake)
         {
+            bool brake = false;
             if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentColor != RegLightSequence.Green)
             {
                 brake = true;
                 path.nodes[node].Reg.carInFront = true;
-            } //else
+            }
+            //else
             //{
-               // brake = false;
+            // brake = false;
             //}
 
-            if (brake is false)
-            {
-                if(path.nodes[node].Reg != null)
+            //if (brake is false)
+            //{
+            if (path.nodes[node].Reg != null && brake is false)
                     path.nodes[node].Reg.carInFront = false;
                 float tx = path.nodes[node].Left - x.Left;
                 float ty = path.nodes[node].Top - x.Top;
@@ -69,25 +71,32 @@ namespace Simulator
                 {
                     turn(x.Left, x.Top);
 
-                    // move towards the goal
+                // move towards the goal
+
+                if (carBrake is false)
+                {
                     x.Left = (int)(x.Left + speed * tx / length);
                     x.Top = (int)(x.Top + speed * ty / length);
+                }
                 }
                 else
                 {
                     // already there
                     x.Left = path.nodes[node].Left;
                     x.Top = path.nodes[node].Top;
-                    if (node < (path.nodes.Count - 1) && brake is false)
+                    if (node < (path.nodes.Count - 1))
                     {
-                        node++;
+                        if(brake is false)
+                            node++;
                     }
                     else
                     {
                         toBeDeleted = true;
                     }
                 }
-            }
+
+            
+            //}
         }
 
         public void turn(int left, int top)

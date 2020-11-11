@@ -22,7 +22,7 @@ namespace Simulator
         //public String name = null;
 
         protected const int delayedLightChange = 3000; // in milliseconds
-        public BusLightSequence currentColor = BusLightSequence.Stop;
+        //public BusLightSequence currentBusColor = BusLightSequence.Stop;
 
         public PictureBox regTrafficLight;
 
@@ -115,23 +115,23 @@ namespace Simulator
             switch (i)
             {
                 case 0:
-                    if (currentColor == BusLightSequence.Left)
+                    if (currentBusColor == BusLightSequence.Left)
                     {
                         regTrafficLight.Image = Properties.Resources.stoppossibly_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Slowdown;
+                        currentBusColor = BusLightSequence.Slowdown;
                         await Task.Delay(delayedLightChange);
                         regTrafficLight.Image = Properties.Resources.stop_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Stop;
+                        currentBusColor = BusLightSequence.Stop;
                     }
                     break;
                 case 1:
-                    if (currentColor == BusLightSequence.Stop)
+                    if (currentBusColor == BusLightSequence.Stop)
                     {
                         regTrafficLight.Image = Properties.Resources.left_bus_light;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Left;
+                        currentBusColor = BusLightSequence.Left;
                     }
                     break;
             }
@@ -142,23 +142,23 @@ namespace Simulator
             switch (i)
             {
                 case 0:
-                    if (currentColor == BusLightSequence.Right)
+                    if (currentBusColor == BusLightSequence.Right)
                     {
                         regTrafficLight.Image = Properties.Resources.stoppossibly_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Slowdown;
+                        currentBusColor = BusLightSequence.Slowdown;
                         await Task.Delay(delayedLightChange);
                         regTrafficLight.Image = Properties.Resources.stop_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Stop;
+                        currentBusColor = BusLightSequence.Stop;
                     }
                     break;
                 case 1:
-                    if (currentColor == BusLightSequence.Stop)
+                    if (currentBusColor == BusLightSequence.Stop)
                     {
                         regTrafficLight.Image = Properties.Resources.right_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Right;
+                        currentBusColor = BusLightSequence.Right;
                     }
                     break;
             }
@@ -169,23 +169,23 @@ namespace Simulator
             switch (i)
             {
                 case 0:
-                    if (currentColor == BusLightSequence.Straight)
+                    if (currentBusColor == BusLightSequence.Straight)
                     {
                         regTrafficLight.Image = Properties.Resources.stoppossibly_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Slowdown;
+                        currentBusColor = BusLightSequence.Slowdown;
                         await Task.Delay(delayedLightChange);
                         regTrafficLight.Image = Properties.Resources.stop_bus_lights;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Stop;
+                        currentBusColor = BusLightSequence.Stop;
                     }
                     break;
                 case 1:
-                    if (currentColor == BusLightSequence.Stop)
+                    if (currentBusColor == BusLightSequence.Stop)
                     {
                         regTrafficLight.Image = Properties.Resources.straight_bus_light;
                         correctlyFacingTrafficLight(regTrafficLight.Image, facingDirection);
-                        currentColor = BusLightSequence.Straight;
+                        currentBusColor = BusLightSequence.Straight;
                     }
                     break;
             }

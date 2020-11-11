@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Threading;
 
 namespace Simulator
 {
@@ -32,7 +33,6 @@ namespace Simulator
         public async void WaitSequence() 
         {
             await System.Threading.Tasks.Task.Delay(1000);
-
             string sendData = JsonConvert.SerializeObject(jsonToSend);
             sendData.Replace(@"\", "");
             string length = sendData.Length.ToString();
@@ -86,10 +86,11 @@ namespace Simulator
 
                     Console.WriteLine(json2["A1-1"]);
 
-                    Console.WriteLine("jsonToReceive variable: " + jsonToReceive["A1-1"]);
+                    Console.WriteLine("jsonToReceive variable: " + jsonToReceive["B1-1"]);
 
                     Console.WriteLine("Send back JSON...");
 
+                    Console.WriteLine("jsonToSend variable: " + jsonToSend["B1-1"]);
                     if (jsonToSend != null)
                     {
                         WaitSequence();

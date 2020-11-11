@@ -23,6 +23,8 @@ namespace Simulator
         protected const int delayedLightChange = 3000; // in milliseconds
         public RegLightSequence currentColor = RegLightSequence.Red;
 
+        public BusLightSequence currentBusColor = BusLightSequence.Stop;
+
         public PictureBox regTrafficLight;
 
         protected Image img;
