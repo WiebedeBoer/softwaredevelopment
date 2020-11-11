@@ -31,8 +31,8 @@ namespace Simulator
 
         public bool carInFront = false;
 
-        protected const int imageWidth = 18;
-        protected const int imageHeight = 53;
+        protected int imageWidth = 18;
+        protected int imageHeight = 53;
 
         public RegularTrafficLight()
         {

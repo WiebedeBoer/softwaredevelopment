@@ -18,6 +18,12 @@ namespace Simulator
 
         public int spawnTimer = 0;
         public int randomTimeSpawned = 10; // standard
+        public int busSpawnTimer = 0;
+        public int busRandomTimeSpawned = 10; // bus
+        public int cyclistSpawnTimer = 0;
+        public int cyclistRandomTimeSpawned = 10; // cyclist
+        public int pedSpawnTimer = 0;
+        public int pedRandomTimeSpawned = 10; // cyclist
 
         List<Traffic> traffic = new List<Traffic>();
         //List<Bus> busses = new List<Bus>();
@@ -31,6 +37,12 @@ namespace Simulator
 
         // buspaths
         private List<Path> busPaths = new List<Path>();
+
+        // cyclistpaths
+        private List<Path> cyclistPaths = new List<Path>();
+
+        // pedpaths
+        private List<Path> pedPaths = new List<Path>();
 
         // trafficligths
         private List<RegularTrafficLight> lights = new List<RegularTrafficLight>();
@@ -55,62 +67,123 @@ namespace Simulator
             //socket.LoopConnect();
 
 
-            RegularTrafficLight regA44 = createTrafficLight(342, 421, "A44", "up");
+            RegularTrafficLight regA44 = createTrafficLight(342, 421, "A4-4", "up");
             lights.Add(regA44);
-            RegularTrafficLight regA34 = createTrafficLight(737, 387, "A34", "left");
+            RegularTrafficLight regA34 = createTrafficLight(737, 387, "A3-4", "left");
             lights.Add(regA34);
-            RegularTrafficLight regA33 = createTrafficLight(737, 365, "A33", "left");
+            RegularTrafficLight regA33 = createTrafficLight(737, 365, "A3-3", "left");
             lights.Add(regA33);
 
-            RegularTrafficLight regA43 = createTrafficLight(320, 421, "A43", "up");
+            RegularTrafficLight regA43 = createTrafficLight(320, 421, "A4-3", "up");
             lights.Add(regA43);
-            RegularTrafficLight regA32 = createTrafficLight(737, 343, "A32", "left");
+            RegularTrafficLight regA32 = createTrafficLight(737, 343, "A3-2", "left");
             lights.Add(regA32);
-            RegularTrafficLight regA31 = createTrafficLight(737, 320, "A31", "left");
+            RegularTrafficLight regA31 = createTrafficLight(737, 320, "A3-1", "left");
             lights.Add(regA31);
 
-            RegularTrafficLight regA42 = createTrafficLight(298, 421, "A42", "up");
+            RegularTrafficLight regA42 = createTrafficLight(298, 421, "A4-2", "up");
             lights.Add(regA42);
-            RegularTrafficLight regA41 = createTrafficLight(276, 421, "A41", "up");
+            RegularTrafficLight regA41 = createTrafficLight(276, 421, "A4-1", "up");
             lights.Add(regA41);
 
-            RegularTrafficLight regA54 = createTrafficLight(178, 431, "A54", "left");
+            RegularTrafficLight regA54 = createTrafficLight(178, 431, "A5-4", "left");
             lights.Add(regA54);
-            RegularTrafficLight regA53 = createTrafficLight(178, 409, "A53", "left");
+            RegularTrafficLight regA53 = createTrafficLight(178, 409, "A5-3", "left");
             lights.Add(regA53);
-            RegularTrafficLight regA52 = createTrafficLight(178, 387, "A52", "left");
+            RegularTrafficLight regA52 = createTrafficLight(178, 387, "A5-2", "left");
             lights.Add(regA52);
-            RegularTrafficLight regA51 = createTrafficLight(178, 365, "A51", "left");
+            RegularTrafficLight regA51 = createTrafficLight(178, 365, "A5-1", "left");
             lights.Add(regA51);
 
-            RegularTrafficLight regA11 = createTrafficLight(726, 140, "A11", "down");
+            RegularTrafficLight regA11 = createTrafficLight(726, 140, "A1-1", "down");
             lights.Add(regA11);
-            RegularTrafficLight regA12 = createTrafficLight(750, 140, "A12", "down");
+            RegularTrafficLight regA12 = createTrafficLight(750, 140, "A1-2", "down");
             lights.Add(regA12);
-            RegularTrafficLight regA13 = createTrafficLight(772, 140, "A13", "down");
+            RegularTrafficLight regA13 = createTrafficLight(772, 140, "A1-3", "down");
             lights.Add(regA13);
 
-            RegularTrafficLight regA21 = createTrafficLight(850, 162, "A21", "right");
+            RegularTrafficLight regA21 = createTrafficLight(850, 162, "A2-1", "right");
             lights.Add(regA21);
-            RegularTrafficLight regA22 = createTrafficLight(850, 183, "A22", "right");
+            RegularTrafficLight regA22 = createTrafficLight(850, 183, "A2-2", "right");
             lights.Add(regA22);
-            RegularTrafficLight regA23 = createTrafficLight(850, 207, "A23", "right");
+            RegularTrafficLight regA23 = createTrafficLight(850, 207, "A2-3", "right");
             lights.Add(regA23);
-            RegularTrafficLight regA24 = createTrafficLight(850, 230, "A24", "right");
+            RegularTrafficLight regA24 = createTrafficLight(850, 230, "A2-4", "right");
             lights.Add(regA24);
 
-            RegularTrafficLight regA61 = createTrafficLight(320, 206, "A61", "right");
+            RegularTrafficLight regA61 = createTrafficLight(320, 206, "A6-1", "right");
             lights.Add(regA61);
-            RegularTrafficLight regA62 = createTrafficLight(320, 227, "A62", "right");
+            RegularTrafficLight regA62 = createTrafficLight(320, 227, "A6-2", "right");
             lights.Add(regA62);
-            RegularTrafficLight regA63 = createTrafficLight(320, 252, "A63", "right");
+            RegularTrafficLight regA63 = createTrafficLight(320, 252, "A6-3", "right");
             lights.Add(regA63);
-            RegularTrafficLight regA64 = createTrafficLight(320, 276, "A64", "right");
+            RegularTrafficLight regA64 = createTrafficLight(320, 276, "A6-4", "right");
             lights.Add(regA64);
 
-            BusTrafficLight busB11 = createBusTrafficLight(796, 140, "B11", "down");
-            BusTrafficLight busB12 = createBusTrafficLight(796, 180, "B12", "down");
-            BusTrafficLight busB41 = createBusTrafficLight(364, 421, "B41", "down");
+            BusTrafficLight busB11 = createBusTrafficLight(796, 140, "B1-1", "down");
+            lights.Add(busB11);
+            BusTrafficLight busB12 = createBusTrafficLight(796, 180, "B1-2", "down");
+            lights.Add(busB12);
+            BusTrafficLight busB41 = createBusTrafficLight(364, 421, "B4-1", "down");
+            lights.Add(busB41);
+
+            // Cyclist trafficlights
+            RegularTrafficLight regF11 = createCyclistTrafficLight(700, 125, "F1-1", "left");
+            lights.Add(regF11);
+            RegularTrafficLight regF12 = createCyclistTrafficLight(880, 125, "F1-2", "right");
+            lights.Add(regF12);
+
+            RegularTrafficLight regF21 = createCyclistTrafficLight(910, 145, "F2-1", "down");
+            lights.Add(regF21);
+            RegularTrafficLight regF22 = createCyclistTrafficLight(910, 400, "F2-2", "up");
+            lights.Add(regF22);
+
+            RegularTrafficLight regF42 = createCyclistTrafficLight(380, 475, "F4-2", "right");
+            lights.Add(regF42);
+            RegularTrafficLight regF41 = createCyclistTrafficLight(190, 475, "F4-1", "left");
+            lights.Add(regF41);
+
+            RegularTrafficLight regF52 = createCyclistTrafficLight(165, 450, "F5-2", "up");
+            lights.Add(regF52);
+            RegularTrafficLight regF51 = createCyclistTrafficLight(165, 186, "F5-1", "down");
+            lights.Add(regF51);
+
+            // Pedestrian trafficlights
+            PedTrafficLight regV11 = createPedTrafficLight(700, 115, "V1-1", "left");
+            lights.Add(regV11);
+            PedTrafficLight regV12 = createPedTrafficLight(817, 115, "V1-2", "left");
+            lights.Add(regV12);
+            PedTrafficLight regV13 = createPedTrafficLight(817, 125, "V1-3", "right");
+            lights.Add(regV13);
+            PedTrafficLight regV14 = createPedTrafficLight(880, 115, "V1-4", "right");
+            lights.Add(regV14);
+
+            PedTrafficLight regV21 = createPedTrafficLight(920, 145, "V2-1", "down");
+            lights.Add(regV21);
+            PedTrafficLight regV22 = createPedTrafficLight(920, 250, "V2-2", "up");
+            lights.Add(regV22);
+            PedTrafficLight regV23 = createPedTrafficLight(920, 340, "V2-3", "down");
+            lights.Add(regV23);
+            PedTrafficLight regV24 = createPedTrafficLight(920, 400, "V2-4", "up");
+            lights.Add(regV24);
+
+            PedTrafficLight regV44 = createPedTrafficLight(380, 485, "V4-4", "right");
+            lights.Add(regV44);
+            PedTrafficLight regV43 = createPedTrafficLight(250, 485, "V4-3", "right");
+            lights.Add(regV43);
+            PedTrafficLight regV42 = createPedTrafficLight(250, 475, "V4-2", "left");
+            lights.Add(regV42);
+            PedTrafficLight regV41 = createPedTrafficLight(190, 485, "V4-1", "left");
+            lights.Add(regV41);
+
+            PedTrafficLight regV54 = createPedTrafficLight(155, 450, "V5-4", "up");
+            lights.Add(regV54);
+            PedTrafficLight regV53 = createPedTrafficLight(155, 340, "V5-3", "down");
+            lights.Add(regV53);
+            PedTrafficLight regV52 = createPedTrafficLight(155, 250, "V5-2", "up");
+            lights.Add(regV52);
+            PedTrafficLight regV51 = createPedTrafficLight(155, 186, "V5-1", "down");
+            lights.Add(regV51);
 
 
             Path path = new Path();
@@ -120,8 +193,8 @@ namespace Simulator
             // A44 - trafficlight
             path.addNode(342, 411, regA44);
             path.addNode(383, 388);
-            path.addNode(700, 386);
-            path.addNode(1083, 386, regA34);
+            path.addNode(700, 388);
+            path.addNode(1083, 388, regA34);
             paths.Add(path);
 
             
@@ -132,8 +205,8 @@ namespace Simulator
             // A44 - trafficlight -  Alternative path
             path2.addNode(342, 411, regA44);
             path2.addNode(383, 366);
-            path2.addNode(700, 386);
-            path2.addNode(1083, 362, regA33);
+            path2.addNode(700, 366);
+            path2.addNode(1083, 366, regA33);
             paths.Add(path2);
 
             
@@ -144,7 +217,7 @@ namespace Simulator
             // A43 - trafficlight
             path3.addNode(332, 366, regA43);
             path3.addNode(369, 342);
-            path2.addNode(700, 342);
+            path3.addNode(700, 342);
             path3.addNode(815, 342, regA32);
             path3.addNode(855, 320);
             path3.addNode(860, 0);
@@ -157,8 +230,8 @@ namespace Simulator
             // A43 - trafficlight -  Alternative path
             path4.addNode(368, 322, regA43);
             path4.addNode(369, 318);
-            path2.addNode(700, 318, regA31);
-            path4.addNode(811, 318);
+            path4.addNode(700, 318);
+            path4.addNode(811, 318, regA31);
             path4.addNode(835, 300);
             path4.addNode(836, 0);
             paths.Add(path4);
@@ -345,20 +418,225 @@ namespace Simulator
             patha24.addNode(232, 606); //end
             paths.Add(patha24);
 
-            /* WRONG PATH, SHOULD BE GOING NORTH...
+            
             ////// BUSSES /////
             Path buspathb41 = new Path();
             buspathb41.addNode(364, 592);
-            buspathb41.addNode(364, 505);
-            buspathb41.addNode(364, 460); // add trafficlight
+            buspathb41.addNode(364, 500);
+            buspathb41.addNode(364, 460, busB41); // add trafficlight
             buspathb41.addNode(342, 433);
-            buspathb41.addNode(361, 387);
-            buspathb41.addNode(1083, 387);
+            buspathb41.addNode(342, 342);
+            buspathb41.addNode(700, 342);
+            buspathb41.addNode(815, 342, regA32);
+            buspathb41.addNode(855, 320);
+            buspathb41.addNode(860, 0);
 
             busPaths.Add(buspathb41);
 
-            */
+            Path pathb11 = new Path();
+            pathb11.addNode(793, 1); //start 
+            pathb11.addNode(793, 55);
+            pathb11.addNode(793, 103, busB11); //light b11 
+            pathb11.addNode(793, 195);
+            pathb11.addNode(676, 252);
+            pathb11.addNode(393, 252);
+            pathb11.addNode(353, 252, regA63); //light a63
+            pathb11.addNode(227, 266);
+            pathb11.addNode(206, 345);
+            pathb11.addNode(206, 606); //end
+            busPaths.Add(pathb11);
 
+            // b12 - bus  
+            Path pathb12 = new Path();
+            pathb12.addNode(793, 1); //start
+            pathb12.addNode(793, 55);
+            pathb12.addNode(793, 103, busB12);
+            pathb12.addNode(793, 195);
+            pathb12.addNode(793, 365);
+            pathb12.addNode(1075, 365); //end
+            busPaths.Add(pathb12);
+
+            // CYCLISTS
+            Path pathf11 = new Path();
+            pathf11.addNode(1, 167); //start
+            pathf11.addNode(672, 167);
+            pathf11.addNode(694, 128);
+            pathf11.addNode(716, 128, regF11); //light f11
+            pathf11.addNode(825, 128);
+            pathf11.addNode(1075, 128); //end
+            cyclistPaths.Add(pathf11);
+
+            Path pathf52 = new Path();
+            pathf52.addNode(1, 475); //start
+            pathf52.addNode(170, 475);
+            pathf52.addNode(170, 465);
+            pathf52.addNode(170, 265, regF52);
+            pathf52.addNode(170, 168);
+            pathf52.addNode(1, 168);
+            cyclistPaths.Add(pathf52);
+
+            Path pathf51 = new Path();
+            pathf51.addNode(1, 168);
+            pathf51.addNode(170, 168);
+            pathf51.addNode(170, 174);
+            pathf51.addNode(170, 265, regF51);
+            pathf51.addNode(170, 465);
+            pathf51.addNode(170, 475);
+            pathf51.addNode(1, 475);
+            cyclistPaths.Add(pathf51);
+
+            Path pathf52alt = new Path();
+            pathf52alt.addNode(1, 475); //start
+            pathf52alt.addNode(170, 475);
+            pathf52alt.addNode(170, 465);
+            pathf52alt.addNode(170, 265, regF52);
+            pathf52alt.addNode(170, 167);
+            pathf52alt.addNode(672, 167);
+            pathf52alt.addNode(694, 128);
+            pathf52alt.addNode(716, 128, regF11); //light f11
+            pathf52alt.addNode(825, 128);
+            pathf52alt.addNode(1075, 128); //end
+            cyclistPaths.Add(pathf52alt);
+
+            Path pathf41 = new Path();
+            pathf41.addNode(1, 475); //start
+            pathf41.addNode(178, 475); 
+            pathf41.addNode(403, 475, regF41); 
+            pathf41.addNode(430, 437);
+            pathf41.addNode(1083, 437);
+            cyclistPaths.Add(pathf41);
+
+            Path pathf22 = new Path();
+            pathf22.addNode(1, 475); //start
+            pathf22.addNode(178, 475);
+            pathf22.addNode(403, 475, regF41);
+            pathf22.addNode(430, 437);
+            pathf22.addNode(911, 437);
+            pathf22.addNode(911, 420);
+            pathf22.addNode(911, 0, regF22);
+            cyclistPaths.Add(pathf22);
+
+            Path pathf22alt = new Path();
+            pathf22alt.addNode(1, 475); //start
+            pathf22alt.addNode(178, 475);
+            pathf22alt.addNode(403, 475, regF41);
+            pathf22alt.addNode(430, 437);
+            pathf22alt.addNode(911, 437);
+            pathf22alt.addNode(911, 420);
+            pathf22alt.addNode(911, 128, regF22);
+            pathf22alt.addNode(1075, 128);
+            cyclistPaths.Add(pathf22);
+
+            Path pathf12 = new Path();
+            pathf12.addNode(1075, 128); //start
+            pathf12.addNode(900, 128);
+            pathf12.addNode(882, 128, regF12); //light f12
+            pathf12.addNode(698, 128);
+            pathf12.addNode(666, 166);
+            pathf12.addNode(1, 166); //end
+            cyclistPaths.Add(pathf12);
+
+            Path pathf21 = new Path();
+            pathf21.addNode(912, 1); //start
+            pathf21.addNode(912, 137); //light f21
+            pathf21.addNode(912, 258, regF21);
+            pathf21.addNode(912, 359);
+            pathf21.addNode(912, 436);
+            pathf21.addNode(1075, 436); //end
+            cyclistPaths.Add(pathf21);
+
+            Path pathf22right = new Path();
+            pathf22right.addNode(1075, 438); //start
+            pathf22right.addNode(914, 438);
+            pathf22right.addNode(914, 410); //light f22
+            pathf22right.addNode(914, 258, regF22);
+            pathf22right.addNode(914, 142);
+            pathf22right.addNode(914, 1); //end
+            cyclistPaths.Add(pathf22right);
+
+            Path pathf42 = new Path();
+            pathf42.addNode(1082, 437); //start
+            pathf42.addNode(428, 437);
+            pathf42.addNode(411, 475);
+            pathf42.addNode(400, 475);
+            pathf42.addNode(1, 475, regF42);
+            cyclistPaths.Add(pathf42);
+
+            // PEDESTRIANS
+            Path pathv11 = new Path();
+            pathv11.addNode(1, 155); //start
+            pathv11.addNode(658, 155);
+            pathv11.addNode(700, 115); //light v11
+            pathv11.addNode(814, 115, regV11); //light v12
+            pathv11.addNode(891, 115, regV13);
+            pathv11.addNode(1075, 115); //end
+            pedPaths.Add(pathv11);
+
+            Path pathv21 = new Path();
+            pathv21.addNode(925, 1); //start
+            pathv21.addNode(925, 137); //light v21
+            pathv21.addNode(925, 258, regV21);
+            pathv21.addNode(925, 348);
+            pathv21.addNode(925, 448, regV23);
+            pathv21.addNode(1075, 448); //end
+            pedPaths.Add(pathv21);
+
+            Path pathv14 = new Path();
+            pathv14.addNode(1075, 115); //start
+            pathv14.addNode(900, 115);
+            pathv14.addNode(882, 115, regV14); //light v12
+            pathv14.addNode(820, 115/*, regV12*/); //light v12
+            pathv14.addNode(698, 115, regV12);
+            pathv14.addNode(666, 155);
+            pathv14.addNode(1, 155); //end
+            pedPaths.Add(pathv14);
+
+            Path pathv24 = new Path();
+            pathv24.addNode(1075, 448); //start
+            pathv24.addNode(924, 448);
+            pathv24.addNode(924, 415); //light f22
+            pathv24.addNode(924, 258, regV24);
+            pathv24.addNode(924, 142, regV22);
+            pathv24.addNode(924, 1); //end
+            pedPaths.Add(pathv24);
+
+            Path pathv44 = new Path();
+            pathv44.addNode(1082, 448); //start
+            pathv44.addNode(428, 448);
+            pathv44.addNode(420, 482);
+            pathv44.addNode(400, 488);
+            pathv44.addNode(252, 488, regV44);
+            pathv44.addNode(1, 488, regV42);
+            pedPaths.Add(pathv44);
+
+            Path pathv41 = new Path();
+            pathv41.addNode(1, 488); //start
+            pathv41.addNode(178, 488);
+            pathv41.addNode(266, 488, regV41);
+            pathv41.addNode(403, 488, regV43);
+            pathv41.addNode(420, 482);
+            pathv41.addNode(430, 448);
+            pathv41.addNode(1083, 448);
+            pedPaths.Add(pathv41);
+
+            Path pathv54 = new Path();
+            pathv54.addNode(1, 488); //start
+            pathv54.addNode(155, 488);
+            pathv54.addNode(155, 465);
+            pathv54.addNode(155, 265, regV54);
+            pathv54.addNode(155, 155, regV52);
+            pathv54.addNode(1, 155);
+            pedPaths.Add(pathv54);
+
+            Path pathv51 = new Path();
+            pathv51.addNode(1, 155);
+            pathv51.addNode(155, 155);
+            pathv51.addNode(155, 182);
+            pathv51.addNode(155, 348, regV51);
+            pathv51.addNode(155, 465, regV53);
+            pathv51.addNode(155, 488);
+            pathv51.addNode(1, 488);
+            pedPaths.Add(pathv51);
 
             Thread listen = new Thread(listener.Connect);
 
@@ -368,15 +646,15 @@ namespace Simulator
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            JSONTrafficLight trafficJSON = new JSONTrafficLight();
-            foreach(RegularTrafficLight reg in lights)
-            {
-                if(reg.name == "A11")
-                {
-                    trafficJSON.A11 = reg.carInFront ? 1 : 0;
-                }
+            //JSONTrafficLight trafficJSON = new JSONTrafficLight();
+            //foreach(RegularTrafficLight reg in lights)
+            //{
+             //   if(reg.name == "A11")
+             //   {
+               //     trafficJSON.A11 = reg.carInFront ? 1 : 0;
+             //   }
                 //listener.jsonToSend = trafficJSON;
-            }
+           // }
 
             JObject JSONtraffic = new JObject();
 
@@ -384,12 +662,28 @@ namespace Simulator
             {
                 JSONtraffic[reg.name] = reg.carInFront ? 1 : 0;
             }
+            //foreach (CyclistTrafficLight cyc in lights)
+            //{
+             //   JSONtraffic[cyc.name] = cyc.carInFront ? 1 : 0;
+            //}
             listener.jsonToSend = JSONtraffic;
             //json = listener.Json;
 
+            JObject received = listener.jsonToReceive;
+
+            if (received != null)
+            {
+                foreach (RegularTrafficLight regs in lights)
+                {
+                    int seq = (int)received[regs.name];
+                    regs.LightSequence(seq);
+                }
+            }
+
+            
             JObject json2 = listener.json2;
             //Console.WriteLine(json.A11.);
-
+            /*
             if (json2 != null) {
                 foreach (Path p in paths)
                 {
@@ -404,7 +698,7 @@ namespace Simulator
                                     if (n.Reg.name == ("A" + i.ToString() + j.ToString()))
                                     {
                                         string name = ("A" + i.ToString() + j.ToString());
-                                        //n.Reg.LightSequence(json["A11"].Value);
+                                        
                                         if(json2[name] != null)
                                             n.Reg.LightSequence((int)json2[name]);
                                     }
@@ -413,8 +707,8 @@ namespace Simulator
                         }
                     }
                 }
-            }
-
+            } */
+            
             
                 
 
@@ -436,12 +730,51 @@ namespace Simulator
             if(spawnTimer == randomTimeSpawned)
             {
                 spawnRandomCar();
-                spawnRandomBus();
+                //spawnRandomBus();
 
                 Random rnd = new Random();
                 this.randomTimeSpawned = rnd.Next(5, 20);
 
                 spawnTimer = 0;
+            }
+
+            busSpawnTimer += 1;
+
+            if (busSpawnTimer == busRandomTimeSpawned)
+            {
+                //spawnRandomCar();
+                spawnRandomBus();
+
+                Random rnd = new Random();
+                this.busRandomTimeSpawned = rnd.Next(20, 70);
+
+                busSpawnTimer = 0;
+            }
+
+            cyclistSpawnTimer += 1;
+
+            if (cyclistSpawnTimer == cyclistRandomTimeSpawned)
+            {
+                //spawnRandomCar();
+                spawnRandomCyclist();
+
+                Random rnd = new Random();
+                this.cyclistRandomTimeSpawned = rnd.Next(20, 70);
+
+                cyclistSpawnTimer = 0;
+            }
+
+            pedSpawnTimer += 1;
+
+            if (pedSpawnTimer == pedRandomTimeSpawned)
+            {
+                //spawnRandomCar();
+                spawnRandomPedestrian();
+
+                Random rnd = new Random();
+                this.pedRandomTimeSpawned = rnd.Next(20, 70);
+
+                pedSpawnTimer = 0;
             }
 
             /*
@@ -461,8 +794,20 @@ namespace Simulator
                 
 
                 bool brake = x.collisionDetection(this.traffic);
+                if(x is Pedestrian)
+                {
+                    x.move(2, brake);
+                }else if (x is Cyclist)
+                {
+                    x.move(5, brake);
+                }
+                else
+                {
+                    x.move(10, brake);
+                }
+                
 
-                x.move(10, brake);
+
                 //}
                 //if (x.path == "path1")
                 //{
@@ -547,6 +892,44 @@ namespace Simulator
             
         }
 
+        private void spawnRandomPedestrian()
+        {
+            Random rnd = new Random();
+            int random = rnd.Next(pedPaths.Count);
+
+
+            if (pedPaths.Count > 0)
+            {
+                Pedestrian ped = new Pedestrian();
+                ped.spawn(pedPaths[random], pedPaths[random].nodes[0].Left, pedPaths[random].nodes[0].Top);
+
+                traffic.Add(ped);
+
+                this.Controls.Add(ped.x);
+            }
+
+
+        }
+
+        private void spawnRandomCyclist()
+        {
+            Random rnd = new Random();
+            int random = rnd.Next(cyclistPaths.Count);
+
+
+            if (cyclistPaths.Count > 0)
+            {
+                Cyclist cyclist = new Cyclist();
+                cyclist.spawn(cyclistPaths[random], cyclistPaths[random].nodes[0].Left, cyclistPaths[random].nodes[0].Top);
+
+                traffic.Add(cyclist);
+
+                this.Controls.Add(cyclist.x);
+            }
+
+
+        }
+
         private void spawnRandomCar()
         {
             Random rnd = new Random();
@@ -572,9 +955,31 @@ namespace Simulator
             return reg;
         }
 
+        private RegularTrafficLight createCyclistTrafficLight(int left, int top, string name, string direction)
+        {
+            CyclistTrafficLight reg = new CyclistTrafficLight();
+
+            reg.createTrafficLight(left, top, name, direction);
+
+            this.Controls.Add(reg.regTrafficLight);
+
+            return reg;
+        }
+
         private BusTrafficLight createBusTrafficLight(int left, int top, string name, string direction)
         {
             BusTrafficLight reg = new BusTrafficLight();
+
+            reg.createTrafficLight(left, top, name, direction);
+
+            this.Controls.Add(reg.regTrafficLight);
+
+            return reg;
+        }
+
+        private PedTrafficLight createPedTrafficLight(int left, int top, string name, string direction)
+        {
+            PedTrafficLight reg = new PedTrafficLight();
 
             reg.createTrafficLight(left, top, name, direction);
 

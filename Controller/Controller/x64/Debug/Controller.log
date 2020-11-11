@@ -1,8 +1,14 @@
-﻿  Controller.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(31,14): warning C4101: 'traffic': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(32,14): warning C4101: 'header': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(33,14): warning C4101: 'package': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(209,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(253,7): warning C4101: 'buffer': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(267,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'd:\sd2 map\softwaredevelopment\controller\controller\x64\debug\controller.pch' because it is being used by another process.
+  pch.cpp
+  carlane.cpp
+  Controller.cpp
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(31,14): warning C4101: 'traffic': unreferenced local variable
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(32,14): warning C4101: 'header': unreferenced local variable
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(33,14): warning C4101: 'package': unreferenced local variable
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(209,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(253,7): warning C4101: 'buffer': unreferenced local variable
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\Controller.cpp(267,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  trafficlight.cpp
+D:\SD2 MAP\softwaredevelopment\Controller\Controller\trafficlight.cpp(7,6): warning C4101: 'state': unreferenced local variable
+  Generating Code...
+  Controller.vcxproj -> D:\SD2 MAP\softwaredevelopment\Controller\x64\Debug\Controller.exe

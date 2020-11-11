@@ -17,9 +17,9 @@ namespace Simulator
         Slowdown
     }
 
-    class BusTrafficLight
+    class BusTrafficLight : RegularTrafficLight
     {
-        public String name = null;
+        //public String name = null;
 
         protected const int delayedLightChange = 3000; // in milliseconds
         public BusLightSequence currentColor = BusLightSequence.Stop;
@@ -30,7 +30,7 @@ namespace Simulator
 
         protected string facingDirection;
 
-        public bool carInFront = false;
+        //public bool carInFront = false;
 
         protected const int imageWidth = 35;
         protected const int imageHeight = 35;

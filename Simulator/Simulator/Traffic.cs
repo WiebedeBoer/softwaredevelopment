@@ -53,7 +53,10 @@ namespace Simulator
             {
                 brake = true;
                 path.nodes[node].Reg.carInFront = true;
-            }
+            } //else
+            //{
+               // brake = false;
+            //}
 
             if (brake is false)
             {
@@ -242,8 +245,8 @@ namespace Simulator
                 {
                     carInFront++;
                 }
-
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront != 0)
+                // directection === direction weer weghalen als niet werkt...
+                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront != 0 && tr2.direction == this.direction)
                 {
                     return true;
                 }

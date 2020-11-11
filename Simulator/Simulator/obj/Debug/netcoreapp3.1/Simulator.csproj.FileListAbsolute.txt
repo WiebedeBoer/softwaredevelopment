@@ -112,7 +112,6 @@ D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simul
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Form1.resources
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
@@ -124,3 +123,4 @@ D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simul
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+D:\SD2 MAP\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache

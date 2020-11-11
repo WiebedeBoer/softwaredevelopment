@@ -25,6 +25,7 @@ namespace Simulator
         // JSON To Send back
         //public JSONTrafficLight jsonToSend = null;
         public JObject jsonToSend = null;
+        public JObject jsonToReceive = null;
         public JSONTrafficLight Json { get => json; set => json = value; }
 
 
@@ -33,8 +34,7 @@ namespace Simulator
             await System.Threading.Tasks.Task.Delay(1000);
 
             string sendData = JsonConvert.SerializeObject(jsonToSend);
-           
-            sendData = sendData.Replace(@"\", "");
+            sendData.Replace(@"\", "");
             string length = sendData.Length.ToString();
             string headerJSON = length + ":";
             string package = headerJSON + sendData;
@@ -71,20 +71,22 @@ namespace Simulator
 
                 if (header == stringData.Substring(4).Length.ToString())
                 {
-                    var charsToRemove = new string[] { "-" };
-                    foreach (var c in charsToRemove)
-                    {
-                        stringData = stringData.Replace(c, string.Empty);
-                    }
+                    //var charsToRemove = new string[] { "-" };
+                    //foreach (var c in charsToRemove)
+                    //{
+                      //  stringData = stringData.Replace(c, string.Empty);
+                    //}
                     stringData = stringData.Substring(4);
 
                     json2 = JObject.Parse(stringData);
 
                     json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
 
+                    jsonToReceive = JsonConvert.DeserializeObject<JObject>(stringData);
 
+                    Console.WriteLine(json2["A1-1"]);
 
-                    Console.WriteLine(json2["A11"]);
+                    Console.WriteLine("jsonToReceive variable: " + jsonToReceive["A1-1"]);
 
                     Console.WriteLine("Send back JSON...");
 
