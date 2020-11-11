@@ -691,7 +691,7 @@ namespace Simulator
                 foreach (BusTrafficLight bussen in busLights)
                 {
                     int seq = (int)received[bussen.name];
-                    if (bussen.name == "B1-4")
+                    if (bussen.name == "B4-1")
                         bussen.RightLightSequence(seq);
                     if (bussen.name == "B1-1")
                         bussen.StraightLightSequence(seq);

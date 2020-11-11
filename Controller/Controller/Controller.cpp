@@ -335,7 +335,6 @@ int controller::parsejson(string sensor, int order) {
 			//rechtdoor noord - zuid, oost - west bus
 			if (order == 1 && (A11 == 0 || A12 == 0 || B11 == 0 || B12 == 0 || A21 == 0 || A22 == 0 || B41 == 0 || A54 == 0 || A61 == 0 || A62 == 0)) {
 				order = order + 1;
-				increment = 7;
 				increment++;
 			}
 			//rechtdoor en rechtsaf noord - zuid auto 
