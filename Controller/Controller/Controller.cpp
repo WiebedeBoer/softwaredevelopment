@@ -65,6 +65,7 @@ int controller::sendlight() {
 			//phase calculation
 			modorder = (order % 6) + 1;
 			std::cout << modorder;
+			std::cout << "\n";
 
 			//receiving from simulator
 			string received = receiver(modorder, sock);
@@ -116,7 +117,12 @@ string controller::changetraffic(int order) {
 	else {
 		traffic = "{'A1-1':2,'A1-2':2,'A1-3':2,'B1-1':2,'B1-2':2,'F1-1':2,'F1-2':2,'V1-1':2,'V1-2':2,'V1-3':2,'V1-4':2,'A2-1':2,'A2-2':2,'A2-3':2,'A2-4':2,'F2-1':2,'F2-2':2,'V2-1':2,'V2-2':2,'V2-3':2,'V2-4':2,'A3-1':2,'A3-2':2,'A3-3':2,'A3-4':2,'A4-1':2,'A4-2':2,'A4-3':2,'A4-4':2,'B4-1':2,'F4-1':2,'F4-2':2,'V4-1':2,'V4-2':2,'V4-3':2,'V4-4':2,'A5-1':2,'A5-2':2,'A5-3':2,'A5-4':2,'F5-1':2,'F5-2':2,'V5-1':2,'V5-2':2,'V5-3':2,'V5-4':2,'A6-1':2,'A6-2':2,'A6-3':2,'A6-4':2}";
 	}
+
+	std::cout << "Sending \n";
+	std::cout << traffic;
+	std::cout << "\n";
 	return traffic;
+
 }
 
 SOCKET controller::socketSetup() {
@@ -225,7 +231,9 @@ void controller::socketServer(int modorder, SOCKET ClientSocket)
 				{
 					// Echo response to console
 					std::cout << "Socket buffer!\n";
+					std::cout << "Receiving\n";
 					std::cout << buf;
+					std::cout << "\n";
 					receivedbuffer = buf;
 				}
 			}
