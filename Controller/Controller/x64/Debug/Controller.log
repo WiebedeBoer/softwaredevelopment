@@ -4,5 +4,5 @@ C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Cont
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(33,14): warning C4101: 'package': unreferenced local variable
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(215,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(261,7): warning C4101: 'buffer': unreferenced local variable
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(275,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(279,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe
