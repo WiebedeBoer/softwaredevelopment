@@ -37,9 +37,9 @@ namespace Simulator
         {
             bool brake = false;
             if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentBusColor != BusLightSequence.Straight
-                || path.nodes[node].Reg != null && path.nodes[node].Reg.currentBusColor != BusLightSequence.AnyDir
-                || path.nodes[node].Reg != null && path.nodes[node].Reg.currentBusColor != BusLightSequence.Left
-                || path.nodes[node].Reg != null && path.nodes[node].Reg.currentBusColor != BusLightSequence.Right)
+                && path.nodes[node].Reg.currentBusColor != BusLightSequence.AnyDir
+                && path.nodes[node].Reg.currentBusColor != BusLightSequence.Left
+                && path.nodes[node].Reg.currentBusColor != BusLightSequence.Right)
             {
                 brake = true;
                 path.nodes[node].Reg.carInFront = true;

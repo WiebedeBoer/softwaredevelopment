@@ -55,9 +55,12 @@ namespace Simulator
                 brake = true;
                 path.nodes[node].Reg.carInFront = true;
             }
+
+            if (path.nodes[node].Reg == null)
+                carBrake = false;
             //else
             //{
-            // brake = false;
+            //\ brake = false;
             //}
 
             //if (brake is false)
@@ -238,12 +241,12 @@ namespace Simulator
 
             if (direction == "right")
             {
-                rect = new Rectangle((x.Left + x.Width), x.Top, 10, x.Top);
+                rect = new Rectangle((x.Left + x.Width + 10), x.Top, 10, x.Top);
             }
 
             if (direction == "left")
             {
-                rect = new Rectangle((x.Left - x.Width), x.Top, 10, x.Top);
+                rect = new Rectangle((x.Left - x.Width - 10), x.Top, 10, x.Top);
             }
 
             int carInFront = 0;
@@ -254,11 +257,27 @@ namespace Simulator
                 {
                     carInFront++;
                 }
+
+                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straight" && tr2.direction == direction && tr2.x.Top < x.Top)
+                    return true;
+                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straightdown" && tr2.direction == direction && tr2.x.Top > x.Top)
+                    return true;
+                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "right" && tr2.direction == direction && tr2.x.Left > x.Left)
+                    return true;
+                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "left" && tr2.direction == direction && tr2.x.Left < x.Left)
+                    return true;
+
+                //if(x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront == 0 && path.nodes[node].Reg == null)
+                //{
+                //  return false;
+                //}
                 // directection === direction weer weghalen als niet werkt...
+
+                /*
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront != 0 && tr2.direction == this.direction)
                 {
                     return true;
-                }
+                }*/
             }
 
             return false;

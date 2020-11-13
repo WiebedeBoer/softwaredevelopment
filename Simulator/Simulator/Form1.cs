@@ -761,7 +761,7 @@ namespace Simulator
                 //spawnRandomBus();
 
                 Random rnd = new Random();
-                this.randomTimeSpawned = rnd.Next(5, 20);
+                this.randomTimeSpawned = rnd.Next(15, 30);
 
                 spawnTimer = 0;
             }
@@ -774,7 +774,7 @@ namespace Simulator
                 spawnRandomBus();
 
                 Random rnd = new Random();
-                this.busRandomTimeSpawned = rnd.Next(20, 70);
+                this.busRandomTimeSpawned = rnd.Next(100, 150);
 
                 busSpawnTimer = 0;
             }
@@ -812,6 +812,12 @@ namespace Simulator
                 
                 x.move(10, brake);
             }*/
+
+            //foreach (Bus x in this.traffic)
+            //{
+             //   bool brake = x.collisionDetection(this.traffic);
+              //  x.move(7, brake);
+            //}
             
 
             foreach (Traffic x in this.traffic)
