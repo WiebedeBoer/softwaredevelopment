@@ -187,7 +187,6 @@ namespace Simulator
             PedTrafficLight regV51 = createPedTrafficLight(155, 186, "V5-1", "down");
             lights.Add(regV51);
 
-
             Path path = new Path();
 
             path.addNode(342, 580);
@@ -199,7 +198,7 @@ namespace Simulator
             path.addNode(1083, 388);
             paths.Add(path);
 
-            
+
             Path path2 = new Path();
 
             path2.addNode(342, 580);
@@ -211,7 +210,7 @@ namespace Simulator
             path2.addNode(1083, 366);
             paths.Add(path2);
 
-            
+
             Path path3 = new Path();
 
             path3.addNode(320, 580);
@@ -262,6 +261,7 @@ namespace Simulator
 
             path7.addNode(1, 433);
             path7.addNode(120, 433, regA54);
+            path7.addNode(170, 433);
             // A54 - trafficlight
             path7.addNode(208, 433); // add trafficlight
             path7.addNode(206, 610);
@@ -271,6 +271,7 @@ namespace Simulator
 
             path8.addNode(1, 409);
             path8.addNode(120, 409, regA53);
+            path8.addNode(170, 409);
             // A53 - trafficlight
             path8.addNode(208, 409);
             path8.addNode(224, 443);// add trafficlight
@@ -281,6 +282,7 @@ namespace Simulator
 
             path9.addNode(1, 385);
             path9.addNode(120, 385, regA52);
+            path9.addNode(170, 385);
             // A52 - trafficlight
             path9.addNode(700, 385, regA34);
             path9.addNode(1083, 385); // add trafficlight
@@ -290,6 +292,7 @@ namespace Simulator
 
             path10.addNode(1, 385);
             path10.addNode(120, 385, regA52);
+            path10.addNode(170, 385);
             // A52 - trafficlight - Aternative path
             path10.addNode(310, 385);
             path10.addNode(400, 363);
@@ -301,6 +304,7 @@ namespace Simulator
 
             path11.addNode(1, 363);
             path11.addNode(120, 363, regA51);
+            path11.addNode(170, 363);
             // A51 - trafficlight
             path11.addNode(272, 363);
             path11.addNode(401, 341);
@@ -313,6 +317,7 @@ namespace Simulator
 
             path12.addNode(1, 363);
             path12.addNode(120, 363, regA51);
+            path12.addNode(170, 363);
             // A51 - trafficlight
             path12.addNode(272, 363);
             path12.addNode(401, 318);
@@ -352,8 +357,8 @@ namespace Simulator
             patha12.addNode(750, 195);
             patha12.addNode(750, 252);
             patha12.addNode(571, 252);
-            patha12.addNode(389, 252);
-            patha12.addNode(353, 252, regA64); //light a63
+            patha12.addNode(391, 252, regA64);
+            patha12.addNode(353, 252); //light a63
             patha12.addNode(227, 266);
             patha12.addNode(206, 345);
             patha12.addNode(206, 606); //end
@@ -366,8 +371,8 @@ namespace Simulator
             patha12r.addNode(750, 195);
             patha12r.addNode(750, 276);
             patha12r.addNode(571, 276);
-            patha12r.addNode(389, 276);
-            patha12r.addNode(353, 276, regA64); //light a64
+            patha12r.addNode(391, 276, regA64);
+            patha12r.addNode(353, 276); //light a64
             patha12r.addNode(240, 282);
             patha12r.addNode(232, 345);
             patha12r.addNode(232, 606); //end
@@ -378,7 +383,7 @@ namespace Simulator
             patha13.addNode(772, 1); //start
             patha13.addNode(772, 80, regA13); //light a13
             patha13.addNode(772, 353);
-            patha13.addNode(778, 388);
+            patha13.addNode(772, 388);
             patha13.addNode(1075, 388); //end
             paths.Add(patha13);
 
@@ -404,7 +409,8 @@ namespace Simulator
             patha23.addNode(1075, 207); //start
             patha23.addNode(930, 207, regA23); //light a23
             patha23.addNode(766, 207);
-            patha23.addNode(581, 207, regA61);
+            patha23.addNode(581, 207);
+            patha23.addNode(391, 207, regA61);
             patha23.addNode(353, 207); //light a61
             patha23.addNode(1, 207); //end
             paths.Add(patha23);
@@ -416,13 +422,13 @@ namespace Simulator
             patha24.addNode(765, 230);
             patha24.addNode(675, 253);
             patha24.addNode(579, 276);
-            patha24.addNode(353, 276, regA64); //light a64
+            patha24.addNode(391, 276, regA64); //light a64
             patha24.addNode(240, 282);
             patha24.addNode(232, 345);
             patha24.addNode(232, 606); //end
             paths.Add(patha24);
 
-            
+
             ////// BUSSES /////
             Path buspathb41 = new Path();
             buspathb41.addNode(364, 592);
@@ -504,8 +510,8 @@ namespace Simulator
 
             Path pathf41 = new Path();
             pathf41.addNode(1, 475); //start
-            pathf41.addNode(178, 475, regF41); 
-            pathf41.addNode(403, 475); 
+            pathf41.addNode(178, 475, regF41);
+            pathf41.addNode(403, 475);
             pathf41.addNode(430, 437);
             pathf41.addNode(1083, 437);
             cyclistPaths.Add(pathf41);
@@ -516,7 +522,7 @@ namespace Simulator
             pathf22.addNode(403, 475);
             pathf22.addNode(430, 437);
             pathf22.addNode(911, 437);
-            pathf22.addNode(911, 420, regF22);
+            pathf22.addNode(911, 428, regF22);
             pathf22.addNode(911, 0);
             cyclistPaths.Add(pathf22);
 
@@ -526,7 +532,7 @@ namespace Simulator
             pathf22alt.addNode(403, 475);
             pathf22alt.addNode(430, 437);
             pathf22alt.addNode(911, 437);
-            pathf22alt.addNode(911, 420, regF22);
+            pathf22alt.addNode(911, 428, regF22);
             pathf22alt.addNode(911, 128);
             pathf22alt.addNode(1075, 128);
             cyclistPaths.Add(pathf22);
@@ -552,7 +558,7 @@ namespace Simulator
             Path pathf22right = new Path();
             pathf22right.addNode(1075, 438); //start
             pathf22right.addNode(914, 438);
-            pathf22right.addNode(914, 410, regF22); //light f22
+            pathf22right.addNode(914, 428, regF22); //light f22
             pathf22right.addNode(914, 258);
             pathf22right.addNode(914, 142);
             pathf22right.addNode(914, 1); //end
@@ -598,7 +604,7 @@ namespace Simulator
             Path pathv24 = new Path();
             pathv24.addNode(1075, 448); //start
             pathv24.addNode(924, 448);
-            pathv24.addNode(924, 415, regV24); //light f22
+            pathv24.addNode(924, 428, regV24); //light f22
             pathv24.addNode(924, 258, regV22);
             pathv24.addNode(924, 142);
             pathv24.addNode(924, 1); //end
@@ -636,7 +642,7 @@ namespace Simulator
             pathv51.addNode(1, 155);
             pathv51.addNode(155, 155);
             pathv51.addNode(155, 182, regV51);
-            pathv51.addNode(155, 348, regV53);
+            pathv51.addNode(155, 340, regV53);
             pathv51.addNode(155, 465);
             pathv51.addNode(155, 488);
             pathv51.addNode(1, 488);
