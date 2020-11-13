@@ -1,3 +1,0 @@
-﻿  Controller.cpp
-c:\users\wiebe\documents\minor\software_development\traffic\softwaredevelopment\controller\controller\controller.cpp(26): warning C4101: 'light': unreferenced local variable
-  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\softwaredevelopment\Controller\Debug\Controller.exe
