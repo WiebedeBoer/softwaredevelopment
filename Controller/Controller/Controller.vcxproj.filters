@@ -144,6 +144,9 @@
     <ClInclude Include="..\..\..\nlohmann\thirdparty\hedley\hedley_undef.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="carlane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

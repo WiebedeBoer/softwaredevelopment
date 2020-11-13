@@ -200,6 +200,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Sender.h" />
     <ClInclude Include="socket.h" />
     <ClInclude Include="trafficlight.h" />
   </ItemGroup>
@@ -212,6 +213,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Sender.cpp" />
     <ClCompile Include="trafficlight.cpp" />
   </ItemGroup>
   <ItemGroup>

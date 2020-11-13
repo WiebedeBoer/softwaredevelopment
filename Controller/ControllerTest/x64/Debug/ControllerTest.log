@@ -1,3 +1,4 @@
 ﻿  stdafx.cpp
   unittest1.cpp
-  ControllerTest.vcxproj -> D:\SD2 MAP\softwaredevelopment\Controller\x64\Debug\ControllerTest.dll
+  LINK : C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\ControllerTest.dll not found or not built by the last incremental link; performing full link
+  ControllerTest.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\ControllerTest.dll

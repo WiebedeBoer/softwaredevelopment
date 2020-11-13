@@ -2,7 +2,7 @@
 //
 
 #include "pch.h"
-#include "trafficlight.h"
+//#include "trafficlight.h"
 #include <iostream>
 #include <sstream>
 #include <stdio.h> 
@@ -13,6 +13,8 @@
 #include "Controller.h"
 #pragma comment(lib, "ws2_32.lib")
 #include <sys/types.h>
+#include <thread>  
+//#include "Sender.h"
 
 #include <nlohmann/json.hpp> 
 using json = nlohmann::json;
@@ -28,9 +30,9 @@ int main()
 
 int controller::sendlight() {
 	int order = 1; //start phase
-	const char* traffic;
-	const char* header;
-	const char* package;
+	//string traffic;
+	//const char* header;
+	//const char* package;
 	int modorder;
 
 	std::cout << "Startup sending!\n";
@@ -41,12 +43,15 @@ int controller::sendlight() {
 	clock_t last_time = this_time;
 	const int NUM_SECONDS = 4;
 
+
+
 	//setup socket
-	SOCKET sock = socketSetup();
+	sendingSocket.socketSetup();
 
 	//first send
 	std::cout << "First send!\n";
-	socketServer(order, sock);
+	string traffic = changetraffic(order);
+	sendingSocket.socketServer(traffic);
 
 	//run clock
 	while (true)
@@ -68,12 +73,13 @@ int controller::sendlight() {
 			std::cout << "\n";
 
 			//receiving from simulator
-			string received = receiver(modorder, sock);
+			string received = receiver(modorder);
 			//parsing from received
 			modorder = parsejson(received, modorder);
 			
 			//traffic lights send
-			socketServer(modorder, sock);
+			string newtraffic = changetraffic(modorder);
+			sendingSocket.socketServer(newtraffic);
 			std::cout << "phase Send \n"; //package every 4 seconds
 		}
 		//continuous order
@@ -125,144 +131,16 @@ string controller::changetraffic(int order) {
 
 }
 
-SOCKET controller::socketSetup() {
-
-	std::string ipAddress = "127.0.0.1";			// IP Address of the server
-	int port = 54000;						// Listening port # on the server
-
-	std::cout << "Socket startup!\n";
-	// Initialize WinSock
-	WSAData data;
-	WORD ver = MAKEWORD(2, 2);
-	int wsResult = WSAStartup(ver, &data);
-	if (wsResult != 0)
-	{
-		std::cout << "Socket not init!\n";
-		return 0;
-	}
-
-	// Create socket
-	SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	if (sock == INVALID_SOCKET)
-	{
-		std::cout << "Socket not valid!\n";
-		WSACleanup();
-		return 0;
-	}
-
-	//bind
-	SOCKADDR_IN serverInf;
-	serverInf.sin_family = AF_INET;
-	serverInf.sin_addr.s_addr = INADDR_ANY;
-	serverInf.sin_port = htons(port);
-	inet_pton(AF_INET, ipAddress.c_str(), &serverInf.sin_addr); //pton
-
-	if (bind(sock, (SOCKADDR*)(&serverInf), sizeof(serverInf)) == SOCKET_ERROR)
-	{
-		std::cout << "Unable to bind socket!\r\n";
-		WSACleanup();
-		system("PAUSE");
-		return 0;
-	}
-
-	//listen
-	int iResult;
-	iResult = listen(sock, SOMAXCONN);
-	if (iResult == SOCKET_ERROR) {
-		printf("listen failed with error: %d\n", WSAGetLastError());
-		closesocket(sock);
-		WSACleanup();
-		return 0;
-	}
-
-	// Wait for a connection
-	int clientSize = sizeof(serverInf);
-
-	// Accept a client socket
-	SOCKET ClientSocket = accept(sock, (sockaddr*)&serverInf, &clientSize);
-	if (ClientSocket == INVALID_SOCKET) {
-		printf("accept failed with error: %d\n", WSAGetLastError());
-		closesocket(sock);
-		WSACleanup();
-		return 0;
-	}
-
-	return ClientSocket;
-}
-
-void controller::socketServer(int modorder, SOCKET ClientSocket)
-{
-	std::string ipAddress = "127.0.0.1";			// IP Address of the server
-	int port = 54000;						// Listening port # on the server
-
-	//create send data
-	std::cout << "Socket start sending!\n";
-
-	string traffic = changetraffic(modorder);
-	string length = std::to_string(traffic.length());
-	string header = length + ":";
-	string package = header + traffic;
-	const char* Input = package.c_str();
-
-	std::string str = traffic;
-
-	// Do-while loop to send data
-	char buf[4096];
-
-	do
-	{
-		// get text
-		int size = strlen(Input);
-		if (size > 0)		// Make sure there is input
-		{
-			//std::cout << "size correct ";
-			// Send the text
-			int sendResult = send(ClientSocket, Input, size, 0);
-
-			if (sendResult != SOCKET_ERROR)
-				//if (sendResult == -1)
-			{
-				//std::cout << "Socket no result error!\n";					
-				// Wait for response
-				ZeroMemory(buf, 4096);
-				//int bytesReceived = recv(sock, buf, 4096, 0);
-				int bytesReceived = recv(ClientSocket, buf, 4096, 0);
-				if (bytesReceived > 0)
-				{
-					// Echo response to console
-					std::cout << "Socket buffer!\n";
-					std::cout << "Receiving\n";
-					std::cout << buf;
-					std::cout << "\n";
-					receivedbuffer = buf;
-				}
-			}
-			else {
-				std::cout << "Socket result error!\n";
-				std::cout << WSAGetLastError;
-			}
-		}
-
-		str = "";
-
-	} while (str.size() > 0);
-
-	// Gracefully close down everything
-	//closesocket(sock);
-	//closesocket(ClientSocket);
-	//WSACleanup();
-	std::cout << "Phase closed!\n";
-}
-
-string controller::receiver(int modorder, SOCKET ClientSocket)
+string controller::receiver(int modorder)
 {
 	std::cout << "Socket start receiving!\n";
 	//receive
-	char buffer[1024];
+	//char buffer[1024];
 	string output;
 	//sleep
-	//Sleep(500);
-	output = receivedbuffer;
+	Sleep(500);
+	//Sender receiving;
+	output = sendingSocket.receivedbuffer;
 	std::cout << "Simulator data received!\n";
 	return output;
 }
@@ -278,7 +156,7 @@ int controller::parsejson(string sensor, int order) {
 		//checking string length
 		int sensorlength = sensor.length();
 		//if string is complete
-		if (sensorlength > 451) {
+		if (sensorlength > 451 && sensorlength < 1000) {
 			std::cout << "Full simulator package received!\n";
 			//remove header
 			string substr = sensor.substr(4);
@@ -377,6 +255,7 @@ int controller::parsejson(string sensor, int order) {
 				}
 				else {
 					increment = 7;
+					order = order;
 				}
 			}
 		}

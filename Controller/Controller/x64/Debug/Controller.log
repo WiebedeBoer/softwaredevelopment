@@ -1,1 +1,3 @@
-﻿  Controller.vcxproj -> D:\SD2 MAP\softwaredevelopment\Controller\x64\Debug\Controller.exe
+﻿  Controller.cpp
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\Controller\Controller.cpp(157,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Controller.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Controller\x64\Debug\Controller.exe
