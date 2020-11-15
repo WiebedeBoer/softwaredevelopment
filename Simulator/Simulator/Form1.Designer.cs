@@ -53,7 +53,6 @@ namespace Simulator
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.timer1_Tick_1);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.ResumeLayout(false);
 
         }
