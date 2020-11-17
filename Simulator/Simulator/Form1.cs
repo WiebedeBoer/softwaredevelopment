@@ -775,13 +775,13 @@ namespace Simulator
                 
                 if(x is Pedestrian)
                 {
-                    x.move(2, brake);
+                    x.move(4, brake);
                 }else if (x is Cyclist)
                 {
-                    x.move(5, brake);
+                    x.move(10, brake);
                 } else
                 {
-                    x.move(7, brake);
+                    x.move(14, brake);
                 }
             }
 
