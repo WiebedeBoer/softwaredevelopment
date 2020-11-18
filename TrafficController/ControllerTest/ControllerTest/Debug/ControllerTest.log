@@ -1,6 +1,1 @@
-﻿  pch.cpp
-  ControllerTest.cpp
-     Creating library C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\ControllerTest\Debug\ControllerTest.lib and object C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\ControllerTest\Debug\ControllerTest.exp
-ControllerTest.obj : error LNK2019: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Controller::changetraffic(int)" (?changetraffic@Controller@@QAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z) referenced in function "public: void __thiscall ControllerTest::ControllerTest::TestMethodTrafficOrder(void)" (?TestMethodTrafficOrder@ControllerTest@1@QAEXXZ)
-ControllerTest.obj : error LNK2019: unresolved external symbol "public: int __thiscall Controller::parsejson(int)" (?parsejson@Controller@@QAEHH@Z) referenced in function "public: void __thiscall ControllerTest::ControllerTest::TestMethodParseJson(void)" (?TestMethodParseJson@ControllerTest@1@QAEXXZ)
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\ControllerTest\Debug\ControllerTest.dll : fatal error LNK1120: 2 unresolved externals
+﻿C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\TrafficController\x64\Debug\Controller.obj : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'x86'
