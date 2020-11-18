@@ -5,7 +5,10 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "Simulator\Simulator.csproj", "{8D768989-9746-473D-B5BB-EDFFD62F87D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulatorTest", "SimulatorTest\SimulatorTest.csproj", "{B9CBEDCC-91FB-46D5-821F-34EDC1D1288D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulatorTest", "SimulatorTest\SimulatorTest.csproj", "{B9CBEDCC-91FB-46D5-821F-34EDC1D1288D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D768989-9746-473D-B5BB-EDFFD62F87D9} = {8D768989-9746-473D-B5BB-EDFFD62F87D9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj": {}
+    "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj": {
+    "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj",
+        "projectUniqueName": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
         "projectName": "Simulator",
-        "projectPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj",
-        "packagesPath": "C:\\Users\\wiebe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\obj\\",
+        "projectPath": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+        "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
+        "outputPath": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\wiebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

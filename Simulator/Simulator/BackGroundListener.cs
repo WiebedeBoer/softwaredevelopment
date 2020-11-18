@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace Simulator
 {
-    class BackGroundListener
+    public class BackGroundListener : IListener
     {
         private Int32 port = 54000;
 
@@ -46,7 +46,6 @@ namespace Simulator
 
         public void StartListening()
         {
-
             byte[] buffer = new byte[1024];
 
             while (socket.Available > 0)

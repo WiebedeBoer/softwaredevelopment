@@ -1,36 +1,38 @@
-using Simulator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Simulator;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Simulator.Tests
+namespace Simulator.Testing
 {
     [TestClass()]
     public class UnitTest1
     {
+        Simulator.RegularTrafficLight lights = new RegularTrafficLight();
+
+        string jsonString = "{\"A1-1\":1,\"A1-2\":1,\"A1-3\":0}";
+
+        Mock mock = new Mock<BackGroundListener>();
+
+        JObject incomingJSON = null;
+
         [TestMethod()]
-        public void SwitchLightToGreenTest()
+        public void isTrafficLightCreated()
         {
-            
-            Assert.Fail();
+            lights.createTrafficLight(0,0,"test","left");
+            Assert.AreEqual("test", lights.name);
         }
 
         [TestMethod()]
-        public void SwitchLightToRedTest()
+        public void JSON_parsing_test()
         {
-            Assert.Fail();
-        }
-    }
-}
+            incomingJSON = JObject.Parse(jsonString);
 
-namespace Simulator.SimulatorTest
-{
-    [TestClass]
-    public class UnitTest1
-    {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            
+            int seq = (int)incomingJSON["A1-2"];
+            int seq2 = (int)incomingJSON["A1-3"];
+            Assert.AreEqual(1, seq);
+            Assert.AreEqual(0, seq2);
         }
     }
 }
