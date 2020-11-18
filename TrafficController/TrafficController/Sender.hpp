@@ -15,8 +15,10 @@ public:
 	SOCKET clientSocket = INVALID_SOCKET;
 	bool isRunning = false;
 	bool isSending = false;
-	std::string ipAddress = "127.0.0.1";			// IP Address of the server
-	int port = 54000;						// Listening port # on the server
+	// IP Address of the server.
+	std::string ipAddress = "127.0.0.1";
+	// Listening port # on the server.
+	int port = 54000;						
 
 	void socketSetup();
 	void socketServer(std::string traffic);

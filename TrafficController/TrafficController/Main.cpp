@@ -8,35 +8,24 @@ int main()
 	std::cout << "Hello World!\n";
 	std::shared_ptr<Controller> controller(new Controller);
 	std::shared_ptr<Sender> ptr_sender(new Sender(controller));
-	//controller controller;
-	//send traffic lights
-
-	//setup socket
+	//Setup socket.
 	ptr_sender->socketSetup();
-
-	int order = 1; //start phase
+	//Start phase number.
+	int order = 1; 
 	int modorder;
-
-	//timing
+	//Timing.
 	double time_counter = 0;
 	clock_t this_time = clock();
 	clock_t last_time = this_time;
 	const int NUM_SECONDS = 4;
 	double total_time = 0;
-
-	/*
-	//first send
-	std::cout << "First send!\n";
-	string traffic = controller->changetraffic(order);
-	sendingSocket.socketServer(traffic);
-	*/
-
-	//thread
+	//Thread for receiving.
 	std::thread t1(&Sender::receiving, ptr_sender);
 
-	//run clock
+	//Run clock.
 	while (true)
 	{
+		//Timer of clock.
 		this_time = clock();
 		time_counter += (double)(this_time - last_time);
 		last_time = this_time;
@@ -44,24 +33,20 @@ int main()
 		if (time_counter <= NUM_SECONDS * CLOCKS_PER_SEC)
 			continue;
 		time_counter = 0;
-
-		//phase calculation
+		//Phase calculation.
 		modorder = (order % 6) + 1;
 		std::cout << modorder;
 		std::cout << "\n";
-		//parsing from received
+		//Parsing from received.
 		modorder = controller->parsejson(modorder);
-		//traffic lights send
+		//Traffic lights to send.
 		std::string newtraffic = controller->changetraffic(modorder);
+		//Package every 4 seconds.
 		ptr_sender->socketServer(newtraffic);
-		std::cout << "phase Send \n"; //package every 4 seconds		
-
-		//continuous order
+		std::cout << "phase Send \n"; 
+		//Continuous order of phase number.
 		order++;
 	}
-
 	t1.join();
-
-	//controller->sendlight();
 	controller.reset();
 }

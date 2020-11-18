@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-//#include "../../TrafficController/Main.cpp"
 #include "../../TrafficController/Controller.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -11,6 +10,9 @@ namespace ControllerTest
 	{
 	public:
 		
+		/*
+		* Test of the json parsing and phase number.	
+		*/
 		TEST_METHOD(TestMethodParseJson)
 		{
 			Controller contr;
@@ -20,7 +22,9 @@ namespace ControllerTest
 			Assert::AreEqual(testjson, checkjson);
 		}
 		
-
+		/*
+		* Test of the traffic string.		
+		*/
 		TEST_METHOD(TestMethodTrafficOrder)
 		{
 			Controller contr;			

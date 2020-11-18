@@ -39,7 +39,27 @@ namespace Simulator
             string headerJSON = length + ":";
             string package = headerJSON + sendData;
             byte[] dataBytes = Encoding.Default.GetBytes(package);
-            socket.Send(dataBytes);
+
+            bool connected = SocketPolled(socket);
+            if (connected ==true)
+            {
+                socket.Send(dataBytes);
+            }
+            else
+            {
+                Console.WriteLine("Controller closed...");
+            }
+
+        }
+
+        bool SocketPolled(Socket s)
+        {
+            bool part1 = s.Poll(1000, SelectMode.SelectRead);
+            bool part2 = (s.Available == 0);
+            if (part1 && part2)
+                return false;
+            else
+                return true;
         }
 
         //connect and receive, instead of listen

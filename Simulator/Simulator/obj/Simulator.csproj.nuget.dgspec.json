@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {}
+    "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj": {}
   },
   "projects": {
-    "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
+    "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+        "projectUniqueName": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj",
         "projectName": "Simulator",
-        "projectPath": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
-        "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
-        "outputPath": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\obj\\",
+        "projectPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj",
+        "packagesPath": "C:\\Users\\wiebe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wiebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +29,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +41,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Moq": {
               "target": "Package",
@@ -65,7 +70,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
