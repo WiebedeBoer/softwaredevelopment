@@ -3,73 +3,6 @@
 using json = nlohmann::json;
 using u_short = unsigned short;
 
-/*
-int Controller::sendlight() {
-	int order = 1; //start phase
-	int modorder;
-
-	std::cout << "Startup sending!\n";
-
-
-	//timing
-	double time_counter = 0;
-	clock_t this_time = clock();
-	clock_t last_time = this_time;
-	const int NUM_SECONDS = 4;
-
-	//setup socket
-	//sendingSocket.socketSetup();
-
-	//first send
-	std::cout << "First send!\n";
-	string traffic = changetraffic(order);
-	sendingSocket.socketServer(traffic);
-
-	//thread
-	std::thread t1(&Sender::receiving, sendingSocket);
-
-	//run clock
-	while (true)
-	{
-		this_time = clock();
-		time_counter += (double)(this_time - last_time);
-		last_time = this_time;
-
-		if (time_counter > (double)(NUM_SECONDS * CLOCKS_PER_SEC))
-		{
-			//timer counter
-			time_counter -= (double)(NUM_SECONDS * CLOCKS_PER_SEC);
-
-			std::cout << "Sending phase \n";
-
-			//phase calculation
-			modorder = (order % 6) + 1;
-			std::cout << modorder;
-			std::cout << "\n";
-
-			//receiving from simulator
-			//string received = receiver(modorder);
-			//string received = sendingSocket.receiver();
-			//parsing from received
-			modorder = parsejson(buffer, modorder);
-
-			//traffic lights send
-			string newtraffic = changetraffic(modorder);
-			sendingSocket.socketServer(newtraffic);
-			std::cout << "phase Send \n"; //package every 4 seconds
-		}
-		//continuous order
-		order++;
-	}
-
-	t1.join();
-
-
-	int lightssend = 1;
-	return lightssend;
-}
-*/
-
 //which lights on green
 std::string Controller::changetraffic(int order) {
 
@@ -110,25 +43,13 @@ std::string Controller::changetraffic(int order) {
 	return traffic;
 
 }
-/*
-string controller::receiver()
-{
-	std::cout << "Socket start receiving!\n";
-	//receive
-	//Sleep(500);
-	//Sender receiving;
-	//output = sendingSocket.receivedbuffer;
-	string output(sendingSocket.receivedbuf);
-	std::cout << "Simulator data received!\n";
-	return output;
-}
-*/
+
 
 //https://github.com/nlohmann/json#examples
 //json parsing and deserialization
 int Controller::parsejson(int order) {
 
-	//string divider = sensor.substr(3,4);
+	//std::string divider = buffer.substr(3,1);
 
 	//if (divider ==":") {
 		//std::cout << "Divider received!\n";
@@ -238,9 +159,9 @@ int Controller::parsejson(int order) {
 				order = order;
 			}
 		}
-	}
+	//}
 	//else do nothing
-//}
+}
 //else do nothing
 
 	return order;
@@ -261,8 +182,6 @@ string controller::Replace(string str, const string& oldStr, const string& newSt
 	return str;
 }
 */
-
-
 
 /*
 //https://github.com/nlohmann/json
