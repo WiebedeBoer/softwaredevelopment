@@ -87,7 +87,7 @@ namespace Simulator
                         header = stringData.Substring(0, charLocation);
                     }
                 }
-
+                stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
                 if (header == stringData.Substring(4).Length.ToString())
                 {
                     //var charsToRemove = new string[] { "-" };
@@ -95,21 +95,28 @@ namespace Simulator
                     //{
                       //  stringData = stringData.Replace(c, string.Empty);
                     //}
-                    stringData = stringData.Substring(4);
+                    try
+                    {
+                        stringData = stringData.Substring(4);
 
-                    json2 = JObject.Parse(stringData);
+                        json2 = JObject.Parse(stringData);
 
-                    json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
+                        json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
 
-                    jsonToReceive = JsonConvert.DeserializeObject<JObject>(stringData);
+                        jsonToReceive = JsonConvert.DeserializeObject<JObject>(stringData);
 
-                    Console.WriteLine(json2["A1-1"]);
+                        Console.WriteLine(json2["A1-1"]);
 
-                    Console.WriteLine("jsonToReceive variable: " + jsonToReceive["B1-1"]);
+                        Console.WriteLine("jsonToReceive variable: " + jsonToReceive["B1-1"]);
 
-                    Console.WriteLine("Send back JSON...");
+                        Console.WriteLine("Send back JSON...");
 
-                    Console.WriteLine("jsonToSend variable: " + jsonToSend["B1-1"]);
+                        Console.WriteLine("jsonToSend variable: " + jsonToSend["B1-1"]);
+                    } catch(Exception e)
+                    {
+                        Console.WriteLine("JSON wasn't correct and thus couldn't be parsed");
+                    }
+
                     if (jsonToSend != null)
                     {
                         WaitSequence();
