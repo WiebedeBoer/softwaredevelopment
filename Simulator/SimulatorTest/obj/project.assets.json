@@ -6014,19 +6014,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\janek\\.nuget\\packages\\": {}
+    "C:\\Users\\wiebe\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Software Development 2\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
+      "projectUniqueName": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
       "projectName": "SimulatorTest",
-      "projectPath": "D:\\Software Development 2\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
-      "packagesPath": "C:\\Users\\janek\\.nuget\\packages\\",
-      "outputPath": "D:\\Software Development 2\\softwaredevelopment\\Simulator\\SimulatorTest\\obj\\",
+      "projectPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
+      "packagesPath": "C:\\Users\\wiebe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\SimulatorTest\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\janek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wiebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6038,9 +6042,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Software Development 2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj": {
-              "projectPath": "D:\\Software Development 2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj"
+            "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\wiebe\\Documents\\minor\\software_development\\traffic\\software_groep2\\Simulator\\Simulator\\Simulator.csproj"
             }
           }
         }
@@ -6053,6 +6058,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "MSTest.TestAdapter": {
             "target": "Package",
@@ -6093,7 +6099,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

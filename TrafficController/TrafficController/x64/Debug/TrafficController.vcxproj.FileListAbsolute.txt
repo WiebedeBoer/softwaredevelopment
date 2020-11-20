@@ -2,3 +2,5 @@ C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\Traf
 C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\TrafficController\x64\Debug\TrafficController.pdb
 D:\Software Development 2\softwaredevelopment\TrafficController\x64\Debug\TrafficController.pdb
 D:\Software Development 2\softwaredevelopment\TrafficController\TrafficController\x64\Debug\TrafficController.pdb
+C:\Users\wiebe\Documents\minor\software_development\traffic\TrafficController\x64\Debug\TrafficController.pdb
+C:\Users\wiebe\Documents\minor\software_development\traffic\TrafficController\TrafficController\x64\Debug\TrafficController.pdb
