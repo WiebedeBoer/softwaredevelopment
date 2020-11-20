@@ -74,8 +74,13 @@ namespace Simulator
 
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
 
-                
+                var charsToRemove = new string[] { " " };
+                foreach (var c in charsToRemove)
+                {
+                  stringData = stringData.Replace(c, string.Empty);
+                }
 
+                stringData.Replace(@"\", "");
 
                 String header = "0";
                 if (!String.IsNullOrWhiteSpace(stringData))
@@ -90,11 +95,6 @@ namespace Simulator
                 stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
                 if (header == stringData.Substring(4).Length.ToString())
                 {
-                    //var charsToRemove = new string[] { "-" };
-                    //foreach (var c in charsToRemove)
-                    //{
-                      //  stringData = stringData.Replace(c, string.Empty);
-                    //}
                     try
                     {
                         stringData = stringData.Substring(4);
