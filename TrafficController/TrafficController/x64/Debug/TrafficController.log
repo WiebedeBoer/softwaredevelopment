@@ -1,7 +1,1 @@
-﻿  Controller.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\TrafficController\Controller.cpp(54,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Main.cpp
-  Sender.cpp
-C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\TrafficController\Sender.cpp(118,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-  TrafficController.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\TrafficController.exe
+﻿  TrafficController.vcxproj -> D:\Software Development 2\softwaredevelopment\TrafficController\x64\Debug\TrafficController.exe

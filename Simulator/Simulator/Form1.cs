@@ -781,7 +781,7 @@ namespace Simulator
                     x.move(10, brake);
                 } else
                 {
-                    x.move(14, brake);
+                    x.move(16, brake);
                 }
             }
 
