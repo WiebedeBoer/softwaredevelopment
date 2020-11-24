@@ -112,7 +112,14 @@ namespace Simulator
             }
         }
 
-
+        /*
+         * 
+         * Lightsequence of a regular traffic light.
+         * Green -> Yellow -> Red
+         * Red -> Green
+         * 
+         * With 3 second delay
+         */
         public async void LightSequence(int i)
         {
             switch (i)
@@ -139,23 +146,5 @@ namespace Simulator
                     break;
             }
         }
-
-        // Switch trafficlight to yellow, after a delay switch to green
-        public void SwitchLight()
-        {
-            if (currentColor == RegLightSequence.Red)
-            {
-                regTrafficLight.Image = Properties.Resources.green_light;
-                currentColor = RegLightSequence.Green;
-            }
-            else
-            {
-                regTrafficLight.Image = Properties.Resources.red_light;
-                currentColor = RegLightSequence.Red;
-            }
-
-        }
-
-
     }
 }

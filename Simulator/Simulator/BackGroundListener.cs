@@ -19,27 +19,22 @@ namespace Simulator
 
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-        private JSONTrafficLight json = null;
-
-        public JObject json2 = null;
-
-        // JSON To Send back
-        //public JSONTrafficLight jsonToSend = null;
+        // JSON send to controller
         public JObject jsonToSend = null;
+        // JSON received by controller
         public JObject jsonToReceive = null;
-        public JSONTrafficLight Json { get => json; set => json = value; }
 
-
+        // Wait 1 second to send JSON 
         public async void WaitSequence() 
         {
             await System.Threading.Tasks.Task.Delay(1000);
             string sendData = JsonConvert.SerializeObject(jsonToSend);
-            //sendData.Replace(@"\", "");
             string length = sendData.Length.ToString();
             string headerJSON = length + ":";
             string package = headerJSON + sendData;
             byte[] dataBytes = Encoding.Default.GetBytes(package);
 
+            // Check if still connected
             bool connected = SocketPolled(socket);
             if (connected ==true)
             {
@@ -62,8 +57,7 @@ namespace Simulator
                 return true;
         }
 
-        //connect and receive, instead of listen
-
+        //Listen to incoming JSON and send JSON back over corresponding port
         public void StartListening()
         {
             byte[] buffer = new byte[1024];
@@ -92,27 +86,23 @@ namespace Simulator
                         header = stringData.Substring(0, charLocation);
                     }
                 }
+                // Check incoming JSON for unwanted characters
                 stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
+                // Check if header is correctly received
                 if (header == stringData.Substring(4).Length.ToString())
                 {
                     try
                     {
                         stringData = stringData.Substring(4);
 
-                        json2 = JObject.Parse(stringData);
-
-                        json = JsonConvert.DeserializeObject<JSONTrafficLight>(stringData);
-
                         jsonToReceive = JsonConvert.DeserializeObject<JObject>(stringData);
 
-                        Console.WriteLine(json2["A1-1"]);
-
-                        Console.WriteLine("jsonToReceive variable: " + jsonToReceive["B1-1"]);
+                        Console.WriteLine("Received JSON: " + jsonToReceive);
 
                         Console.WriteLine("Send back JSON...");
 
-                        Console.WriteLine("jsonToSend variable: " + jsonToSend["B1-1"]);
-                    } catch(Exception e)
+                        Console.WriteLine("JSON: " + jsonToSend);
+                    } catch(Exception)
                     {
                         Console.WriteLine("JSON wasn't correct and thus couldn't be parsed");
                     }
@@ -126,20 +116,10 @@ namespace Simulator
                 {
                     Console.WriteLine("JSON is not complete...");
                 }
-
-
-
             }
-
-            //socket.Disconnect(false);
-            //socket.Close();
-
-            //Connect();
         }
 
-
-
-
+        // Check if connection is made with controller
         public void Connect()
         {
             IPEndPoint localEndpoint = new IPEndPoint(localAddr, port);
@@ -150,7 +130,7 @@ namespace Simulator
                 {
                     socket.Connect(localEndpoint);
                 }
-                catch (SocketException e)
+                catch (SocketException)
                 {
                     Console.WriteLine("Unable to connect to server.");
                 }

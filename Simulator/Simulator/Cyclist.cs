@@ -12,9 +12,6 @@ namespace Simulator
         {
             x = new PictureBox();
 
-            // random color for car
-            Random rnd = new Random();
-
             x.Image = Properties.Resources.cyclist;
 
             x.BackColor = Color.Transparent;

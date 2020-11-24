@@ -81,3 +81,24 @@ D:\Software Development 2\softwaredevelopment\softwaredevelopment\Simulator\Simu
 D:\Software Development 2\softwaredevelopment\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
 D:\Software Development 2\softwaredevelopment\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 D:\Software Development 2\softwaredevelopment\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.exe
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.deps.json
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.json
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.runtimeconfig.dev.json
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Simulator.pdb
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Form1.resources
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Properties.Resources.resources
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.Resource1.resources
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.GenerateResource.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfoInputs.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.AssemblyInfo.cs
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csproj.CopyComplete
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
+C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache

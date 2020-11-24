@@ -40,8 +40,6 @@ namespace Simulator
 
             x.Size = new Size(20, 33);
 
-
-
             this.path = path;
 
             x.Left = Left;

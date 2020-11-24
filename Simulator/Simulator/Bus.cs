@@ -13,9 +13,6 @@ namespace Simulator
         {
             x = new PictureBox();
 
-            // random color for car
-            Random rnd = new Random();
-
             x.Image = Properties.Resources.bus;
 
             x.BackColor = Color.Transparent;
@@ -36,6 +33,7 @@ namespace Simulator
          public override void move(int speed, bool carBrake)
         {
             bool brake = false;
+            // Check if both bus trafficlight or regular trafficlight is 'green'
             if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentBusColor != BusLightSequence.Straight
                 && path.nodes[node].Reg.currentBusColor != BusLightSequence.AnyDir
                 && path.nodes[node].Reg.currentBusColor != BusLightSequence.Left
@@ -45,13 +43,7 @@ namespace Simulator
                 brake = true;
                 path.nodes[node].Reg.carInFront = true;
             }
-            //else
-            //{
-            // brake = false;
-            //}
 
-            //if (brake is false)
-            //{
             if (path.nodes[node].Reg != null && brake is false)
                 path.nodes[node].Reg.carInFront = false;
             float tx = path.nodes[node].Left - x.Left;
@@ -61,8 +53,7 @@ namespace Simulator
             {
                 turn(x.Left, x.Top);
 
-                // move towards the goal
-
+                // move towards the node
                 if (carBrake is false)
                 {
                     x.Left = (int)(x.Left + speed * tx / length);
@@ -71,7 +62,7 @@ namespace Simulator
             }
             else
             {
-                // already there
+                // reached the next node
                 x.Left = path.nodes[node].Left;
                 x.Top = path.nodes[node].Top;
                 if (node < (path.nodes.Count - 1))
@@ -84,9 +75,6 @@ namespace Simulator
                     toBeDeleted = true;
                 }
             }
-
-
-            //}
         }
     }
 

@@ -19,18 +19,14 @@ namespace Simulator
 
     class BusTrafficLight : RegularTrafficLight
     {
-        //public String name = null;
-
         protected const int delayedLightChange = 3000; // in milliseconds
-        //public BusLightSequence currentBusColor = BusLightSequence.Stop;
 
         public PictureBox regTrafficLight;
 
         protected Image img;
 
+        // Make sure trafficlight is facing correctly on the form
         protected string facingDirection;
-
-        //public bool carInFront = false;
 
         protected const int imageWidth = 35;
         protected const int imageHeight = 35;
@@ -83,6 +79,7 @@ namespace Simulator
             this.name = name;
         }
 
+        // Make sure picturebox is facing correct direction
         protected void correctlyFacingTrafficLight(Image img, string direction)
         {
             switch (direction)
@@ -109,6 +106,12 @@ namespace Simulator
                     break;
             }
         }
+        
+        /*
+         * 
+         * Light sequence for differing bus trafficlights
+         * 
+         * */
 
         public async void LeftLightSequence(int i)
         {

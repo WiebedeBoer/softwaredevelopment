@@ -15,16 +15,21 @@ namespace Simulator
 
         public PictureBox x;
 
+        // Which direction the picturebox should face
         public String direction = "straight";
 
+        // Random path given to traffic object
         protected Path path = null;
 
+        // Should this object be deleted from memory
         public bool toBeDeleted = false;
 
         private int oldRotation = 0;
 
+        // Which node has been reached
         public int node = 0;
 
+        // Size of picturebox
         protected int width = 20;
         protected int height = 33;
 
@@ -51,6 +56,7 @@ namespace Simulator
         public virtual void move(int speed, bool carBrake)
         {
             bool brake = false;
+            // Do not move if trafficlight is not green
             if (path.nodes[node].Reg != null && path.nodes[node].Reg.currentColor != RegLightSequence.Green)
             {
                 brake = true;
@@ -59,13 +65,7 @@ namespace Simulator
 
             if (path.nodes[node].Reg == null)
                 carBrake = false;
-            //else
-            //{
-            //\ brake = false;
-            //}
 
-            //if (brake is false)
-            //{
             if (path.nodes[node].Reg != null && brake is false)
                     path.nodes[node].Reg.carInFront = false;
                 float tx = path.nodes[node].Left - x.Left;
@@ -75,8 +75,7 @@ namespace Simulator
                 {
                     turn(x.Left, x.Top);
 
-                // move towards the goal
-
+                // move towards the next node
                 if (carBrake is false)
                 {
                     x.Left = (int)(x.Left + speed * tx / length);
@@ -85,7 +84,7 @@ namespace Simulator
                 }
                 else
                 {
-                    // already there
+                    // reached the node
                     x.Left = path.nodes[node].Left;
                     x.Top = path.nodes[node].Top;
                     if (node < (path.nodes.Count - 1))
@@ -98,16 +97,14 @@ namespace Simulator
                         toBeDeleted = true;
                     }
                 }
-
-            
-            //}
         }
 
+        // Which direction the picturebox should face when moving towards a node
         public void turn(int left, int top)
         {
 
-            // right(southern spawned cars)
-            if (/*top > path.nodes[node].Top &&*/ left < path.nodes[node].Left)
+            // (southern spawned cars)
+            if (left < path.nodes[node].Left)
             {
                 direction = "right";
                 Image img = x.Image;
@@ -134,8 +131,8 @@ namespace Simulator
                 x.Size = new Size(height, width);
             }
 
-            // right(northern spawned cars)
-            if (/*top < path.nodes[node].Top &&*/ left > path.nodes[node].Left)
+            // (northern spawned cars)
+            if (left > path.nodes[node].Left)
             {
                 direction = "left";
                 Image img = x.Image;
@@ -162,8 +159,8 @@ namespace Simulator
                 x.Size = new Size(height, width);
             }
 
-            // right(eastern spawned cars)
-            if (top < path.nodes[node].Top/* && left < path.nodes[node].Left*/)
+            // (eastern spawned cars)
+            if (top < path.nodes[node].Top)
             {
                 direction = "straightdown";
                 Image img = x.Image;
@@ -190,8 +187,8 @@ namespace Simulator
                 x.Size = new Size(width, height);
             }
 
-            // right(western spawned cars)
-            if (top > path.nodes[node].Top/* && left > path.nodes[node].Left*/)
+            // (western spawned cars)
+            if (top > path.nodes[node].Top)
             {
                 direction = "straight";
                 Image img = x.Image;
@@ -219,46 +216,19 @@ namespace Simulator
             }
         }
 
+        // Check if collision detected with other traffic
         public bool collisionDetection(List<Traffic> traffic)
         {
             List<Traffic> traffic2 = traffic.Where(traffic => traffic.guid != this.guid).ToList();
 
+            // No traffic, always return false
             if (traffic2.Count == 0)
             {
                 return false;
             }
 
-            // Collisionboxes
-            Rectangle rect = new Rectangle();
-            if (direction == "straight")
-            {
-                rect = new Rectangle(x.Left, (x.Top - 10), x.Width, 10);
-            }
-
-            if (direction == "straightdown")
-            {
-                rect = new Rectangle(x.Left, (x.Top + x.Height + 10), x.Width, 10);
-            }
-
-            if (direction == "right")
-            {
-                rect = new Rectangle((x.Left + x.Width + 10), x.Top, 10, x.Top);
-            }
-
-            if (direction == "left")
-            {
-                rect = new Rectangle((x.Left - x.Width - 10), x.Top, 10, x.Top);
-            }
-
-            int carInFront = 0;
-
             foreach (Traffic tr2 in traffic2)
             {
-                if ((rect.IntersectsWith(tr2.x.Bounds)))
-                {
-                    carInFront++;
-                }
-
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straight" && tr2.direction == direction && tr2.x.Top < x.Top)
                     return true;
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straightdown" && tr2.direction == direction && tr2.x.Top > x.Top)
@@ -267,18 +237,6 @@ namespace Simulator
                     return true;
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "left" && tr2.direction == direction && tr2.x.Left < x.Left)
                     return true;
-
-                //if(x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront == 0 && path.nodes[node].Reg == null)
-                //{
-                //  return false;
-                //}
-                // directection === direction weer weghalen als niet werkt...
-
-                /*
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && carInFront != 0 && tr2.direction == this.direction)
-                {
-                    return true;
-                }*/
             }
 
             return false;
