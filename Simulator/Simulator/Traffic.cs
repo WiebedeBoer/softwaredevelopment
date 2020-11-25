@@ -229,6 +229,11 @@ namespace Simulator
 
             foreach (Traffic tr2 in traffic2)
             {
+                if((this is Bus || this is Car) && (x.Bounds.IntersectsWith(tr2.x.Bounds) && (tr2 is Cyclist || tr2 is Pedestrian)))
+                {
+                    return true;
+                }
+
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straight" && tr2.direction == direction && tr2.x.Top < x.Top)
                     return true;
                 if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straightdown" && tr2.direction == direction && tr2.x.Top > x.Top)

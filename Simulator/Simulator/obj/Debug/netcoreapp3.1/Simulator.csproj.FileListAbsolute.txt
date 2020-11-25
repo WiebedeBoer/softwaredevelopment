@@ -102,3 +102,4 @@ C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simu
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.dll
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.pdb
 C:\Users\janek\Documents\Software Development 2 Project\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.genruntimeconfig.cache
+D:\SD2\softwaredevelopment\Simulator\Simulator\obj\Debug\netcoreapp3.1\Simulator.csprojAssemblyReference.cache

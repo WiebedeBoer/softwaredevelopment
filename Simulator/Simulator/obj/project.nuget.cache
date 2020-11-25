@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0hTkCrwGfQk3TkaXyn0aZPbzHUZ5xdaqKBNiK6j2VwRncB1tEEmgz2+u6OT2eyXH9vDk+s6ueZ7fEPUN795OtA==",
+  "dgSpecHash": "BmSnGHUXCWpIEbS4t5Z01BVx0SWQRyZ1eMWdg+yOCAbuCkCxcRm9BffZG2uFyU/xnDOLCAqRK5gQ7eKjEJirkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
+  "projectFilePath": "D:\\SD2\\softwaredevelopment\\Simulator\\Simulator\\Simulator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\janek\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vSf/Y39BNSDksT+Jdcy9NrUOAi4zZnatp6H8H5bljTAzaIb0v8uKka2VyFSggPrL5T0IrBFX+pXCHchq1/J8uw==",
+  "dgSpecHash": "awLWZxKDX9iJi5OzdwsbUM2N9gpuBiMbb9GnodHlyo22+5rTLj6BJ8KRk9u33vKdLJWHa4NbWmXsAFxXOwPSSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\janek\\Documents\\Software Development 2 Project\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
+  "projectFilePath": "D:\\SD2\\softwaredevelopment\\Simulator\\SimulatorTest\\SimulatorTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\janek\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\janek\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
