@@ -12,12 +12,14 @@ int main()
 	ptr_sender->socketSetup();
 	//Start phase number.
 	int order = 1; 
+	int clearance = 1;
 	int modorder;
+	int clearanceorder;
 	//Timing.
 	double time_counter = 0;
 	clock_t this_time = clock();
 	clock_t last_time = this_time;
-	const int NUM_SECONDS = 4;
+	const int NUM_SECONDS = 5;
 	double total_time = 0;
 	//Thread for receiving.
 	std::thread t1(&Sender::receiving, ptr_sender);
@@ -35,17 +37,27 @@ int main()
 		time_counter = 0;
 		//Phase calculation.
 		modorder = (order % 6) + 1;
+		clearanceorder = (clearance % 2);
 		std::cout << modorder;
 		std::cout << "\n";
 		//Parsing from received.
 		modorder = controller->parsejson(modorder);
 		//Traffic lights to send.
-		std::string newtraffic = controller->changetraffic(modorder);
+		std::string newtraffic;
+		if (clearanceorder ==1) {
+			newtraffic = controller->changetraffic(modorder);
+			order++;
+		}
+		else {
+			newtraffic = controller->clearancetime();
+		}
+		
 		//Package every 4 seconds.
 		ptr_sender->socketServer(newtraffic);
 		std::cout << "phase Send \n"; 
 		//Continuous order of phase number.
-		order++;
+		
+		clearance++;
 	}
 	t1.join();
 	controller.reset();

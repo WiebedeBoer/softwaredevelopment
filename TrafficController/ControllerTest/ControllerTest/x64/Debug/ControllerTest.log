@@ -1,3 +1,4 @@
-﻿  ControllerTest.cpp
+﻿  pch.cpp
+  ControllerTest.cpp
      Creating library C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\ControllerTest.lib and object C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\ControllerTest.exp
   ControllerTest.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\ControllerTest.dll
