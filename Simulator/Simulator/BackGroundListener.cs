@@ -68,11 +68,7 @@ namespace Simulator
 
                 string stringData = Encoding.ASCII.GetString(buffer, 0, receivedDataLength);
 
-                var charsToRemove = new string[] { " " };
-                foreach (var c in charsToRemove)
-                {
-                  stringData = stringData.Replace(c, string.Empty);
-                }
+                
 
                 stringData.Replace(@"\", "");
 
@@ -87,10 +83,16 @@ namespace Simulator
                     }
                 }
                 // Check incoming JSON for unwanted characters
-                stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
+                
                 // Check if header is correctly received
                 if (header == stringData.Substring(4).Length.ToString())
                 {
+                    var charsToRemove = new string[] { " " };
+                    foreach (var c in charsToRemove)
+                    {
+                        stringData = stringData.Replace(c, string.Empty);
+                    }
+                    stringData = Regex.Replace(stringData, @"\t|\n|\r", "");
                     try
                     {
                         stringData = stringData.Substring(4);
