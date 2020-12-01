@@ -256,7 +256,7 @@ namespace Simulator
 
             // Trafficlight A54
             Path path7 = new Path();
-            path7.addNode(1, 433);
+            path7.addNode(-50, 433);
             path7.addNode(120, 433, regA54);
             path7.addNode(170, 433);
             path7.addNode(208, 433);
@@ -265,7 +265,7 @@ namespace Simulator
             Path path8 = new Path();
 
             // Trafficlight A53
-            path8.addNode(1, 409);
+            path8.addNode(-50, 409);
             path8.addNode(120, 409, regA53);
             path8.addNode(170, 409);
             path8.addNode(208, 409);
@@ -275,7 +275,7 @@ namespace Simulator
 
             // Trafficlight A52 -> Secondary Trafficlight A34
             Path path9 = new Path();
-            path9.addNode(1, 385);
+            path9.addNode(-50, 385);
             path9.addNode(120, 385, regA52);
             path9.addNode(170, 385);
             path9.addNode(700, 385, regA34);
@@ -284,7 +284,7 @@ namespace Simulator
 
             // Trafficlight A52 -> Secondary Trafficlight A33
             Path path10 = new Path();
-            path10.addNode(1, 385);
+            path10.addNode(-50, 385);
             path10.addNode(120, 385, regA52);
             path10.addNode(170, 385);
             path10.addNode(310, 385);
@@ -295,7 +295,7 @@ namespace Simulator
 
             // Trafficlight A51 -> Secondary Trafficlight A32
             Path path11 = new Path();
-            path11.addNode(1, 363);
+            path11.addNode(-50, 363);
             path11.addNode(120, 363, regA51);
             path11.addNode(170, 363);
             path11.addNode(272, 363);
@@ -307,7 +307,7 @@ namespace Simulator
 
             // Trafficlight A51 -> Secondary Trafficlight A31
             Path path12 = new Path();
-            path12.addNode(1, 363);
+            path12.addNode(-50, 363);
             path12.addNode(120, 363, regA51);
             path12.addNode(170, 363);
             path12.addNode(272, 363);
@@ -320,7 +320,7 @@ namespace Simulator
             // Trafficlight A11 -> Secondary Trafficlight A61
             paths.Add(path12);
             Path patha11 = new Path();
-            patha11.addNode(726, 1);
+            patha11.addNode(726, -50);
             patha11.addNode(726, 80, regA11);
             patha11.addNode(721, 195);
             patha11.addNode(572, 206);
@@ -331,7 +331,7 @@ namespace Simulator
 
             // Trafficlight A11 -> Secondary Trafficlight A62
             Path patha11r = new Path();
-            patha11r.addNode(726, 1);
+            patha11r.addNode(726, -50);
             patha11r.addNode(726, 80, regA11);
             patha11r.addNode(721, 195);
             patha11r.addNode(572, 227);
@@ -342,7 +342,7 @@ namespace Simulator
 
             // Trafficlight A12 -> Secondary Trafficlight A64
             Path patha12 = new Path();
-            patha12.addNode(750, 1); 
+            patha12.addNode(750, -50); 
             patha12.addNode(750, 80, regA12);
             patha12.addNode(750, 195);
             patha12.addNode(750, 252);
@@ -356,7 +356,7 @@ namespace Simulator
 
             // Trafficlight A12 -> Secondary Trafficlight A64
             Path patha12r = new Path();
-            patha12r.addNode(750, 1); 
+            patha12r.addNode(750, -50); 
             patha12r.addNode(750, 80, regA12); 
             patha12r.addNode(750, 195);
             patha12r.addNode(750, 276);
@@ -370,7 +370,7 @@ namespace Simulator
 
             // Trafficlight A13
             Path patha13 = new Path();
-            patha13.addNode(772, 1); 
+            patha13.addNode(772, -50); 
             patha13.addNode(772, 80, regA13); 
             patha13.addNode(772, 353);
             patha13.addNode(772, 388);
