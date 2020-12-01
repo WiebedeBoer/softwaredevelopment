@@ -440,7 +440,7 @@ namespace Simulator
 
             // Trafficlight B11 -> Secondary Trafficlight A63
             Path pathb11 = new Path();
-            pathb11.addNode(793, 1); 
+            pathb11.addNode(793, -50); 
             pathb11.addNode(793, 55, busB11);
             pathb11.addNode(793, 103); 
             pathb11.addNode(793, 195);
@@ -454,7 +454,7 @@ namespace Simulator
 
             // Trafficlight B12
             Path pathb12 = new Path();
-            pathb12.addNode(793, 1); 
+            pathb12.addNode(793, -50); 
             pathb12.addNode(793, 55, busB12);
             pathb12.addNode(793, 103);
             pathb12.addNode(793, 195);

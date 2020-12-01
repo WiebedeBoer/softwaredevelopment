@@ -233,14 +233,30 @@ namespace Simulator
                 {
                     return true;
                 }
-
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straight" && tr2.direction == direction && tr2.x.Top < x.Top)
+                PictureBox tempPB = new PictureBox { Height = x.Height, Width = x.Width, Top = x.Top, Left = x.Left };
+                if(direction == "straight" && tr2.direction == direction)
+                {
+                    tempPB.SetBounds(x.Left, x.Top - 13, x.Width, x.Height);
+                }
+                if (direction == "straightdown" && tr2.direction == direction)
+                {
+                    tempPB.SetBounds(x.Left, x.Top + 13, x.Width, x.Height);
+                }
+                if (direction == "left" && tr2.direction == direction)
+                {
+                    tempPB.SetBounds(x.Left - 13, x.Top, x.Width, x.Height);
+                }
+                if (direction == "right" && tr2.direction == direction)
+                {
+                    tempPB.SetBounds(x.Left + 13, x.Top, x.Width, x.Height);
+                }
+                if (tempPB.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straight" && tr2.direction == direction && tr2.x.Top < x.Top)
                     return true;
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straightdown" && tr2.direction == direction && tr2.x.Top > x.Top)
+                if (tempPB.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "straightdown" && tr2.direction == direction && tr2.x.Top > x.Top)
                     return true;
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "right" && tr2.direction == direction && tr2.x.Left > x.Left)
+                if (tempPB.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "right" && tr2.direction == direction && tr2.x.Left > x.Left)
                     return true;
-                if (x.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "left" && tr2.direction == direction && tr2.x.Left < x.Left)
+                if (tempPB.Bounds.IntersectsWith(tr2.x.Bounds) && direction == "left" && tr2.direction == direction && tr2.x.Left < x.Left)
                     return true;
             }
 
