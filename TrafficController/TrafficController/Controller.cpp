@@ -74,10 +74,19 @@ int Controller::parsejson(int order) {
 		//Preparing json string.
 		json j = substr;
 		
-		try
-		{		
+		static bool jsonvalid;
 			//See if json is valid.
-			static bool jsonvalid = json::accept(substr);
+		try
+		{
+			jsonvalid = json::accept(substr);
+		}
+		catch (int e)
+		{
+			std::cout << "An exception occurred. Exception json incorrect. " << e << "\n";
+			jsonvalid = false;
+		}
+
+
 			if (jsonvalid ==true) {
 				std::cout << "Json is valid.\n";
 				//Parsing json string.
@@ -182,11 +191,7 @@ int Controller::parsejson(int order) {
 				std::cout << "Json is invalid!\n";
 				order = order;
 			}
-		}
-		catch (int e)
-		{
-			std::cout << "An exception occurred. Exception json incorrect. " << e << "\n";
-		}			
+		
 	}
 	return order;
 }
