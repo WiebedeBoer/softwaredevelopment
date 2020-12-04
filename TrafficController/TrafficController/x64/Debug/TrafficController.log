@@ -1,1 +1,4 @@
-﻿  TrafficController.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\TrafficController.exe
+﻿  Controller.cpp
+C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\TrafficController\Controller.cpp(64,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  LINK : C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\TrafficController.exe not found or not built by the last incremental link; performing full link
+  TrafficController.vcxproj -> C:\Users\wiebe\Documents\minor\software_development\traffic\software_groep2\TrafficController\x64\Debug\TrafficController.exe
